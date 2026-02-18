@@ -21,5 +21,13 @@ C#, C++, HTML, CSS, JS, Eanglish A1
 - BGKLP 2018-2019  
     Specialty: automated systems for processing economic information
 
+### Expirience
+- **Stroytrest 2** *2024-2024*  
+    Tying piles and cleaning the area
+- **BGKLP** *2018-2019*  
+    Internship to obtain the qualification of a 6th-category computer operator
 
-
+### Social Media
+[📘 Facebook](#) 
+[🐦 Twitter](#)
+[📷 Instagram](#)

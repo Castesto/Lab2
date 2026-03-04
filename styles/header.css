@@ -1,6 +1,17 @@
 header {
     color: violet;
-    height: 200px;
-    width: 200px;
-    background-color: aqua;
+    height: 191px;
+    width: 100%;
+    /* background-color: aqua; */
+}
+
+.header1 {
+    height: 38px;
+    border-bottom: solid 1px #E0E0E0;
+}
+
+.header2 {
+    display: flex;
+    height: 62px;
+    border-bottom: solid 1px #E0E0E0;
 }

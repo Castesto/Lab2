@@ -1,22 +1,74 @@
 header {
-    color: violet;
+    color: white;
     height: 191px;
     width: 100%;
-    background-color: antiquewhite;
+    background-color: #A8D1E7;
     margin-top: 17px;
-    /* background-color: aqua; */
 }
 
+
 .header1 {
+    padding-left: 200px;
     height: 38px;
-    background-color: rgb(233, 209, 255);
+    background-color: white;
     display: grid;
-    grid-template-columns: 150px 150px 150px;
+    grid-template-columns: 93px 51px 57px 57px 72px 739px 108px 74px;
     grid-template-rows: 100%;
+    border-bottom: 1px solid rgb(203, 201, 201);
+    padding-top: 4px;
+    gap: 38px;
 }
+
+.city { grid-column: 1; }
+.promo { grid-column: 2; }
+.assembly { grid-column: 3; }
+.payment { grid-column: 4; }
+.delivery { grid-column: 5; }
+.our-work { grid-column: 7; }
+.contacts { grid-column: 8; }
+
+.header1 * {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #1D1818;
+    line-height: normal;   
+    letter-spacing: 0px; 
+}
+
+.city a{
+    font-weight: 700;
+    padding-left: 24px;
+}
+
+.header1 ul {
+    display: contents;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.header1 a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.header1 li {
+    /* border: 1px solid gray; */
+    margin-left: 2px;
+}
+
+
+
+
+.header1 > * {
+    border: 1px gray solid;
+}
+
 
 .header2 {
     display: flex;
     height: 93px;
-    background-color: rgba(181, 136, 223, 0.623);
+    background-color: white;
 }

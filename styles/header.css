@@ -201,3 +201,48 @@ header {
 .basket img {
     margin-left: -9px;
 }
+
+.header3 {
+    width: 1920px;
+    padding-left: 200px;
+    display: grid;
+    font-size: 20px;
+    font-weight: bold;
+    grid-template-columns: 168px 206px 
+                           187px 205px 
+                           227px 183px 
+                           154px 191px;
+    grid-template-rows: 100%;
+    color:black;
+    height: 60px;
+    background-color: #A8D1E7;
+}
+
+.header3 div {
+    padding-top: 18px;
+}
+
+
+.header3 a {
+    color: black;
+    text-decoration: none;
+}
+
+
+.header3 a:hover {
+    color:gray;
+}
+
+
+.whereWatch{
+    color: white;
+    background-color:#384685;
+    border-radius: 5px;
+    padding-left: 17px;
+}
+
+.whereWatch a{
+    color: white;
+    background-color:#384685;
+    border-radius: 5px;
+}

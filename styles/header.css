@@ -12,14 +12,15 @@ header {
     height: 38px;
     background-color: white;
     display: grid;
-    grid-template-columns: 93px 51px 57px 57px 72px 739px 108px 74px;
+    grid-template-columns: 94px 51px 57px 57px 72px 739px 108px 74px;
     grid-template-rows: 100%;
     border-bottom: 1px solid rgb(203, 201, 201);
     padding-top: 4px;
     gap: 38px;
 }
 
-.city { grid-column: 1; }
+.city { grid-column: 1; 
+}
 .promo { grid-column: 2; }
 .assembly { grid-column: 3; }
 .payment { grid-column: 4; }
@@ -60,15 +61,143 @@ header {
 }
 
 
-
-
-.header1 > * {
-    border: 1px gray solid;
-}
-
-
 .header2 {
+    padding-left: 200px;
     display: flex;
+    flex-direction: row;
     height: 93px;
     background-color: white;
+    color:#1D1818;
+    font-family: 'PT Sans', sans-serif;
+}
+
+.logo { 
+    padding-top: 25px;
+    flex: 0 0 188.95px;
+}
+
+.location {
+    margin-left: 99px;
+    margin-top: -6px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #1D1818;
+    padding-top: 25px;
+    flex: 0 0 227.18px; 
+}
+
+.location a {
+    display: inline-block;
+    padding-top: 1px;
+    color: #E13B3F;
+    text-decoration: underline;
+}
+
+.search {
+    transform: translateY(-28px);
+    margin-left: 67px;
+    flex: 0 0 227.18px;  
+}
+
+.search-box {
+    width: 296px;
+    margin: 50px auto;
+    position: relative;
+  }
+
+.search-input {
+    width: 100%;
+    font-family: 'PT Sans', sans-serif;
+    padding: 12px 40px 10px 23px;
+    padding-left: 24px;
+    padding-top: 11px;
+    border: 1px solid #8ecae6;
+    border-radius: 25px;
+    outline: none;
+    font-size: 16px;
+}
+
+.phoneNumber {
+    padding-top: 12px;
+    margin-left: 73px;
+    flex: 0 0 227.18px;
+}
+
+.number {
+    font-size: 22px;
+    color: black;
+    font-weight: bold;
+    display: flex;
+    align-items: center; 
+    gap: -22px; 
+    font-size: 22px;
+    color: black;
+    font-weight: bold;
+}
+
+.number img {
+    display: inline-block;
+    margin-top: -3px;
+    padding-right: 8px;
+}
+
+.phoneClick {
+   border: 1px solid #E13B3F; 
+    border-radius: 6px;        
+    background-color: white;  
+    color: #E13B3F;  
+    margin-left: 27px;
+    margin-top: 4px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 18px;
+    width: 177px;
+    height: 35px;
+    display: flex;
+    align-items: flex-start;  
+    justify-content: center;  
+    padding-top: 4px; 
+    cursor: pointer;
+}
+
+.autorization {
+    display: grid;
+    place-items: center;
+    max-height: 49px;
+    gap: 10px;
+    padding-top: 20px;
+    margin-left: 67px;
+    font-size: 18px;
+}
+
+.autorization img {
+    display: inline-block;
+    margin-left: -3px;
+}
+
+.liked {
+    display: grid;
+    max-height: 49px;
+    gap: 10px;
+    padding-top: 20px;
+    margin-left: 41px;
+    font-size: 18px;
+}
+
+.liked img {
+    padding-left: 2px;
+}
+
+.basket {
+    display: grid;
+    place-items: center;
+    max-height: 49px;
+    gap: 10px;
+    padding-top: 14px;
+    margin-left: 35px;
+    font-size: 18px;  
+}
+
+.basket img {
+    margin-left: -9px;
 }

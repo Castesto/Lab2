@@ -1,0 +1,14 @@
+main {
+    width: 1920px;
+    height: auto;
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-top: 42px;
+}
+
+.rectangle {
+    width: 100%;
+    height: 387px;
+    background-color: #C4C4C4;
+    border-radius: 10px;
+}

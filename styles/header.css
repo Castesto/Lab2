@@ -8,6 +8,7 @@ header {
 
 
 .header1 {
+    width: 100%;
     padding-left: 200px;
     height: 38px;
     background-color: white;
@@ -61,7 +62,11 @@ header {
 }
 
 
+
+
+
 .header2 {
+    width: 100%;
     padding-left: 200px;
     display: flex;
     flex-direction: row;
@@ -203,7 +208,7 @@ header {
 }
 
 .header3 {
-    width: 1920px;
+    width: 100%;
     padding-left: 200px;
     display: grid;
     font-size: 20px;
@@ -245,4 +250,38 @@ header {
     color: white;
     background-color:#384685;
     border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+@media (max-width: 1919px) {
+    .header1 {
+        padding-left: max(20px, calc(200px * (100vw / 1920)));
+        gap: max(10px, calc(38px * (100vw / 1920)));
+    }
+}
+
+@media (max-width: 1400px) {
+    .header1 {
+        grid-template-columns: repeat(8, auto);
+        gap: 20px;
+        padding-left: 40px;
+        padding-right: 40px;
+        overflow-x: auto; 
+    }
+}
+
+@media (max-width: 768px) {
+    .header1 {
+        display: flex;
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px;
+        gap: 10px;
+    }
 }

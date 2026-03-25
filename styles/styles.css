@@ -7,5 +7,4 @@ body {
 *, *::before, *::after {
   box-sizing: border-box;
   font-family: 'PT Sans', sans-serif;
-  font-size: 18px;
 }

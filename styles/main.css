@@ -1,9 +1,9 @@
 main {
-    width: 1920px;
     height: auto;
     padding-left: 200px;
     padding-right: 200px;
     padding-top: 42px;
+    width: 100%;
 }
 
 .rectangle {
@@ -515,7 +515,7 @@ main {
     font-weight: bold;
 }
 
-.number {
+.allContacts > .number {
     margin-top: 24px;
     z-index: 2;
     font-size: 25px;
@@ -563,7 +563,7 @@ main {
 .photos {
     height: 769px;
     padding: 0;
-    margin-top: 39px;
+    margin-top: 40px;
     margin-left: 172px;
     margin-right: 177px;
     background-image: url('../images/instphoto.png');

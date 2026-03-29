@@ -2,10 +2,14 @@ header {
     color: white;
     height: 191px;
     width: 100%;
-    background-color: #A8D1E7;
     margin-top: 17px;
+    
 }
 
+.header-wrapper {
+    max-width: 1920px;
+    margin: 0 auto;
+}
 
 .header1 {
     width: 100%;
@@ -252,6 +256,10 @@ header {
     border-radius: 5px;
 }
 
+.header1, .header2, .header3 {
+    padding-left: calc(max(0px, (100vw - 1920px) / 2) + 200px);
+    padding-right: calc(max(0px, (100vw - 1920px) / 2) + 200px);
+}
 
 
 

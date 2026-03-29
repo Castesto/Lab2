@@ -3,9 +3,25 @@ body {
     margin: 0;
     width: 100%;
     height: auto;
+    
 }
 
 *, *::before, *::after {
   box-sizing: border-box;
   font-family: 'PT Sans', sans-serif;
 }
+
+.wrapper {
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.container {
+    min-width: 1920px;
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+
+

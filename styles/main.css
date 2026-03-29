@@ -262,8 +262,7 @@ main {
     background-color: white;
     padding-right: 5%;
     padding-top: 2%;
-    padding-left: 15px;
-    padding-top: 2px;
+    
     
 }
 
@@ -447,7 +446,68 @@ main {
     padding-top: 2px;
 }
 
+.ourWorksText {
+    font-weight: bold;
+    font-size: 30px;
+    padding-top: 5.9%;
+}
 
+.ourWorks .catalogElements {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 374px 430px;
+    gap: 30px 29px;
+    height: auto;
+    padding-bottom: 0;
+    
+}
+
+.ourWorks .catalogElements > div:nth-child(3) {
+    grid-row: span 2;
+}
+
+.ourWorks .catalogElements > div:nth-child(4) {
+    grid-column: span 2;
+}
+
+.allContactsAndMap {
+    padding-top: 65px;
+    display: flex;
+    flex-direction: row;
+    height: 488px;
+    border-radius: 10px;
+    overflow: hidden;
+    
+}
+
+
+.allContacts {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    flex: 0.88;
+    background-image: url('../images/blue-master-bedroom.png');
+}
+
+.allContacts::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: inherit;
+    filter: sepia(30%) saturate(200%) blur(3px);
+    z-index: 1;
+}
+
+
+.ourConstactsText {
+    position: absolute;
+    flex: 1;
+    z-index: 2;
+}
+
+.map {
+    background-color: aqua;
+    flex: 1;
+}
 
 
 

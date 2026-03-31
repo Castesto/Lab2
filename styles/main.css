@@ -1,4 +1,4 @@
-main {
+ main{
     height: auto;
     padding-left: 200px;
     padding-right: 200px;
@@ -571,7 +571,11 @@ main {
 }
 
 
-
+@media (max-width: 1919px) {
+  main {
+    padding-right: 0;
+  }
+}
 
 
 

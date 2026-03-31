@@ -1,0 +1,117 @@
+footer {
+    margin-top: 71px;
+    height: 583px;
+    background-color: #384685;
+    padding-left: calc(max(0px, (100vw - 1920px) / 2) + 200px);
+    padding-right: calc(max(0px, (100vw - 1920px) / 2) + 200px);
+    color: white;
+}
+
+footer > .wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.leftFooter {
+    flex: 0.35;
+    display: flex;
+    flex-direction: column;
+    padding-top: 37px;
+}
+
+.footerLogo {
+    flex: 1;
+    max-width: 175px;
+}
+
+.footerLogo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.footerNumber {
+    margin-top: 6.5%;
+    flex: 1;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.rightFooter {
+    flex: 1;
+}
+
+.workTime, .footerAdress, .footerMail {
+    display: flex;
+    flex-direction: row;
+}
+
+.workTime > .footerText {
+    flex: 0.56;
+    font-size: 18px;
+}
+
+.workTime > .footerContent {
+    flex:1;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.workTime {
+    margin-top: 4.6%;
+    max-height: 18px;
+}
+
+.footerAdress > .footerText {
+    flex: 0.56;
+    font-size: 18px;
+}
+
+.footerAdress > .footerContent {
+    flex:1;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.footerAdress {
+    margin-top: 4%;
+}
+
+.footerMail > .footerText {
+    flex: 0.56;
+    font-size: 18px;
+}
+
+.footerMail > .footerContent {
+    flex:1;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.footerMail {
+    margin-top: 2.2%;
+}
+
+.instagram {
+    display: flex;
+    margin-top: 15.9%;
+    height: auto;
+    flex-direction: column;
+}
+
+.instagramText {
+    flex:1;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.instagramLogo {
+    flex: 1;
+    margin-top: 2%;
+}
+
+.rightFooter {
+    display: flex;
+    padding-top: 50px;
+
+}

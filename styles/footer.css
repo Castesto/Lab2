@@ -22,6 +22,7 @@ footer > .wrapper {
 .footerLogo {
     flex: 1;
     max-width: 175px;
+    max-height: 48px;
 }
 
 .footerLogo img {
@@ -31,10 +32,11 @@ footer > .wrapper {
 }
 
 .footerNumber {
-    margin-top: 6.5%;
+    margin-top: 5%;
     flex: 1;
     font-size: 20px;
     font-weight: bold;
+    max-height: 25px;
 }
 
 .rightFooter {
@@ -110,8 +112,73 @@ footer > .wrapper {
     margin-top: 2%;
 }
 
+
 .rightFooter {
     display: flex;
     padding-top: 50px;
-
+    flex-direction: row;
 }
+
+.rightFooter > ul {
+    gap: 2px;
+}
+
+.rightFooter > ul, li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.rightFooter > ul  {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+    font-size: 18px;
+}
+
+.rightFooter > ul li:first-child {
+    font-weight: bold;
+    height: 18px;
+    letter-spacing: 1px;
+}
+
+footer ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+footer ul li a:hover {
+    color: gray;
+}
+
+.rightFooter > ul:nth-child(1) {
+    min-width: 153px;
+}
+
+.rightFooter > ul:nth-child(2) {
+    min-width: 153px;
+    margin-left: 39px;
+}
+
+.rightFooter > ul:nth-child(3) {
+    min-width: 169px;
+    margin-left: 27px;
+}
+
+.rightFooter > ul:nth-child(4) {
+    min-width: 154px;
+    margin-left:10px;
+}
+
+.rightFooter > ul:nth-child(5) {
+    margin-left: 34px;
+}
+
+.rightFooter > ul:nth-child(6) {
+    margin-left: 65px;
+}
+
+.rightFooter > ul:nth-child(7) {
+    margin-left: 50px;
+}
+

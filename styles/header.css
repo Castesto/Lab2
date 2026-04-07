@@ -384,6 +384,12 @@ header {
 
         }
 
+        .whereWatch {
+            vertical-align: center;
+            justify-self: center;
+            padding-right: 5%;
+        }
+
     }
 
     .burger-menu {
@@ -409,6 +415,16 @@ header {
         transition: all 0.3s ease;
     }
 
+    @media (max-width: 1440px) {
+        .header3 {
+            grid-template-columns: repeat(5, 1fr) !important;
+        }
+
+        .header3>div:nth-child(-n+3) {
+            display: none;
+        }
+    }
+
     @media (max-width: 1200px) {
         .burger-menu {
             display: flex;
@@ -423,6 +439,11 @@ header {
         .liked,
         .basket {
             display: none;
+        }
+
+        .header3 {
+            padding-right: 0;
+            padding-left: 0;
         }
     }
 
@@ -456,8 +477,15 @@ header {
             margin-left: 0;
             flex: none;
             width: 100%;
-            max-width: 100%;
-            /* ограничиваем ширину поля поиска */
+            max-width: 100%;   
+        }
+
+        .header3 {
+            grid-template-columns: repeat(3, 1fr) !important;
+        }
+
+        .header3>div:nth-child(-n+5) {
+            display: none;
         }
     }
 

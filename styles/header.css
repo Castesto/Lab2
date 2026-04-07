@@ -489,6 +489,16 @@ header {
         }
     }
 
+     @media (max-width: 320px) {
+        .header3 {
+            grid-template-columns: repeat(1, 1fr) !important;
+        }
+
+        .header3>div:nth-child(-n+7) {
+            display: none;
+        }
+    }
+
     /* .burger-menu.active span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
     }

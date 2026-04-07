@@ -4,6 +4,7 @@ body {
     width: 100%;
     height: auto;
     
+    
 }
 
 *, *::before, *::after {
@@ -17,5 +18,8 @@ body {
 }
 
 
-
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
 

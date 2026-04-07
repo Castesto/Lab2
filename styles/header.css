@@ -11,6 +11,29 @@ header {
     margin: 0 auto;
 }
 
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1000;
+    position: relative;
+    margin: 15px 0 0 20px;
+}
+
+.burger-menu span {
+    width: 100%;
+    height: 3px;
+    background-color: #1D1818;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
 .header1 {
     width: 100%;
     padding-left: 200px;
@@ -284,27 +307,180 @@ header {
 
 @media (max-width: 1919px) {
     .header1 {
-        grid-template-columns:
-            0.075fr 0.041fr 0.046fr 0.046fr 0.057fr 0.59fr 0.30fr 0.059fr;
+        grid-template-columns: repeat(5, auto) 1fr auto auto;
     }
+
+
 
     .header3 {
         grid-template-columns:
             minmax(100px, 1.1fr) minmax(120px, 1.35fr) minmax(110px, 1.2fr) minmax(120px, 1.35fr) minmax(130px, 1.5fr) minmax(110px, 1.2fr) minmax(100px, 1fr) minmax(150px, 1.9fr);
     }
 
-    .header3 a {
-        white-space: nowrap;
+    @media (max-width: 1919px) {
+        .header2 {
+            /* padding-left: 14%;
+            padding-right: 12%; */
+            gap: 20px;
+            height: auto;
+            min-height: 80px;
+        }
+
+        .logo {
+            flex: 0 0 auto;
+        }
+
+        .location {
+            display: none;
+            margin-left: 0;
+            flex: 1 1 auto;
+            min-width: 180px;
+        }
+
+        .search {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: center;
+            transform: translateY(0);
+            margin-left: 0;
+            flex: 2 1 300px;
+            padding-right: 0;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 350px;
+            margin: 0;
+        }
+
+        .phoneNumber {
+            margin-left: 0;
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .number {
+            font-size: clamp(16px, 2vw, 22px);
+        }
+
+        .phoneClick {
+            margin-left: 0;
+            width: auto;
+            padding: 4px 12px;
+            white-space: nowrap;
+        }
+
+        .autorization,
+        .liked,
+        .basket {
+            margin-left: 0;
+        }
+
+        .header3 a {
+            white-space: nowrap;
+
+        }
 
     }
-}
 
-@media (max-width: 1440px) {
-    .categoryes>button:last-child {
+    .burger-menu {
         display: none;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 24px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1000;
+        position: relative;
+        margin: 15px 0 0 20px;
     }
 
-    .phoneNumber {
-        display: none;
+    .burger-menu span {
+        width: 100%;
+        height: 3px;
+        background-color: #1D1818;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+
+    @media (max-width: 1200px) {
+        .burger-menu {
+            display: flex;
+            justify-self: right;
+            margin-right: 2%;
+            position: absolute;
+            margin-top: 20px;
+        }
+
+        .header1,
+        .autorization,
+        .liked,
+        .basket {
+            display: none;
+        }
+    }
+
+    @media (max-width: 1000px) {
+
+        .header1,
+        .header2,
+        .header3 {
+            padding-left: 2%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .header2 {
+            height: 150px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 150px;
+            padding: 10px 0;
+            gap: 10px;
+        }
+
+        .logo {
+            padding-top: 0;
+            flex: none;
+        }
+
+        .search {
+            transform: none;
+            margin-left: 0;
+            flex: none;
+            width: 100%;
+            max-width: 100%;
+            /* ограничиваем ширину поля поиска */
+        }
+    }
+
+    /* .burger-menu.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .burger-menu.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger-menu.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    } */
+
+
+    @media (max-width: 1440px) {
+        .categoryes>button:last-child {
+            display: none;
+        }
+
+        .phoneNumber {
+            display: none;
+        }
     }
 }

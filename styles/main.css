@@ -646,7 +646,26 @@
 
          @media (max-width: 768px) {
              .advantages {
+                 margin-top: 9%;
                  grid-template-columns: repeat(2, 1fr);
+             }
+
+             .advantages>div>div {
+                 font-size: 14px;
+             }
+
+             .productCards {
+                 height: 600px;
+                 grid-template-columns: 520px;
+                 grid-template-rows: 1fr;
+             }
+
+             .popularProducts .card {
+                 height: 550px;
+             }
+
+             .popularCategoryText {
+                margin-top: 5%;
              }
 
              .qualityAssurance {
@@ -659,13 +678,15 @@
                  grid-template-rows: repeat(2, 1fr);
              }
 
+             .catalogElements>div>div {
+                 font-size: 16px;
+             }
+
              .productCards {
                  display: grid;
                  grid-template-columns: repeat(1, 1fr);
                  grid-template-rows: repeat(1, 1fr);
-
                  margin-bottom: 0;
-
              }
 
              .productCards>*:nth-last-child(-n+7) {

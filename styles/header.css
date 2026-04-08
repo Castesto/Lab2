@@ -440,6 +440,10 @@ header {
             display: none;
         }
 
+        .header2 {
+            padding-left: 0;
+        }
+
         .header3 {
             padding-right: 0;
             padding-left: 0;

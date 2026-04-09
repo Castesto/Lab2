@@ -665,6 +665,9 @@
                  height: 550px;
              }
 
+            .like {
+                margin-top: -1px;
+            }
              .popularCategoryText {
                 margin-top: 5%;
              }

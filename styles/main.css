@@ -278,11 +278,12 @@
      height: 29px;
      margin-left: 11%;
      margin-top: 5.5%;
-     object-fit: cover;
  }
 
  .like>img {
      display: block;
+     object-fit: scale-down;
+
  }
 
  .popularCategory {

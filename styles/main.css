@@ -665,11 +665,12 @@
                  height: 550px;
              }
 
-            .like {
-                margin-top: -1px;
-            }
+             .like {
+                 margin-top: -1px;
+             }
+
              .popularCategoryText {
-                margin-top: 5%;
+                 margin-top: 5%;
              }
 
              .qualityAssurance {
@@ -694,10 +695,24 @@
              }
 
              .categoryes button:nth-child(-n+13) {
-                display:none;
+                 display: none;
              }
 
              .productCards>*:nth-last-child(-n+7) {
+                 display: none;
+             }
+
+             .saleProductCards {
+                 grid-template-columns: repeat(1, 1fr);
+                 margin-bottom: 150px;
+                 height: 550px;
+             }
+
+             .saleProductCards .card {
+                 height: 550px;
+             }
+
+             .saleProductCards>*:nth-last-child(-n+3) {
                  display: none;
              }
 
@@ -715,12 +730,13 @@
              }
 
              .categoryes button:nth-child(-n+16) {
-                display:none;
+                 display: none;
              }
 
              .box {
-                width: 100%;
+                 width: 100%;
              }
+
          }
      }
  }

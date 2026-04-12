@@ -684,7 +684,7 @@
              }
 
              .catalogElements>div>div {
-                 font-size: 16px;
+                 font-size: 14px;
              }
 
              .productCards {
@@ -713,6 +713,20 @@
              }
 
              .saleProductCards>*:nth-last-child(-n+3) {
+                 display: none;
+             }
+
+             .ourWorks .catalogElements {
+                 height: auto;
+                 grid-template-columns: repeat(1, 1fr);
+                 grid-template-rows: repeat(2, 1fr);
+             }
+
+             .ourWorks .catalogElements>div>div {
+                 font-size: 18px;
+             }
+
+             .ourWorks .catalogElements>*:nth-last-child(-n+2) {
                  display: none;
              }
 

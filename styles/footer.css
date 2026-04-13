@@ -193,13 +193,59 @@ footer ul li a:hover {
 
 @media (max-width: 1919px) {
     .rightFooter ul:last-child {
-        display:none;
+        display: none;
     }
+
+    
 }
 
 @media (max-width: 1700px) {
-    .rightFooter ul:nth-child(-n+2) {
-    display: none;
+    .rightFooter ul:nth-child(-n+1) {
+        display: none;
+    }
+
+    
 }
+
+@media (max-width: 1280px) {
+    .rightFooter ul:nth-child(-n+2) {
+        display: none;
+    }
+}
+
+@media (max-width: 1200px) {
+    footer {
+        padding-left: 20px;
+        padding-right: 20px;
+
+    }
+}
+
+@media (max-width: 1080px) {
+    .rightFooter ul:nth-child(-n+3) {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .rightFooter ul:nth-child(-n+4) {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+   .rightFooter ul:nth-child(-n+5) {
+        display: none;
+    }
+}
+
+@media (max-width: 530px) {
+   .rightFooter {
+        display: none;
+    }
+
+    .leftFooter {
+        flex: 1;
+    }
 }
 

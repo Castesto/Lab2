@@ -53,12 +53,14 @@ footer>.wrapper {
 .workTime>.footerText {
     flex: 0.56;
     font-size: 18px;
+    white-space: nowrap;
 }
 
 .workTime>.footerContent {
     flex: 1;
     font-size: 18px;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .workTime {
@@ -152,6 +154,10 @@ footer ul li a {
 
 footer ul li a:hover {
     color: gray;
+}
+
+.rightFooter>ul {
+    flex: 1;
 }
 
 .rightFooter>ul:nth-child(1) {

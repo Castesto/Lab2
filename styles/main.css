@@ -576,9 +576,10 @@
  }
 
  @media (max-width: 1919px) {
-    .instagramPhotos {
-        display: none;
-    }
+
+     .instagramPhotos {
+         display: none;
+     }
  }
 
  @media (max-width: 1600px) {
@@ -605,6 +606,7 @@
      @media (max-width: 1440px) {
          .advantages {
              grid-template-columns: repeat(3, 1fr);
+             grid-template-rows: auto 1fr;
          }
 
          .lowPrice {
@@ -758,6 +760,7 @@
                  height: auto;
                  grid-template-columns: repeat(1, 1fr);
                  grid-template-rows: repeat(2, 1fr);
+                 margin-bottom: 20%;
              }
 
              .catalogElements>*:nth-last-child(-n+6) {

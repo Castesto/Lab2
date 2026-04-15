@@ -755,6 +755,12 @@
 
          }
 
+         @media (max-width: 400px) { 
+            .allContacts {
+                padding-left: 10%;
+            }
+         }
+
          @media (max-width: 320px) {
              .catalogElements {
                  height: auto;
@@ -782,6 +788,10 @@
              .box {
                  width: 100%;
              }
+
+             .allContacts {
+                padding-left: 5%;
+            }
 
          }
      }

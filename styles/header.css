@@ -103,27 +103,9 @@ header {
     color: inherit;
 }
 
-.header1 a {
-    transition: color 0.3s ease, transform 0.3s ease;
-}
 
-.header1 a:hover {
-    color: #E13B3F;
-    transform: translateY(-2px);
-}
 
-.header1 a::after {
-    content: "";
-    display: block;
-    height: 2px;
-    background: #E13B3F;
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-}
 
-.header1 a:hover::after {
-    transform: scaleX(1);
-}
 
 .header1 li {
     /* border: 1px solid gray; */
@@ -240,15 +222,7 @@ header {
     cursor: pointer;
 }
 
-.phoneClick {
-    transition: all 0.3s ease;
-}
 
-.phoneClick:hover {
-    background-color: #E13B3F;
-    color: white;
-    transform: scale(1.05);
-}
 
 .autorization {
     display: grid;
@@ -456,14 +430,7 @@ header {
         transition: all 0.3s ease;
     }
 
-    .burger-menu span {
-        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    }
-
-    .burger-menu:hover span:nth-child(1) {
-        transform: rotate(45deg) translateY(8px);
-    }
-
+  
     @media (max-width: 1440px) {
         .header3 {
             grid-template-columns: repeat(5, 1fr) !important;

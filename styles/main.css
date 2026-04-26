@@ -203,14 +203,6 @@
 
  }
 
- .card {
-     transition: all 0.3s ease;
- }
-
- .card:hover {
-     transform: translateY(-10px);
-     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
- }
 
  .card>div {
      background-color: white;
@@ -277,15 +269,7 @@
      padding-top: 2%;
  }
 
- .buyButton {
-     transition: all 0.3s ease;
- }
 
- .buyButton:hover {
-     transform: scale(1.1);
-     background: black;
-     color: white;
- }
 
  .buyButton:hover {
      background-color: #384685;
@@ -305,31 +289,8 @@
 
  }
 
- .like img:hover {
-     animation: pulse 0.6s ease;
- }
 
- @keyframes pulse {
-     0% {
-         transform: scale(1);
-     }
 
-     50% {
-         transform: scale(1.3);
-     }
-
-     100% {
-         transform: scale(1);
-     }
- }
-
- .cardImage img {
-     transition: transform 0.4s ease;
- }
-
- .card:hover img {
-     transform: scale(1.1);
- }
 
  .popularCategory {
      padding-top: 12%;
@@ -366,13 +327,7 @@
      justify-content: center;
  }
 
- .box {
-     transition: all 0.3s ease;
- }
 
- .box:hover {
-     transform: rotate(-2deg) scale(1.05);
- }
 
  .box-1 {
      min-width: 113px;

@@ -134,3 +134,43 @@
 .questionButton:hover {
     transform: scale(1.1) translateY(-3px);
 }
+
+.catalogElements > div {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    animation: catalogFadeUp 0.6s ease forwards;
+}
+
+.catalogElements > div:nth-child(1) { animation-delay: 0.1s; }
+.catalogElements > div:nth-child(2) { animation-delay: 0.2s; }
+.catalogElements > div:nth-child(3) { animation-delay: 0.3s; }
+.catalogElements > div:nth-child(4) { animation-delay: 0.4s; }
+.catalogElements > div:nth-child(5) { animation-delay: 0.5s; }
+.catalogElements > div:nth-child(6) { animation-delay: 0.6s; }
+.catalogElements > div:nth-child(7) { animation-delay: 0.7s; }
+.catalogElements > div:nth-child(8) { animation-delay: 0.8s; }
+
+@keyframes catalogFadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.catalogElements > div {
+    transition: transform 0.3s cubic-bezier(0.25, 1.5, 0.5, 1),
+                box-shadow 0.3s ease;
+}
+
+.catalogElements > div:hover {
+    transform: translateY(-10px) rotateX(5deg) rotateY(-5deg) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.catalogElements img {
+    transition: transform 0.4s ease;
+}
+
+.catalogElements > div:hover img {
+    transform: scale(1.1) rotate(2deg);
+}

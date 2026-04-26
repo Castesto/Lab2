@@ -275,9 +275,17 @@
      background-color: white;
      padding-right: 5%;
      padding-top: 2%;
-
-
  }
+
+ .buyButton {
+    transition: all 0.3s ease;
+}
+
+.buyButton:hover {
+    transform: scale(1.1);
+    background: black;
+    color: white;
+}
 
  .buyButton:hover {
      background-color: #384685;

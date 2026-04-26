@@ -100,3 +100,37 @@
 .box:hover {
     transform: rotate(-2deg) scale(1.05);
 }
+
+
+.advantages,
+.catalog,
+.popularProducts {
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.advantages img {
+    transition: transform 0.3s ease;
+}
+
+.advantages img:hover {
+    transform: rotate(10deg) scale(1.2);
+}
+
+.questionButton {
+    transition: all 0.3s cubic-bezier(0.25, 1.5, 0.5, 1);
+}
+
+.questionButton:hover {
+    transform: scale(1.1) translateY(-3px);
+}

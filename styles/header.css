@@ -189,6 +189,15 @@ header {
     font-size: 16px;
 }
 
+.search-input {
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    box-shadow: 0 0 10px #8ecae6;
+    transform: scale(1.02);
+}
+
 .phoneNumber {
     padding-top: 12px;
     margin-left: 73px;
@@ -229,6 +238,16 @@ header {
     justify-content: center;
     padding-top: 4px;
     cursor: pointer;
+}
+
+.phoneClick {
+    transition: all 0.3s ease;
+}
+
+.phoneClick:hover {
+    background-color: #E13B3F;
+    color: white;
+    transform: scale(1.05);
 }
 
 .autorization {
@@ -374,6 +393,7 @@ header {
             margin: 0;
         }
 
+        
         .phoneNumber {
             margin-left: 0;
             flex: 0 0 auto;

@@ -161,6 +161,24 @@ function updateCatalog(getProductArrayFn) {
     renderProducts(getProductArrayFn());
 }
 
+function filterBySearch(searchTerm) {
+    if (!searchTerm.trim()) return [...originalProducts];
+    const term = searchTerm.toLowerCase().trim();
+    return originalProducts.filter(product => 
+        product.name.toLowerCase().includes(term)
+    );
+}
+
+function searchBox() {
+    const searchInput = document.querySelector('.search-input');
+    if (!searchInput) return;
+    
+    searchInput.addEventListener('input', (e) => {
+        const filtered = filterBySearch(e.target.value);
+        renderProducts(filtered);
+    });
+}
+
 function bindMethodButtons() {
     document.getElementById('filterLowPrice')?.addEventListener('click', () => updateCatalog(filterLowPrice));
     document.getElementById('filterSofa')?.addEventListener('click', () => updateCatalog(filterSofaOnly));
@@ -178,4 +196,5 @@ function bindMethodButtons() {
 document.addEventListener('DOMContentLoaded', () => {
     bindMethodButtons();
     renderProducts([...originalProducts]);
+    searchBox();
 });

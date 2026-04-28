@@ -19,6 +19,16 @@ const originalProducts = [
 
 
 let currentDisplayedProducts = [...originalProducts];
+let currentSearchTerm = '';
+
+const extraDemoProduct = {
+    id: "concat_demo",
+    image: "images/Кровать 5.png",
+    type: "special",
+    name: "тестовая новинка",
+    price: "9900",
+    sailPrice: "7900"
+};
 
 function formatPrice(price) {
     if (!price && price !== 0) return "0";
@@ -164,7 +174,7 @@ function updateCatalog(getProductArrayFn) {
 function filterBySearch(searchTerm) {
     if (!searchTerm.trim()) return [...originalProducts];
     const term = searchTerm.toLowerCase().trim();
-    return originalProducts.filter(product => 
+    return originalProducts.filter(product =>
         product.name.toLowerCase().includes(term)
     );
 }
@@ -172,10 +182,10 @@ function filterBySearch(searchTerm) {
 function searchBox() {
     const searchInput = document.querySelector('.search-input');
     if (!searchInput) return;
-    
+
     searchInput.addEventListener('input', (e) => {
-        const filtered = filterBySearch(e.target.value);
-        renderProducts(filtered);
+        currentSearchTerm = e.target.value; 
+        updateCatalogWithSort();   
     });
 }
 
@@ -192,6 +202,45 @@ function bindMethodButtons() {
     document.getElementById('reverseOrder')?.addEventListener('click', () => updateCatalog(reverseOrder));
     document.getElementById('resetAll')?.addEventListener('click', () => updateCatalog(resetToAll));
 }
+
+
+const sortSelect = document.getElementById('sortingSelect');
+const productCountSpan = document.getElementById('productCount');
+
+function sortProducts(products, sortType) {
+    const sorted = [...products];
+    switch (sortType) {
+        case 'price-asc':
+            return sorted.sort((a, b) => Number(a.price) - Number(b.price));
+        case 'price-desc':
+            return sorted.sort((a, b) => Number(b.price) - Number(a.price));
+        case 'sale-price-asc':
+            return sorted.sort((a, b) => Number(a.sailPrice) - Number(b.sailPrice));
+        case 'sale-price-desc':
+            return sorted.sort((a, b) => Number(b.sailPrice) - Number(a.sailPrice));
+        case 'name-asc':
+            return sorted.sort((a, b) => a.name.localeCompare(b.name));
+        case 'name-desc':
+            return sorted.sort((a, b) => b.name.localeCompare(a.name));
+        default:
+            return sorted;
+    }
+}
+
+function updateCatalogWithSort() {
+    const filtered = filterBySearch(currentSearchTerm);
+    const sortType = sortSelect ? sortSelect.value : 'default';
+    const sorted = sortProducts(filtered, sortType);
+    renderProducts(sorted);
+    if (productCountSpan) {
+        productCountSpan.innerText = sorted.length;
+    }
+}
+
+if (sortSelect) {
+    sortSelect.addEventListener('change', updateCatalogWithSort);
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     bindMethodButtons();

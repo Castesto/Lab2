@@ -293,6 +293,8 @@ header {
     background-color: #384685;
     border-radius: 5px;
     padding-left: 17px;
+    width: 100%;
+    text-align: center;
 }
 
 .whereWatch a {
@@ -393,9 +395,8 @@ header {
         }
 
         .whereWatch {
-            vertical-align: center;
-            justify-self: center;
-            padding-right: 5%;
+            padding-right: 7%;
+            
         }
 
     }

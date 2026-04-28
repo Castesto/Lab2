@@ -598,24 +598,24 @@
  }
 
  @media (max-width: 1600px) {
-     .productCards {
+   .page-main   .productCards {
          display: grid;
          grid-template-columns: repeat(3, 1fr);
      }
 
-     .productCards>*:nth-last-child(-n+2) {
+     .page-main .productCards>*:nth-last-child(-n+2) {
          display: none;
      }
 
-     .saleProductCards {
+     .page-main .saleProductCards {
          grid-template-columns: repeat(3, 1fr);
          height: 490px;
          gap: 30px;
      }
 
-     /* .saleProductCards>*:nth-last-child(-n+1) {
+     .page-main .saleProductCards>*:nth-last-child(-n+1) {
          display: none;
-     } */
+     }
 
 
      @media (max-width: 1440px) {
@@ -648,23 +648,23 @@
              font-size: 10px;
          }
 
-         .productCards {
+      .page-main    .productCards {
              display: grid;
              grid-template-columns: repeat(2, 1fr);
              grid-template-rows: repeat(1, 1fr);
              margin-bottom: 170px;
          }
 
-         .productCards>*:nth-last-child(-n+4) {
+      .page-main    .productCards>*:nth-last-child(-n+4) {
              display: none;
          }
 
-         .saleProductCards {
+         .page-main .saleProductCards {
              grid-template-columns: repeat(2, 1fr);
              margin-bottom: 100px;
          }
 
-         .saleProductCards>*:nth-last-child(-n+2) {
+         .page-main .saleProductCards>*:nth-last-child(-n+2) {
              display: none;
          }
 
@@ -715,7 +715,7 @@
                  font-size: 14px;
              }
 
-             .productCards {
+          .page-main    .productCards {
                  display: grid;
                  grid-template-columns: repeat(1, 1fr);
                  grid-template-rows: repeat(1, 1fr);
@@ -731,23 +731,23 @@
                  display: none;
              }
 
-             .productCards>*:nth-last-child(-n+7) {
+          .page-main    .productCards>*:nth-last-child(-n+7) {
                  display: none;
              }
 
 
-             .saleProductCards {
+             .page-main .saleProductCards {
                  grid-template-columns: repeat(1, 1fr);
                  margin-bottom: 50px;
                  height: 550px;
                  justify-items: center;
              }
 
-             .saleProductCards .card {
+             .page-main .saleProductCards .card {
                  height: 550px;
              }
 
-             .saleProductCards>*:nth-last-child(-n+3) {
+             .page-main .saleProductCards>*:nth-last-child(-n+3) {
                  display: none;
              }
 
@@ -798,7 +798,7 @@
                  display: none;
              }
 
-             .saleProductCards {
+             .page-main .saleProductCards {
                  margin-bottom: 0;
              }
 

@@ -36,7 +36,7 @@ function buyHandler(e) {
     const product = currentDisplayedProducts.find(p => p.id === productId);
     if (product) {
         console.log(`[Корзина] ${product.name}`);
-        alert(`🛒 Товар "${product.name}" добавлен в корзину!`);
+        alert(`Товар "${product.name}" добавлен в корзину!`);
     } else {
         alert(`Товар добавлен (ID: ${productId})`);
     }

@@ -1,12 +1,19 @@
 const originalProducts = [
-    { id: "1", image: "images/Кровать 5.png", type: "bed", name: "Кровать двуспальная 'Комфорт'", price: "8990", sailPrice: "7192" },
-    { id: "2", image: "images/Кровать 5.png", type: "sofa", name: "Диван угловой 'Модерн'", price: "12500", sailPrice: "10500" },
-    { id: "3", image: "images/Кровать 5.png", type: "table", name: "Стол обеденный 'Дуб'", price: "5430", sailPrice: "4890" },
-    { id: "4", image: "images/Кровать 5.png", type: "chair", name: "Кресло 'Элегант'", price: "7200", sailPrice: "6500" },
-    { id: "5", image: "images/Кровать 5.png", type: "wardrobe", name: "Шкаф-купе 'Практик'", price: "13400", sailPrice: "11800" },
-    { id: "6", image: "images/Кровать 5.png", type: "bed", name: "Кровать детская 'Сказка'", price: "6200", sailPrice: "5580" },
-    { id: "7", image: "images/Кровать 5.png", type: "sofa", name: "Диван прямой 'Люкс'", price: "9600", sailPrice: "8640" },
-    { id: "8", image: "images/Кровать 5.png", type: "table", name: "Стол журнальный 'Глянец'", price: "3800", sailPrice: "3420" }
+    { id: "1", image: "images/Кровать 5.png", type: "bed", name: "Кровать двуспальная «Комфорт»", price: "8990", sailPrice: "7192" },
+    { id: "2", image: "images/Диван угловой Комфорт.jpg", type: "sofa", name: "Диван угловой «Модерн»", price: "12500", sailPrice: "10500" },
+    { id: "3", image: "images/Стол обеденный Дуб.png", type: "table", name: "Стол обеденный «Дуб»", price: "5430", sailPrice: "4890" },
+    { id: "4", image: "images/Кресло Элегант.jpg", type: "chair", name: "Кресло «Элегант»", price: "7200", sailPrice: "6500" },
+    { id: "5", image: "images/Шкаф-купе.jpg", type: "wardrobe", name: "Шкаф-купе «Практик»", price: "13400", sailPrice: "11800" },
+    { id: "6", image: "images/Детская кровть Сказка.jpg", type: "bed", name: "Кровать детская «Сказка»", price: "6200", sailPrice: "5580" },
+    { id: "7", image: "images/Диван прямой Люкс.jpg", type: "sofa", name: "Диван прямой «Люкс»", price: "9600", sailPrice: "8640" },
+    { id: "8", image: "images/Стол журнальный глянец.jpg", type: "table", name: "Стол журнальный «Глянец»", price: "3800", sailPrice: "3420" },
+    { id: "9", image: "images/Тумба прикроватная Светлана.webp", type: "cabinet", name: "Тумба прикроватная «Светлана»", price: "3200", sailPrice: "2560" },
+    { id: "10", image: "images/Стул мягкий Венге.jpg", type: "chair", name: "Стул мягкий «Венге»", price: "2100", sailPrice: "1680" },
+    { id: "11", image: "images/Барный стул метталик.webp", type: "chair", name: "Барный стул «Металлик»", price: "4300", sailPrice: "3440" },
+    { id: "12", image: "images/стол письменный деловой.webp", type: "table", name: "Стол письменный «Деловой»", price: "7850", sailPrice: "6280" },
+    { id: "13", image: "images/крело-качалка Винтаж.webp", type: "chair", name: "Кресло-качалка «Винтаж»", price: "11200", sailPrice: "8960" },
+    { id: "14", image: "images/Комод белый.webp", type: "wardrobe", name: "Комод «Белый»", price: "6900", sailPrice: "5520" },
+    { id: "15", image: "images/Вешалка напольная италия.webp", type: "other", name: "Вешалка напольная «Италия»", price: "2450", sailPrice: "1960" }
 ];
 
 
@@ -22,7 +29,7 @@ function formatPrice(price) {
 
 function escapeHtml(str) {
     if (!str) return '';
-    return str.replace(/[&<>]/g, function(m) {
+    return str.replace(/[&<>]/g, function (m) {
         if (m === '&') return '&amp;';
         if (m === '<') return '&lt;';
         if (m === '>') return '&gt;';
@@ -68,7 +75,7 @@ function renderProducts(productsArray) {
     if (!productsArray || productsArray.length === 0) {
         const emptyDiv = document.createElement('div');
         emptyDiv.className = 'empty-message';
-        emptyDiv.innerText = '😕 Товары не найдены. Попробуйте другой фильтр.';
+        emptyDiv.innerText = 'Товары не найдены. Попробуйте другой фильтр.';
         container.appendChild(emptyDiv);
         return;
     }

@@ -75,7 +75,7 @@ function renderProducts(productsArray) {
     if (!productsArray || productsArray.length === 0) {
         const emptyDiv = document.createElement('div');
         emptyDiv.className = 'empty-message';
-        emptyDiv.innerText = 'Товары не найдены. Попробуйте другой фильтр.';
+        emptyDiv.innerText = 'Товары не найдены. Попробуйте другой запрос.';
         container.appendChild(emptyDiv);
         return;
     }

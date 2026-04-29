@@ -20,6 +20,7 @@ const originalProducts = [
 
 let currentDisplayedProducts = [...originalProducts];
 let currentSearchTerm = '';
+let selectedCategories = new Set();
 
 const extraDemoProduct = {
     id: "concat_demo",
@@ -179,6 +180,11 @@ function filterBySearch(searchTerm) {
     );
 }
 
+function filterByCategories(products) {
+    if (selectedCategories.size === 0) return products;
+    return products.filter(product => selectedCategories.has(product.type));
+}
+
 function searchBox() {
     const searchInput = document.querySelector('.search-input');
     if (!searchInput) return;
@@ -228,7 +234,8 @@ function sortProducts(products, sortType) {
 }
 
 function updateCatalogWithSort() {
-    const filtered = filterBySearch(currentSearchTerm);
+    let filtered = filterBySearch(currentSearchTerm);
+    filtered = filterByCategories(filtered);
     const sortType = sortSelect ? sortSelect.value : 'default';
     const sorted = sortProducts(filtered, sortType);
     renderProducts(sorted);
@@ -241,9 +248,31 @@ if (sortSelect) {
     sortSelect.addEventListener('change', updateCatalogWithSort);
 }
 
+function initCategoryFilters() {
+    const categoryCheckboxes = document.querySelectorAll('.category-checkbox-input');
+    if (!categoryCheckboxes.length) return;
+
+    categoryCheckboxes.forEach(cb => {
+        if (cb.checked) selectedCategories.add(cb.value);
+    });
+
+    categoryCheckboxes.forEach(cb => {
+        cb.addEventListener('change', (e) => {
+            const value = e.target.value;
+            if (e.target.checked) {
+                selectedCategories.add(value);
+            } else {
+                selectedCategories.delete(value);
+            }
+            updateCatalogWithSort(); 
+        });
+    });
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     bindMethodButtons();
     renderProducts([...originalProducts]);
     searchBox();
+    initCategoryFilters()
 });

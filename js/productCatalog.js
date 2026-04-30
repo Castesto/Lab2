@@ -120,7 +120,17 @@ function filterLowPrice() {
 }
 
 function filterSofaOnly() {
-    return originalProducts.filter(p => p.type === 'sofa');
+   const sofas = originalProducts.filter(p => p.type === 'sofa');
+    
+    const hasExpensiveSofa = sofas.some(sofa => Number(sofa.price) > 10000);
+    
+    if (hasExpensiveSofa) {
+        alert(`Найдено ${sofas.length} диванов. Есть диваны дороже 10000 руб.!`);
+    } else {
+        alert(`Найдено ${sofas.length} диванов. Все диваны дешевле 10000 руб.`);
+    }
+    
+    return sofas;
 }
 
 function mapIncreasePrice() {
@@ -136,8 +146,10 @@ function sortByPriceAsc() {
     return [...originalProducts].sort((a, b) => Number(a.price) - Number(b.price));
 }
 
-function sortBySaleDesc() {
-    return [...originalProducts].sort((a, b) => Number(b.sailPrice) - Number(a.sailPrice));
+function ShiftFirtsHelem() {
+    const newArray = [...originalProducts];
+    newArray.shift();
+    return newArray; 
 }
 
 function reduceMaxPriceProduct() {
@@ -200,7 +212,7 @@ function bindMethodButtons() {
     document.getElementById('filterSofa')?.addEventListener('click', () => updateCatalog(filterSofaOnly));
     document.getElementById('mapIncreasePrice')?.addEventListener('click', () => updateCatalog(mapIncreasePrice));
     document.getElementById('sortPriceAsc')?.addEventListener('click', () => updateCatalog(sortByPriceAsc));
-    document.getElementById('sortSaleDesc')?.addEventListener('click', () => updateCatalog(sortBySaleDesc));
+    document.getElementById('sortSaleDesc')?.addEventListener('click', () => updateCatalog(ShiftFirtsHelem));
     document.getElementById('reduceMaxPrice')?.addEventListener('click', () => updateCatalog(reduceMaxPriceProduct));
     document.getElementById('sliceFirstFour')?.addEventListener('click', () => updateCatalog(sliceFirstFour));
     document.getElementById('findChair')?.addEventListener('click', () => updateCatalog(findChairProduct));

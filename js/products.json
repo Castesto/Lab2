@@ -1,18 +1,163 @@
 {
   "products": [
     {
-      "id": "f1",
-      "filename": "document.pdf",
-      "type": "application/pdf",
-      "size_bytes": 1024000,
-      "tags": ["work", "important"]
+      "id": "1",
+      "image": "images/Кровать 5.png",
+      "type": "bed",
+      "name": "Кровать двуспальная «Комфорт»",
+      "price": "8990",
+      "sailPrice": "7192",
+      "rating": 4.8
     },
     {
-      "id": "f2",
-      "filename": "image.png",
-      "type": "image/png",
-      "size_bytes": 500000,
-      "tags": ["photo"]
+      "id": "2",
+      "image": "images/Диван угловой Комфорт.jpg",
+      "type": "sofa",
+      "name": "Диван угловой «Модерн»",
+      "price": "12500",
+      "sailPrice": "10500",
+      "rating": 4.6
+    },
+    {
+      "id": "3",
+      "image": "images/Стол обеденный Дуб.png",
+      "type": "table",
+      "name": "Стол обеденный «Дуб»",
+      "price": "5430",
+      "sailPrice": "4890",
+      "rating": 4.5
+    },
+    {
+      "id": "4",
+      "image": "images/Кресло Элегант.jpg",
+      "type": "chair",
+      "name": "Кресло «Элегант»",
+      "price": "7200",
+      "sailPrice": "6500",
+      "rating": 4.7
+    },
+    {
+      "id": "5",
+      "image": "images/Шкаф-купе.jpg",
+      "type": "wardrobe",
+      "name": "Шкаф-купе «Практик»",
+      "price": "13400",
+      "sailPrice": "11800",
+      "rating": 4.9
+    },
+    {
+      "id": "6",
+      "image": "images/Детская кровть Сказка.jpg",
+      "type": "bed",
+      "name": "Кровать детская «Сказка»",
+      "price": "6200",
+      "sailPrice": "5580",
+      "rating": 4.4
+    },
+    {
+      "id": "7",
+      "image": "images/Диван прямой Люкс.jpg",
+      "type": "sofa",
+      "name": "Диван прямой «Люкс»",
+      "price": "9600",
+      "sailPrice": "8640",
+      "rating": 4.7
+    },
+    {
+      "id": "8",
+      "image": "images/Стол журнальный глянец.jpg",
+      "type": "table",
+      "name": "Стол журнальный «Глянец»",
+      "price": "3800",
+      "sailPrice": "3420",
+      "rating": 4.3
+    },
+    {
+      "id": "9",
+      "image": "images/Тумба прикроватная Светлана.webp",
+      "type": "cabinet",
+      "name": "Тумба прикроватная «Светлана»",
+      "price": "3200",
+      "sailPrice": "2560",
+      "rating": 4.2
+    },
+    {
+      "id": "10",
+      "image": "images/Стул мягкий Венге.jpg",
+      "type": "chair",
+      "name": "Стул мягкий «Венге»",
+      "price": "2100",
+      "sailPrice": "1680",
+      "rating": 4
+    },
+    {
+      "id": "11",
+      "image": "images/Барный стул метталик.webp",
+      "type": "chair",
+      "name": "Барный стул «Металлик»",
+      "price": "4300",
+      "sailPrice": "3440",
+      "rating": 4.5
+    },
+    {
+      "id": "12",
+      "image": "images/стол письменный деловой.webp",
+      "type": "table",
+      "name": "Стол письменный «Деловой»",
+      "price": "7850",
+      "sailPrice": "6280",
+      "rating": 4.6
+    },
+    {
+      "id": "13",
+      "image": "images/крело-качалка Винтаж.webp",
+      "type": "chair",
+      "name": "Кресло-качалка «Винтаж»",
+      "price": "11200",
+      "sailPrice": "8960",
+      "rating": 4.9
+    },
+    {
+      "id": "14",
+      "image": "images/Комод белый.webp",
+      "type": "wardrobe",
+      "name": "Комод «Белый»",
+      "price": "6900",
+      "sailPrice": "5520",
+      "rating": 4.4
+    },
+    {
+      "id": "15",
+      "image": "images/Вешалка напольная италия.webp",
+      "type": "other",
+      "name": "Вешалка напольная «Италия»",
+      "price": "2450",
+      "sailPrice": "1960",
+      "rating": 3.8
     }
-  ]
+  ],
+  "favorites": [
+    {
+      "productId": "11",
+      "id": "rViqWz0D3is"
+    }
+  ],
+  "cart": [
+    {
+      "productId": "1",
+      "quantity": 18,
+      "id": "tr8tC_MsdY4"
+    },
+    {
+      "productId": "2",
+      "quantity": 14,
+      "id": "u14UmQTnl1w"
+    },
+    {
+      "productId": "3",
+      "quantity": 4,
+      "id": "hSrfLY5nfc0"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

@@ -1,36 +1,3 @@
-const originalProducts = [
-    { id: "1", image: "images/Кровать 5.png", type: "bed", name: "Кровать двуспальная «Комфорт»", price: "8990", sailPrice: "7192" },
-    { id: "2", image: "images/Диван угловой Комфорт.jpg", type: "sofa", name: "Диван угловой «Модерн»", price: "12500", sailPrice: "10500" },
-    { id: "3", image: "images/Стол обеденный Дуб.png", type: "table", name: "Стол обеденный «Дуб»", price: "5430", sailPrice: "4890" },
-    { id: "4", image: "images/Кресло Элегант.jpg", type: "chair", name: "Кресло «Элегант»", price: "7200", sailPrice: "6500" },
-    { id: "5", image: "images/Шкаф-купе.jpg", type: "wardrobe", name: "Шкаф-купе «Практик»", price: "13400", sailPrice: "11800" },
-    { id: "6", image: "images/Детская кровть Сказка.jpg", type: "bed", name: "Кровать детская «Сказка»", price: "6200", sailPrice: "5580" },
-    { id: "7", image: "images/Диван прямой Люкс.jpg", type: "sofa", name: "Диван прямой «Люкс»", price: "9600", sailPrice: "8640" },
-    { id: "8", image: "images/Стол журнальный глянец.jpg", type: "table", name: "Стол журнальный «Глянец»", price: "3800", sailPrice: "3420" },
-    { id: "9", image: "images/Тумба прикроватная Светлана.webp", type: "cabinet", name: "Тумба прикроватная «Светлана»", price: "3200", sailPrice: "2560" },
-    { id: "10", image: "images/Стул мягкий Венге.jpg", type: "chair", name: "Стул мягкий «Венге»", price: "2100", sailPrice: "1680" },
-    { id: "11", image: "images/Барный стул метталик.webp", type: "chair", name: "Барный стул «Металлик»", price: "4300", sailPrice: "3440" },
-    { id: "12", image: "images/стол письменный деловой.webp", type: "table", name: "Стол письменный «Деловой»", price: "7850", sailPrice: "6280" },
-    { id: "13", image: "images/крело-качалка Винтаж.webp", type: "chair", name: "Кресло-качалка «Винтаж»", price: "11200", sailPrice: "8960" },
-    { id: "14", image: "images/Комод белый.webp", type: "wardrobe", name: "Комод «Белый»", price: "6900", sailPrice: "5520" },
-    { id: "15", image: "images/Вешалка напольная италия.webp", type: "other", name: "Вешалка напольная «Италия»", price: "2450", sailPrice: "1960" }
-];
-
-
-
-let currentDisplayedProducts = [...originalProducts];
-let currentSearchTerm = '';
-let selectedCategories = new Set();
-
-const extraDemoProduct = {
-    id: "concat_demo",
-    image: "images/Кровать 5.png",
-    type: "special",
-    name: "тестовая новинка",
-    price: "9900",
-    sailPrice: "7900"
-};
-
 function formatPrice(price) {
     if (!price && price !== 0) return "0";
     const num = Number(price);
@@ -48,33 +15,118 @@ function escapeHtml(str) {
     });
 }
 
-function buyHandler(e) {
-    const button = e.currentTarget;
-    const productId = button.getAttribute('data-id');
-    const product = currentDisplayedProducts.find(p => p.id === productId);
-    if (product) {
-        console.log(`[Корзина] ${product.name}`);
-        alert(`Товар "${product.name}" добавлен в корзину!`);
-    } else {
-        alert(`Товар добавлен (ID: ${productId})`);
+const API_BASE = 'http://localhost:3000';
+
+let allProducts = [];
+let favoritesList = [];
+let cartItems = [];
+let currentDisplayedProducts = [];
+let currentSearchTerm = '';
+let selectedCategories = new Set();
+
+async function fetchProducts() {
+    const response = await fetch(`${API_BASE}/products`);
+    if (!response.ok) throw new Error('Ошибка загрузки товаров');
+    return await response.json();
+}
+
+async function fetchFavorites() {
+    const response = await fetch(`${API_BASE}/favorites`);
+    if (!response.ok) throw new Error('Ошибка загрузки избранного');
+    return await response.json();
+}
+
+async function fetchCart() {
+    const response = await fetch(`${API_BASE}/cart`);
+    if (!response.ok) throw new Error('Ошибка загрузки корзины');
+    return await response.json();
+}
+
+async function loadAllData() {
+    try {
+        allProducts = await fetchProducts();
+        favoritesList = await fetchFavorites();
+        cartItems = await fetchCart();
+        updateCatalogWithSort();
+        updateFavAndCartIndicators();
+    } catch (error) {
+        console.error('Ошибка загрузки данных:', error);
+        alert('Не удалось загрузить данные с сервера. Убедитесь, что json-server запущен.');
     }
 }
 
-function likeHandler(e) {
-    e.stopPropagation();
-    const likeDiv = e.currentTarget;
-    likeDiv.classList.toggle('active');
+async function addToFavorites(productId) {
+    try {
+        const exists = favoritesList.some(fav => fav.productId === productId);
+        if (exists) {
+            const favItem = favoritesList.find(fav => fav.productId === productId);
+            await fetch(`${API_BASE}/favorites/${favItem.id}`, { method: 'DELETE' });
+            favoritesList = favoritesList.filter(fav => fav.productId !== productId);
+        } else {
+            const newFav = { productId };
+            const response = await fetch(`${API_BASE}/favorites`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newFav)
+            });
+            const created = await response.json();
+            favoritesList.push(created);
+        }
+        alert('Товар добавлен в избранное!');
+        updateFavAndCartIndicators();
+    } catch (error) {
+        console.error('Ошибка при изменении избранного:', error);
+    }
 }
 
-function attachEventsToCurrentCards() {
-    document.querySelectorAll('.buyButton').forEach(btn => {
-        btn.removeEventListener('click', buyHandler);
-        btn.addEventListener('click', buyHandler);
+async function addToCart(productId) {
+    try {
+        const existing = cartItems.find(item => item.productId === productId);
+        if (existing) {
+            const newQuantity = existing.quantity + 1;
+            await fetch(`${API_BASE}/cart/${existing.id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ quantity: newQuantity })
+            });
+            existing.quantity = newQuantity;
+        } else {
+            const response = await fetch(`${API_BASE}/cart`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ productId, quantity: 1 })
+            });
+            const newItem = await response.json();
+            cartItems.push(newItem);
+        }
+        alert('Товар добавлен в корзину');
+        updateCartCounter();
+    } catch (error) {
+        console.error('Ошибка добавления в корзину:', error);
+    }
+}
+
+function updateFavAndCartIndicators() {
+    document.querySelectorAll('.card').forEach(card => {
+        const buyBtn = card.querySelector('.buyButton');
+        if (!buyBtn) return;
+        const productId = buyBtn.getAttribute('data-id');
+        const likeDiv = card.querySelector('.like');
+        if (likeDiv) {
+            const isFav = favoritesList.some(fav => fav.productId === productId);
+            if (isFav) likeDiv.classList.add('active');
+            else likeDiv.classList.remove('active');
+        }
     });
-    document.querySelectorAll('.like').forEach(like => {
-        like.removeEventListener('click', likeHandler);
-        like.addEventListener('click', likeHandler);
-    });
+    updateCartCounter();
+}
+
+function updateCartCounter() {
+    const cartCountSpan = document.getElementById('cartCount');
+    if (cartCountSpan) {
+        const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+        cartCountSpan.innerText = totalItems;
+    }
 }
 
 function renderProducts(productsArray) {
@@ -92,6 +144,7 @@ function renderProducts(productsArray) {
     }
 
     productsArray.forEach(product => {
+        const isFav = favoritesList.some(fav => fav.productId === product.id);
         const card = document.createElement('div');
         card.className = 'card';
         card.innerHTML = `
@@ -105,7 +158,7 @@ function renderProducts(productsArray) {
             </div>
             <div class="buyButtonAndLike">
                 <button class="buyButton" data-id="${product.id}">КУПИТЬ</button>
-                <div class="like">
+                <div class="like ${isFav ? 'active' : ''}">
                     <img src="images/like.png" alt="like">
                 </div>
             </div>
@@ -113,117 +166,45 @@ function renderProducts(productsArray) {
         container.appendChild(card);
     });
     attachEventsToCurrentCards();
+    updateCartCounter();
 }
 
-function filterLowPrice() {
-    return originalProducts.filter(p => Number(p.sailPrice) < 5500);
+function attachEventsToCurrentCards() {
+    document.querySelectorAll('.buyButton').forEach(btn => {
+        btn.removeEventListener('click', buyHandler);
+        btn.addEventListener('click', buyHandler);
+    });
+    document.querySelectorAll('.like').forEach(like => {
+        like.removeEventListener('click', likeHandler);
+        like.addEventListener('click', likeHandler);
+    });
 }
 
-function filterSofaOnly() {
-   const sofas = originalProducts.filter(p => p.type === 'sofa');
-    
-    const hasExpensiveSofa = sofas.some(sofa => Number(sofa.price) > 10000);
-    
-    if (hasExpensiveSofa) {
-        alert(`Найдено ${sofas.length} диванов. Есть диваны дороже 10000 руб.!`);
-    } else {
-        alert(`Найдено ${sofas.length} диванов. Все диваны дешевле 10000 руб.`);
-    }
-    
-    return sofas;
+function buyHandler(e) {
+    const button = e.currentTarget;
+    const productId = button.getAttribute('data-id');
+    addToCart(productId);
 }
 
-function mapIncreasePrice() {
-    return originalProducts.map(p => ({
-        ...p,
-        price: Math.round(Number(p.price) * 1.15).toString(),
-        sailPrice: Math.round(Number(p.sailPrice) * 1.15).toString(),
-        name: `${p.name} +15%`
-    }));
+function likeHandler(e) {
+    e.stopPropagation();
+    const likeDiv = e.currentTarget;
+    const card = likeDiv.closest('.card');
+    const buyButton = card.querySelector('.buyButton');
+    const productId = buyButton.getAttribute('data-id');
+    addToFavorites(productId);
 }
 
-function sortByPriceAsc() {
-    return [...originalProducts].sort((a, b) => Number(a.price) - Number(b.price));
-}
-
-function ShiftFirtsHelem() {
-    const newArray = [...originalProducts];
-    newArray.shift();
-    return newArray; 
-}
-
-function reduceMaxPriceProduct() {
-    if (!originalProducts.length) return [];
-    const maxProduct = originalProducts.reduce((max, curr) =>
-        Number(curr.price) > Number(max.price) ? curr : max, originalProducts[0]);
-    return [maxProduct];
-}
-
-function sliceFirstFour() {
-    return originalProducts.slice(0, 4);
-}
-
-function findChairProduct() {
-    const found = originalProducts.find(p => p.name.toLowerCase().includes('кресло'));
-    return found ? [found] : [];
-}
-
-function concatWithExtra() {
-    return originalProducts.concat(extraDemoProduct);
-}
-
-function reverseOrder() {
-    return [...originalProducts].reverse();
-}
-
-function resetToAll() {
-    return [...originalProducts];
-}
-
-function updateCatalog(getProductArrayFn) {
-    renderProducts(getProductArrayFn());
-}
-
-function filterBySearch(searchTerm) {
-    if (!searchTerm.trim()) return [...originalProducts];
+function filterBySearch(products, searchTerm) {
+    if (!searchTerm.trim()) return [...products];
     const term = searchTerm.toLowerCase().trim();
-    return originalProducts.filter(product =>
-        product.name.toLowerCase().includes(term)
-    );
+    return products.filter(product => product.name.toLowerCase().includes(term));
 }
 
 function filterByCategories(products) {
     if (selectedCategories.size === 0) return products;
     return products.filter(product => selectedCategories.has(product.type));
 }
-
-function searchBox() {
-    const searchInput = document.querySelector('.search-input');
-    if (!searchInput) return;
-
-    searchInput.addEventListener('input', (e) => {
-        currentSearchTerm = e.target.value; 
-        updateCatalogWithSort();   
-    });
-}
-
-function bindMethodButtons() {
-    document.getElementById('filterLowPrice')?.addEventListener('click', () => updateCatalog(filterLowPrice));
-    document.getElementById('filterSofa')?.addEventListener('click', () => updateCatalog(filterSofaOnly));
-    document.getElementById('mapIncreasePrice')?.addEventListener('click', () => updateCatalog(mapIncreasePrice));
-    document.getElementById('sortPriceAsc')?.addEventListener('click', () => updateCatalog(sortByPriceAsc));
-    document.getElementById('sortSaleDesc')?.addEventListener('click', () => updateCatalog(ShiftFirtsHelem));
-    document.getElementById('reduceMaxPrice')?.addEventListener('click', () => updateCatalog(reduceMaxPriceProduct));
-    document.getElementById('sliceFirstFour')?.addEventListener('click', () => updateCatalog(sliceFirstFour));
-    document.getElementById('findChair')?.addEventListener('click', () => updateCatalog(findChairProduct));
-    document.getElementById('concatNewItem')?.addEventListener('click', () => updateCatalog(concatWithExtra));
-    document.getElementById('reverseOrder')?.addEventListener('click', () => updateCatalog(reverseOrder));
-    document.getElementById('resetAll')?.addEventListener('click', () => updateCatalog(resetToAll));
-}
-
-
-const sortSelect = document.getElementById('sortingSelect');
-const productCountSpan = document.getElementById('productCount');
 
 function sortProducts(products, sortType) {
     const sorted = [...products];
@@ -246,45 +227,150 @@ function sortProducts(products, sortType) {
 }
 
 function updateCatalogWithSort() {
-    let filtered = filterBySearch(currentSearchTerm);
+    let filtered = filterBySearch(allProducts, currentSearchTerm);
     filtered = filterByCategories(filtered);
-    const sortType = sortSelect ? sortSelect.value : 'default';
+    const sortType = document.getElementById('sortingSelect')?.value || 'default';
     const sorted = sortProducts(filtered, sortType);
     renderProducts(sorted);
-    if (productCountSpan) {
-        productCountSpan.innerText = sorted.length;
-    }
+    const productCountSpan = document.getElementById('productCount');
+    if (productCountSpan) productCountSpan.innerText = sorted.length;
 }
 
-if (sortSelect) {
-    sortSelect.addEventListener('change', updateCatalogWithSort);
+function filterLowPrice() {
+    const filtered = allProducts.filter(p => Number(p.sailPrice) < 5500);
+    renderProducts(filtered);
+    updateProductCount(filtered.length);
+}
+
+function filterSofaOnly() {
+    const sofas = allProducts.filter(p => p.type === 'sofa');
+    const hasExpensiveSofa = sofas.some(sofa => Number(sofa.price) > 10000);
+    alert(hasExpensiveSofa
+        ? `Найдено ${sofas.length} диванов. Есть диваны дороже 10000 руб.!`
+        : `Найдено ${sofas.length} диванов. Все диваны дешевле 10000 руб.`);
+    renderProducts(sofas);
+    updateProductCount(sofas.length);
+}
+
+function mapIncreasePrice() {
+    const increased = allProducts.map(p => ({
+        ...p,
+        price: Math.round(Number(p.price) * 1.15).toString(),
+        sailPrice: Math.round(Number(p.sailPrice) * 1.15).toString(),
+        name: `${p.name} +15%`
+    }));
+    renderProducts(increased);
+    updateProductCount(increased.length);
+}
+
+function sortByPriceAsc() {
+    const sorted = [...allProducts].sort((a, b) => Number(a.price) - Number(b.price));
+    renderProducts(sorted);
+    updateProductCount(sorted.length);
+}
+
+function ShiftFirstElem() {
+    const newArray = [...allProducts];
+    newArray.shift();
+    renderProducts(newArray);
+    updateProductCount(newArray.length);
+}
+
+function reduceMaxPriceProduct() {
+    if (!allProducts.length) return;
+    const maxProduct = allProducts.reduce((max, curr) =>
+        Number(curr.price) > Number(max.price) ? curr : max, allProducts[0]);
+    renderProducts([maxProduct]);
+    updateProductCount(1);
+}
+
+function sliceFirstFour() {
+    const firstFour = allProducts.slice(0, 4);
+    renderProducts(firstFour);
+    updateProductCount(firstFour.length);
+}
+
+function findChairProduct() {
+    const found = allProducts.find(p => p.name.toLowerCase().includes('кресло'));
+    renderProducts(found ? [found] : []);
+    updateProductCount(found ? 1 : 0);
+}
+
+function concatWithExtra() {
+    const extraDemoProduct = {
+        id: "concat_demo",
+        image: "images/Кровать 5.png",
+        type: "special",
+        name: "тестовая новинка",
+        price: "9900",
+        sailPrice: "7900",
+        rating: 0
+    };
+    const newArr = allProducts.concat(extraDemoProduct);
+    renderProducts(newArr);
+    updateProductCount(newArr.length);
+}
+
+function reverseOrder() {
+    const reversed = [...allProducts].reverse();
+    renderProducts(reversed);
+    updateProductCount(reversed.length);
+}
+
+function resetToAll() {
+    document.querySelector('.search-input').value = '';
+    currentSearchTerm = '';
+    selectedCategories.clear();
+    document.querySelectorAll('.category-checkbox-input').forEach(cb => cb.checked = false);
+    updateCatalogWithSort();
+}
+
+function updateProductCount(count) {
+    const span = document.getElementById('productCount');
+    if (span) span.innerText = count;
+}
+
+function bindMethodButtons() {
+    document.getElementById('filterLowPrice')?.addEventListener('click', filterLowPrice);
+    document.getElementById('filterSofa')?.addEventListener('click', filterSofaOnly);
+    document.getElementById('mapIncreasePrice')?.addEventListener('click', mapIncreasePrice);
+    document.getElementById('sortPriceAsc')?.addEventListener('click', sortByPriceAsc);
+    document.getElementById('sortSaleDesc')?.addEventListener('click', ShiftFirstElem);
+    document.getElementById('reduceMaxPrice')?.addEventListener('click', reduceMaxPriceProduct);
+    document.getElementById('sliceFirstFour')?.addEventListener('click', sliceFirstFour);
+    document.getElementById('findChair')?.addEventListener('click', findChairProduct);
+    document.getElementById('concatNewItem')?.addEventListener('click', concatWithExtra);
+    document.getElementById('reverseOrder')?.addEventListener('click', reverseOrder);
+    document.getElementById('resetAll')?.addEventListener('click', resetToAll);
+}
+
+function searchBox() {
+    const searchInput = document.querySelector('.search-input');
+    if (!searchInput) return;
+    searchInput.addEventListener('input', (e) => {
+        currentSearchTerm = e.target.value;
+        updateCatalogWithSort();
+    });
 }
 
 function initCategoryFilters() {
     const categoryCheckboxes = document.querySelectorAll('.category-checkbox-input');
     if (!categoryCheckboxes.length) return;
-
-    categoryCheckboxes.forEach(cb => {
-        if (cb.checked) selectedCategories.add(cb.value);
-    });
-
     categoryCheckboxes.forEach(cb => {
         cb.addEventListener('change', (e) => {
             const value = e.target.value;
-            if (e.target.checked) {
-                selectedCategories.add(value);
-            } else {
-                selectedCategories.delete(value);
-            }
-            updateCatalogWithSort(); 
+            if (e.target.checked) selectedCategories.add(value);
+            else selectedCategories.delete(value);
+            updateCatalogWithSort();
         });
     });
 }
 
-
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     bindMethodButtons();
-    renderProducts([...originalProducts]);
     searchBox();
-    initCategoryFilters()
+    initCategoryFilters();
+    const sortSelect = document.getElementById('sortingSelect');
+    if (sortSelect) sortSelect.addEventListener('change', updateCatalogWithSort);
+    await loadAllData();
 });

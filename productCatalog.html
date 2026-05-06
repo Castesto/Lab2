@@ -111,6 +111,8 @@
             </div>
         </div>
 
+
+
         <div class="filter-label">Категории:</div>
         <div class="categories-filter">
             <label class="category-checkbox-wrapper">
@@ -135,7 +137,15 @@
                 <input type="checkbox" value="other" class="category-checkbox-input"> Прочее
             </label>
         </div>
+        <div class="price-filter">
+            <input type="number" id="minPrice" placeholder="Мин цена">
+            <input type="number" id="maxPrice" placeholder="Макс цена">
+        </div>
 
+        <div class="sale-filter">
+            <input type="number" id="minSale" placeholder="Мин цена (скидка)">
+            <input type="number" id="maxSale" placeholder="Макс цена (скидка)">
+        </div>
         <div class="sorting-container">
             <select id="sortingSelect" class="sorting-select">
                 <option value="default">По умолчанию</option>
@@ -156,6 +166,7 @@
             <div class="productCards">
             </div>
         </div>
+        <div id="pagination" class="pagination-container"></div>
     </main>
 
 

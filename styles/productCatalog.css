@@ -121,6 +121,110 @@
      font-size: 14px;
      color: #666;
  }
+
+
+.price-filter,
+.sale-filter {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 15px;
+}
+
+.price-filter input,
+.sale-filter input {
+    padding: 10px 14px;
+    font-size: 14px;
+    border: 1px solid #384685;
+    border-radius: 5px;
+    background-color: white;
+    color: #384685;
+    outline: none;
+    transition: all 0.3s ease;
+    width: 150px;
+}
+
+.price-filter input:focus,
+.sale-filter input:focus {
+    border-color: #2c3669;
+    box-shadow: 0 0 0 2px rgba(56, 70, 133, 0.15);
+}
+
+.price-filter input::placeholder,
+.sale-filter input::placeholder {
+    color: #999;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 40px 0 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.pagination .page-item {
+    display: inline-block;
+}
+
+.pagination .page-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #384685;
+    background-color: white;
+    border: 1px solid #384685;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.pagination .page-link:hover {
+    background-color: #384685;
+    color: white;
+    border-color: #384685;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #384685;
+    color: white;
+    border-color: #384685;
+    cursor: default;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #aaa;
+    border-color: #ccc;
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.pagination .page-item.disabled .page-link:hover {
+    background-color: #f5f5f5;
+    color: #aaa;
+}
+
+@media (max-width: 768px) {
+    .pagination {
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+    
+    .pagination .page-link {
+        min-width: 36px;
+        height: 36px;
+        padding: 0 10px;
+        font-size: 13px;
+    }
+}
  
  @media (max-width: 1440px) {
      .productCards {

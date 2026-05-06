@@ -5,8 +5,8 @@
       "image": "images/Кровать 5.png",
       "type": "bed",
       "name": "Кровать двуспальная «Комфорт»",
-      "price": "8990",
-      "sailPrice": "7192",
+      "price": 8990,
+      "sailPrice": 7192,
       "rating": 4.8
     },
     {
@@ -14,8 +14,8 @@
       "image": "images/Диван угловой Комфорт.jpg",
       "type": "sofa",
       "name": "Диван угловой «Модерн»",
-      "price": "12500",
-      "sailPrice": "10500",
+      "price": 12500,
+      "sailPrice": 10500,
       "rating": 4.6
     },
     {
@@ -23,8 +23,8 @@
       "image": "images/Стол обеденный Дуб.png",
       "type": "table",
       "name": "Стол обеденный «Дуб»",
-      "price": "5430",
-      "sailPrice": "4890",
+      "price": 5430,
+      "sailPrice": 4890,
       "rating": 4.5
     },
     {
@@ -32,8 +32,8 @@
       "image": "images/Кресло Элегант.jpg",
       "type": "chair",
       "name": "Кресло «Элегант»",
-      "price": "7200",
-      "sailPrice": "6500",
+      "price": 7200,
+      "sailPrice": 6500,
       "rating": 4.7
     },
     {
@@ -41,8 +41,8 @@
       "image": "images/Шкаф-купе.jpg",
       "type": "wardrobe",
       "name": "Шкаф-купе «Практик»",
-      "price": "13400",
-      "sailPrice": "11800",
+      "price": 13400,
+      "sailPrice": 11800,
       "rating": 4.9
     },
     {
@@ -50,8 +50,8 @@
       "image": "images/Детская кровть Сказка.jpg",
       "type": "bed",
       "name": "Кровать детская «Сказка»",
-      "price": "6200",
-      "sailPrice": "5580",
+      "price": 6200,
+      "sailPrice": 5580,
       "rating": 4.4
     },
     {
@@ -59,8 +59,8 @@
       "image": "images/Диван прямой Люкс.jpg",
       "type": "sofa",
       "name": "Диван прямой «Люкс»",
-      "price": "9600",
-      "sailPrice": "8640",
+      "price": 9600,
+      "sailPrice": 8640,
       "rating": 4.7
     },
     {
@@ -68,8 +68,8 @@
       "image": "images/Стол журнальный глянец.jpg",
       "type": "table",
       "name": "Стол журнальный «Глянец»",
-      "price": "3800",
-      "sailPrice": "3420",
+      "price": 3800,
+      "sailPrice": 3420,
       "rating": 4.3
     },
     {
@@ -77,8 +77,8 @@
       "image": "images/Тумба прикроватная Светлана.webp",
       "type": "cabinet",
       "name": "Тумба прикроватная «Светлана»",
-      "price": "3200",
-      "sailPrice": "2560",
+      "price": 3200,
+      "sailPrice": 2560,
       "rating": 4.2
     },
     {
@@ -86,8 +86,8 @@
       "image": "images/Стул мягкий Венге.jpg",
       "type": "chair",
       "name": "Стул мягкий «Венге»",
-      "price": "2100",
-      "sailPrice": "1680",
+      "price": 2100,
+      "sailPrice": 1680,
       "rating": 4
     },
     {
@@ -95,8 +95,8 @@
       "image": "images/Барный стул метталик.webp",
       "type": "chair",
       "name": "Барный стул «Металлик»",
-      "price": "4300",
-      "sailPrice": "3440",
+      "price": 4300,
+      "sailPrice": 3440,
       "rating": 4.5
     },
     {
@@ -104,8 +104,8 @@
       "image": "images/стол письменный деловой.webp",
       "type": "table",
       "name": "Стол письменный «Деловой»",
-      "price": "7850",
-      "sailPrice": "6280",
+      "price": 7850,
+      "sailPrice": 6280,
       "rating": 4.6
     },
     {
@@ -113,8 +113,8 @@
       "image": "images/крело-качалка Винтаж.webp",
       "type": "chair",
       "name": "Кресло-качалка «Винтаж»",
-      "price": "11200",
-      "sailPrice": "8960",
+      "price": 11200,
+      "sailPrice": 8960,
       "rating": 4.9
     },
     {
@@ -122,8 +122,8 @@
       "image": "images/Комод белый.webp",
       "type": "wardrobe",
       "name": "Комод «Белый»",
-      "price": "6900",
-      "sailPrice": "5520",
+      "price": 6900,
+      "sailPrice": 5520,
       "rating": 4.4
     },
     {
@@ -131,8 +131,8 @@
       "image": "images/Вешалка напольная италия.webp",
       "type": "other",
       "name": "Вешалка напольная «Италия»",
-      "price": "2450",
-      "sailPrice": "1960",
+      "price": 2450,
+      "sailPrice": 1960,
       "rating": 3.8
     }
   ],
@@ -140,17 +140,21 @@
     {
       "productId": "11",
       "id": "rViqWz0D3is"
+    },
+    {
+      "productId": "14",
+      "id": "bIN-7ItmaLI"
     }
   ],
   "cart": [
     {
       "productId": "1",
-      "quantity": 18,
+      "quantity": 22,
       "id": "tr8tC_MsdY4"
     },
     {
       "productId": "2",
-      "quantity": 14,
+      "quantity": 19,
       "id": "u14UmQTnl1w"
     },
     {

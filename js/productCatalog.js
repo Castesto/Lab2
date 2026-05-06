@@ -15,12 +15,17 @@ function escapeHtml(str) {
     });
 }
 
+let currentPage = 1;
+const limit = 6;
+let totalPages = 1;
+let currentFullProducts = [];
+let totalCount = 0;
+
 const API_BASE = 'http://localhost:3000';
 
 let allProducts = [];
 let favoritesList = [];
 let cartItems = [];
-let currentDisplayedProducts = [];
 let currentSearchTerm = '';
 let selectedCategories = new Set();
 
@@ -130,20 +135,31 @@ function updateCartCounter() {
 }
 
 function renderProducts(productsArray) {
+    if (productsArray !== undefined) {
+        currentFullProducts = productsArray;
+        currentPage = 1;
+        totalPages = Math.ceil(currentFullProducts.length / limit);
+        updateProductCount(currentFullProducts.length);
+    }
+
     const container = document.querySelector('.productCards');
     if (!container) return;
     container.innerHTML = '';
-    currentDisplayedProducts = productsArray;
 
-    if (!productsArray || productsArray.length === 0) {
+    if (!currentFullProducts.length) {
         const emptyDiv = document.createElement('div');
         emptyDiv.className = 'empty-message';
         emptyDiv.innerText = 'Товары не найдены. Попробуйте другой запрос.';
         container.appendChild(emptyDiv);
+        renderPagination(); 
         return;
     }
 
-    productsArray.forEach(product => {
+    const startIndex = (currentPage - 1) * limit;
+    const endIndex = currentPage * limit;
+    const productsToShow = currentFullProducts.slice(startIndex, endIndex);
+
+    productsToShow.forEach(product => {
         const isFav = favoritesList.some(fav => fav.productId === product.id);
         const card = document.createElement('div');
         card.className = 'card';
@@ -165,8 +181,89 @@ function renderProducts(productsArray) {
         `;
         container.appendChild(card);
     });
+
     attachEventsToCurrentCards();
-    updateCartCounter();
+    renderPagination();
+}
+
+function renderPagination() {
+    const paginationContainer = document.getElementById('pagination');
+    if (!paginationContainer) return;
+
+    if (totalPages <= 1) {
+        paginationContainer.innerHTML = '';
+        return;
+    }
+
+    let paginationHtml = '<ul class="pagination justify-content-center">';
+    
+    paginationHtml += `
+        <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+            <button class="page-link" data-page="prev" ${currentPage === 1 ? 'disabled' : ''}>«</button>
+        </li>
+    `;
+    
+    const maxVisible = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisible - 1);
+    if (endPage - startPage + 1 < maxVisible) {
+        startPage = Math.max(1, endPage - maxVisible + 1);
+    }
+    
+    if (startPage > 1) {
+        paginationHtml += `
+            <li class="page-item">
+                <button class="page-link" data-page="1">1</button>
+            </li>
+            ${startPage > 2 ? '<li class="page-item disabled"><span class="page-link">...</span></li>' : ''}
+        `;
+    }
+    
+    for (let i = startPage; i <= endPage; i++) {
+        paginationHtml += `
+            <li class="page-item ${currentPage === i ? 'active' : ''}">
+                <button class="page-link" data-page="${i}">${i}</button>
+            </li>
+        `;
+    }
+    
+    if (endPage < totalPages) {
+        paginationHtml += `
+            ${endPage < totalPages - 1 ? '<li class="page-item disabled"><span class="page-link">...</span></li>' : ''}
+            <li class="page-item">
+                <button class="page-link" data-page="${totalPages}">${totalPages}</button>
+            </li>
+        `;
+    }
+    
+    paginationHtml += `
+        <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+            <button class="page-link" data-page="next" ${currentPage === totalPages ? 'disabled' : ''}>»</button>
+        </li>
+    `;
+    paginationHtml += '</ul>';
+    
+    paginationContainer.innerHTML = paginationHtml;
+    
+    paginationContainer.querySelectorAll('.page-link').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const page = btn.getAttribute('data-page');
+            if (page === 'prev') {
+                if (currentPage > 1) goToPage(currentPage - 1);
+            } else if (page === 'next') {
+                if (currentPage < totalPages) goToPage(currentPage + 1);
+            } else {
+                goToPage(parseInt(page));
+            }
+        });
+    });
+}
+
+function goToPage(page) {
+    if (page < 1 || page > totalPages) return;
+    currentPage = page;
+    renderProducts(); 
+    document.querySelector('.products')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function attachEventsToCurrentCards() {
@@ -206,6 +303,52 @@ function filterByCategories(products) {
     return products.filter(product => selectedCategories.has(product.type));
 }
 
+async function fetchFilteredProducts() {
+    let params = new URLSearchParams();
+
+    selectedCategories.forEach(cat => {
+        params.append('type', cat);
+    });
+
+    if (currentSearchTerm.trim()) {
+        params.append('name_like', currentSearchTerm.trim());
+    }
+
+    const minPrice = document.getElementById('minPrice')?.value;
+    const maxPrice = document.getElementById('maxPrice')?.value;
+
+    if (minPrice) params.append('price_gte', minPrice);
+    if (maxPrice) params.append('price_lte', maxPrice);
+
+    const minSale = document.getElementById('minSale')?.value;
+    const maxSale = document.getElementById('maxSale')?.value;
+
+    if (minSale) params.append('sailPrice_gte', minSale);
+    if (maxSale) params.append('sailPrice_lte', maxSale);
+
+    const rating = document.getElementById('ratingFilter')?.value;
+    if (rating) params.append('rating_gte', rating);
+
+    const queryString = params.toString();
+
+    const response = await fetch(`${API_BASE}/products?${queryString}`);
+    if (!response.ok) throw new Error('Ошибка фильтрации');
+
+    return await response.json();
+}
+
+function initAdvancedFilters() {
+    ['minPrice', 'maxPrice', 'minSale', 'maxSale', 'ratingFilter']
+        .forEach(id => {
+            const el = document.getElementById(id);
+            if (!el) return;
+
+            el.addEventListener('input', () => {
+                updateCatalogWithSort();
+            });
+        });
+}
+
 function sortProducts(products, sortType) {
     const sorted = [...products];
     switch (sortType) {
@@ -226,20 +369,20 @@ function sortProducts(products, sortType) {
     }
 }
 
-function updateCatalogWithSort() {
-    let filtered = filterBySearch(allProducts, currentSearchTerm);
-    filtered = filterByCategories(filtered);
-    const sortType = document.getElementById('sortingSelect')?.value || 'default';
-    const sorted = sortProducts(filtered, sortType);
-    renderProducts(sorted);
-    const productCountSpan = document.getElementById('productCount');
-    if (productCountSpan) productCountSpan.innerText = sorted.length;
+async function updateCatalogWithSort() {
+    try {
+        let products = await fetchFilteredProducts();
+        const sortType = document.getElementById('sortingSelect')?.value || 'default';
+        const sorted = sortProducts(products, sortType);
+        renderProducts(sorted);
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 function filterLowPrice() {
     const filtered = allProducts.filter(p => Number(p.sailPrice) < 5500);
     renderProducts(filtered);
-    updateProductCount(filtered.length);
 }
 
 function filterSofaOnly() {
@@ -249,7 +392,6 @@ function filterSofaOnly() {
         ? `Найдено ${sofas.length} диванов. Есть диваны дороже 10000 руб.!`
         : `Найдено ${sofas.length} диванов. Все диваны дешевле 10000 руб.`);
     renderProducts(sofas);
-    updateProductCount(sofas.length);
 }
 
 function mapIncreasePrice() {
@@ -260,20 +402,17 @@ function mapIncreasePrice() {
         name: `${p.name} +15%`
     }));
     renderProducts(increased);
-    updateProductCount(increased.length);
 }
 
 function sortByPriceAsc() {
     const sorted = [...allProducts].sort((a, b) => Number(a.price) - Number(b.price));
     renderProducts(sorted);
-    updateProductCount(sorted.length);
 }
 
 function ShiftFirstElem() {
     const newArray = [...allProducts];
     newArray.shift();
     renderProducts(newArray);
-    updateProductCount(newArray.length);
 }
 
 function reduceMaxPriceProduct() {
@@ -281,19 +420,16 @@ function reduceMaxPriceProduct() {
     const maxProduct = allProducts.reduce((max, curr) =>
         Number(curr.price) > Number(max.price) ? curr : max, allProducts[0]);
     renderProducts([maxProduct]);
-    updateProductCount(1);
 }
 
 function sliceFirstFour() {
     const firstFour = allProducts.slice(0, 4);
     renderProducts(firstFour);
-    updateProductCount(firstFour.length);
 }
 
 function findChairProduct() {
     const found = allProducts.find(p => p.name.toLowerCase().includes('кресло'));
     renderProducts(found ? [found] : []);
-    updateProductCount(found ? 1 : 0);
 }
 
 function concatWithExtra() {
@@ -308,13 +444,11 @@ function concatWithExtra() {
     };
     const newArr = allProducts.concat(extraDemoProduct);
     renderProducts(newArr);
-    updateProductCount(newArr.length);
 }
 
 function reverseOrder() {
     const reversed = [...allProducts].reverse();
     renderProducts(reversed);
-    updateProductCount(reversed.length);
 }
 
 function resetToAll() {
@@ -370,6 +504,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     bindMethodButtons();
     searchBox();
     initCategoryFilters();
+    initAdvancedFilters();
     const sortSelect = document.getElementById('sortingSelect');
     if (sortSelect) sortSelect.addEventListener('change', updateCatalogWithSort);
     await loadAllData();

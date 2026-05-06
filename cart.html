@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Каталог</title>
+    <title>Корзина</title>
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="styles/productCatalog.css">
     <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/cart.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400&display=swap" rel="stylesheet">
@@ -65,12 +66,10 @@
                 <img src="images/Нравится.png" alt="">
                 <div>Избранное</div>
             </div>
-            <a class="cartRef" href="cart.html">
-                <div class="basket">
-                    <img src="images/Корзина.png" alt="">
-                    <div>Корзина[<span id="cartCount">0</span>]</div>
-                </div>
-            </a>
+            <div class="basket">
+                <img src="images/Корзина.png" alt="">
+                <div>Корзина[<span id="cartCount">0</span>]</div>
+            </div>
         </div>
 
 
@@ -87,83 +86,9 @@
     </header>
 
     <main>
-        <div class="methods-panel">
-            <div class="methods-grid method-buttons">
-                <button class="method-btn box" id="filterLowPrice">🔻 Фильтр: скидка <span class="badge-method">
-                        .filter()</span></button>
-                <button class="method-btn box" id="filterSofa">🛋️ Eсть диваны дороже 10000 <span
-                        class="badge-method">.some()</span></button>
-                <button class="method-btn box" id="mapIncreasePrice">📈 +15% к цене (акция) <span
-                        class="badge-method">.map()</span></button>
-                <button class="method-btn box" id="sortPriceAsc">💰 Цена (возр.) <span
-                        class="badge-method">.sort()</span></button>
-                <button class="method-btn box" id="sortSaleDesc">🏷️ Удалить первый элемент <span
-                        class="badge-method">.shift()</span></button>
-                <button class="method-btn box" id="reduceMaxPrice">🏆 Макс. цена <span
-                        class="badge-method">.reduce()</span></button>
-                <button class="method-btn box" id="sliceFirstFour">📋 Первые 4 товара <span
-                        class="badge-method">.slice()</span></button>
-                <button class="method-btn box" id="findChair">🔍 Найти «Кресло» <span
-                        class="badge-method">.find()</span></button>
-                <button class="method-btn box" id="concatNewItem">✨ Добавить новинку <span
-                        class="badge-method">.concat()</span></button>
-                <button class="method-btn box" id="reverseOrder">🔄 Обратный порядок <span
-                        class="badge-method">.reverse()</span></button>
-                <button class="method-btn reset-btn box" id="resetAll">🏠 Показать все товары</button>
-            </div>
-        </div>
-
-
-
-        <div class="filter-label">Категории:</div>
-        <div class="categories-filter">
-            <label class="category-checkbox-wrapper">
-                <input type="checkbox" value="bed" class="category-checkbox-input"> Кровати
-            </label>
-            <label class="category-checkbox-wrapper">
-                <input type="checkbox" value="sofa" class="category-checkbox-input"> Диваны
-            </label>
-            <label class="category-checkbox-wrapper">
-                <input type="checkbox" value="table" class="category-checkbox-input"> Столы
-            </label>
-            <label class="category-checkbox-wrapper">
-                <input type="checkbox" value="chair" class="category-checkbox-input"> Кресла
-            </label>
-            <label class="category-checkbox-wrapper">
-                <input type="checkbox" value="wardrobe" class="category-checkbox-input"> Шкафы
-            </label>
-            <label class="category-checkbox-wrapper">
-                <input type="checkbox" value="cabinet" class="category-checkbox-input"> Тумбы
-            </label>
-            <label class="category-checkbox-wrapper">
-                <input type="checkbox" value="other" class="category-checkbox-input"> Прочее
-            </label>
-        </div>
-        <div class="price-filter">
-            <input type="number" id="minPrice" placeholder="Мин цена">
-            <input type="number" id="maxPrice" placeholder="Макс цена">
-        </div>
-
-        <div class="sale-filter">
-            <input type="number" id="minSale" placeholder="Мин цена (скидка)">
-            <input type="number" id="maxSale" placeholder="Макс цена (скидка)">
-        </div>
-        <div class="sorting-container">
-            <select id="sortingSelect" class="sorting-select">
-                <option value="default">По умолчанию</option>
-                <option value="price-asc">Цена по возрастанию</option>
-                <option value="price-desc">Цена по убыванию</option>
-                <option value="sale-price-asc">Цена со скидкой по возрастанию</option>
-                <option value="sale-price-desc">Цена со скидкой по убыванию</option>
-                <option value="name-asc">Название А-Я</option>
-                <option value="name-desc">Название Я-А</option>
-            </select>
-        </div>
-
-
         <div class="products">
             <div class="saleProductsText">
-                ВСЕ ТОВАРЫ
+                КОРЗИНА
             </div>
             <div class="productCards">
             </div>
@@ -265,7 +190,8 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/productCatalog.js"></script>
+    <script src="js/cart.js"></script>
+
 </body>
 
 </html>

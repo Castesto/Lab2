@@ -154,13 +154,8 @@
     },
     {
       "productId": "2",
-      "quantity": 19,
+      "quantity": 6,
       "id": "u14UmQTnl1w"
-    },
-    {
-      "productId": "3",
-      "quantity": 4,
-      "id": "hSrfLY5nfc0"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

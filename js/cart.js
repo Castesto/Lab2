@@ -3,6 +3,10 @@ const API_BASE = 'http://localhost:3000';
 let allProducts = [];
 let cartItems = [];
 
+document.addEventListener('submit', function (e) {
+    e.preventDefault();
+});
+
 function formatPrice(price) {
     if (!price && price !== 0) return "0";
     const num = Number(price);
@@ -144,7 +148,7 @@ function renderCart() {
                         <button type="button" class="quantity-btn plus" data-id="${item.id}">+</button>
                     </div>
                     <div class="cart-card-total">Итого: ${formatPrice(totalPerItem)} руб.</div>
-                    <button class="cart-remove-btn" data-id="${item.id}">Удалить</button>
+                    <button type="button" class="cart-remove-btn" data-id="${item.id}">Удалить</button>
                 </div>
             </div>
         `;
@@ -161,8 +165,8 @@ function renderCart() {
     summaryDiv.innerHTML = `
         <div class="cart-summary-content">
             <div class="total-amount">Общая сумма: ${formatPrice(totalSum)} руб.</div>
-            <button class="checkout-btn">Оформить заказ</button>
-            <button class="clear-cart-btn">Очистить корзину</button>
+            <button type="button" class="checkout-btn">Оформить заказ</button>
+            <button type="button" class="clear-cart-btn">Очистить корзину</button>
         </div>
     `;
 
@@ -253,8 +257,10 @@ function attachCartEvents() {
 }
 
 function minusHandler(e) {
+    e.preventDefault(); 
     const cartId = e.currentTarget.getAttribute('data-id');
     const currentItem = cartItems.find(item => item.id === cartId);
+
     if (currentItem && currentItem.quantity > 1) {
         updateQuantity(cartId, currentItem.quantity - 1);
     } else if (currentItem && currentItem.quantity === 1) {
@@ -265,8 +271,10 @@ function minusHandler(e) {
 }
 
 function plusHandler(e) {
+    e.preventDefault(); 
     const cartId = e.currentTarget.getAttribute('data-id');
     const currentItem = cartItems.find(item => item.id === cartId);
+
     if (currentItem) {
         updateQuantity(cartId, currentItem.quantity + 1);
     }

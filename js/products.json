@@ -140,21 +140,17 @@
     {
       "productId": "11",
       "id": "rViqWz0D3is"
-    },
-    {
-      "productId": "14",
-      "id": "bIN-7ItmaLI"
     }
   ],
   "cart": [
     {
       "productId": "1",
-      "quantity": 22,
+      "quantity": 21,
       "id": "tr8tC_MsdY4"
     },
     {
       "productId": "2",
-      "quantity": 6,
+      "quantity": 7,
       "id": "u14UmQTnl1w"
     }
   ],

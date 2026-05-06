@@ -105,6 +105,11 @@
     color: black;
  }
 
+  .favoritesRef {
+    text-decoration: none;
+    color: black;
+ }
+
  .lowPrice-text div:first-child {
      font-weight: bold;
      font-size: 18px;

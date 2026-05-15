@@ -152,7 +152,7 @@ function renderProducts(productsArray) {
         emptyDiv.className = 'empty-message';
         emptyDiv.innerText = 'Товары не найдены. Попробуйте другой запрос.';
         container.appendChild(emptyDiv);
-        renderPagination(); 
+        renderPagination();
         return;
     }
 
@@ -197,20 +197,20 @@ function renderPagination() {
     }
 
     let paginationHtml = '<ul class="pagination justify-content-center">';
-    
+
     paginationHtml += `
         <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
             <button class="page-link" data-page="prev" ${currentPage === 1 ? 'disabled' : ''}>«</button>
         </li>
     `;
-    
+
     const maxVisible = 5;
     let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
     let endPage = Math.min(totalPages, startPage + maxVisible - 1);
     if (endPage - startPage + 1 < maxVisible) {
         startPage = Math.max(1, endPage - maxVisible + 1);
     }
-    
+
     if (startPage > 1) {
         paginationHtml += `
             <li class="page-item">
@@ -219,7 +219,7 @@ function renderPagination() {
             ${startPage > 2 ? '<li class="page-item disabled"><span class="page-link">...</span></li>' : ''}
         `;
     }
-    
+
     for (let i = startPage; i <= endPage; i++) {
         paginationHtml += `
             <li class="page-item ${currentPage === i ? 'active' : ''}">
@@ -227,7 +227,7 @@ function renderPagination() {
             </li>
         `;
     }
-    
+
     if (endPage < totalPages) {
         paginationHtml += `
             ${endPage < totalPages - 1 ? '<li class="page-item disabled"><span class="page-link">...</span></li>' : ''}
@@ -236,16 +236,16 @@ function renderPagination() {
             </li>
         `;
     }
-    
+
     paginationHtml += `
         <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
             <button class="page-link" data-page="next" ${currentPage === totalPages ? 'disabled' : ''}>»</button>
         </li>
     `;
     paginationHtml += '</ul>';
-    
+
     paginationContainer.innerHTML = paginationHtml;
-    
+
     paginationContainer.querySelectorAll('.page-link').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const page = btn.getAttribute('data-page');
@@ -263,7 +263,7 @@ function renderPagination() {
 function goToPage(page) {
     if (page < 1 || page > totalPages) return;
     currentPage = page;
-    renderProducts(); 
+    renderProducts();
     document.querySelector('.products')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 

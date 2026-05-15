@@ -2,8 +2,9 @@ function formatPrice(price) {
     if (!price && price !== 0) return "0";
     const num = Number(price);
     if (isNaN(num)) return price.toString();
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    return num.toLocaleString();
 }
+
 
 function escapeHtml(str) {
     if (!str) return '';

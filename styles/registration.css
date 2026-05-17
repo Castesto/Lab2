@@ -17,12 +17,12 @@ fieldset {
 }
 
 .form-row label {
-    min-width: 150px;  
+    min-width: 150px;
     font-weight: bold;
 }
 
 .form-row input {
-    flex: 1;  
+    flex: 1;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -37,7 +37,14 @@ fieldset {
     flex-direction: row;
 }
 
-.generateButtons button{
+.generateButtons button {
     flex: 1;
 }
 
+.registeredContainer {
+    margin-top: 33px;
+}
+
+.registered:hover {
+    transform: none;
+}

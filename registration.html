@@ -25,7 +25,7 @@
         <form action="" id="registrationform">
             <fieldset>
                 <legend>Регистрация</legend>
-                
+
                 <div class="form-row">
                     <label>Фамилия</label>
                     <input type="text" required>
@@ -42,13 +42,13 @@
                     <label>Ник</label>
                     <input type="text" id="nicknameInput" required>
                 </div>
-                 <div class="form-row">
+                <div class="form-row">
                     <label>Пароль</label>
-                    <input type="password" required>
+                    <input type="password" required pattern=".{8,}" title="Минимум 8 символов" class="passwordInput" required>
                 </div>
                 <div class="form-row">
                     <label>Повторите пароль</label>
-                    <input type="password" required>
+                    <input type="password" class="secondPasswordInput" oninput="this.setCustomValidity(this.value !== document.querySelector('.passwordInput').value ? 'Пароли не совпадают' : '')" required>
                 </div>
                 <div class="form-row">
                     <label>E-mail</label>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="form-row">
                     <label>Номер</label>
-                    <input type="email" required>
+                    <input type="tel" title="Номер должен начинаться с +375 и содержать 9 цифр после кода (всего 13 символов)" pattern="\+375[0-9]{9}" required>
                 </div>
             </fieldset>
 
@@ -64,10 +64,13 @@
                 <button type="button" class="generate-nickname box">Придумать никнейм</button>
                 <button type="button" class="generate-password box">Сгенерировать пароль</button>
             </fieldset>
-
             <fieldset>
                 <legend class="agreement">Соглашение</legend>
-                <label><input type="checkbox" name="agreement"> Согласен с <a href="#">пользовательским соглашением</a></label>
+                <label><input type="checkbox" name="agreement" required> Согласен с <a href="#">пользовательским
+                        соглашением</a></label>
+            </fieldset>
+            <fieldset class="registeredContainer">
+                <button class="registered box">Зарегестрироваться</button>
             </fieldset>
         </form>
     </main>

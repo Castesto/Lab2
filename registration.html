@@ -28,35 +28,46 @@
 
                 <div class="form-row">
                     <label>Фамилия</label>
-                    <input type="text" required>
+                    <input type="text" id="lastNameInput" name="lastName" required>
                 </div>
                 <div class="form-row">
                     <label>Имя</label>
-                    <input type="text" id="nameInput" required>
+                    <input type="text" id="nameInput" name="firstName" required>
                 </div>
                 <div class="form-row">
                     <label>Отчество</label>
-                    <input type="text" required>
+                    <input type="text" id="fatherNameInput" name="fatherName" required>
+                </div>
+                <div class="form-row">
+                    <label>Дата рождения</label>
+                    <input type="date" id="birthdate" name="dateBirthday" required>
+                    <small id="dateError" style="color: red; display: none;"></small>
                 </div>
                 <div class="form-row">
                     <label>Ник</label>
-                    <input type="text" id="nicknameInput" required>
+                    <input type="text" id="nicknameInput" name="nickName" required>
                 </div>
+                    <div class="errorNickMessage"></div>
                 <div class="form-row">
                     <label>Пароль</label>
-                    <input type="password" required pattern=".{8,}" title="Минимум 8 символов" class="passwordInput" required>
+                    <input type="password" id="passwordInput" name="password" required pattern=".{8,}" title="Минимум 8 символов" class="passwordInput"
+                        required>
                 </div>
                 <div class="form-row">
                     <label>Повторите пароль</label>
-                    <input type="password" class="secondPasswordInput" oninput="this.setCustomValidity(this.value !== document.querySelector('.passwordInput').value ? 'Пароли не совпадают' : '')" required>
+                    <input type="password" class="secondPasswordInput"
+                        oninput="this.setCustomValidity(this.value !== document.querySelector('.passwordInput').value ? 'Пароли не совпадают' : '')"
+                        required>
                 </div>
                 <div class="form-row">
                     <label>E-mail</label>
-                    <input type="email" required>
+                    <input type="email" id="emailInput" name="email" required>
                 </div>
                 <div class="form-row">
                     <label>Номер</label>
-                    <input type="tel" title="Номер должен начинаться с +375 и содержать 9 цифр после кода (всего 13 символов)" pattern="\+375[0-9]{9}" required>
+                    <input type="tel"
+                        title="Номер должен начинаться с +375 и содержать 9 цифр после кода (всего 13 символов)"
+                        pattern="\+375[0-9]{9}" id="numberInput" name="phoneNumber" required>
                 </div>
             </fieldset>
 

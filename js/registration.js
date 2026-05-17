@@ -183,14 +183,58 @@ async function handleRegistration() {
     }
 }
 
+// Асинхронный обработчик отправки формы
+async function onFormSubmit(event) {
+    event.preventDefault(); // отменяем стандартную перезагрузку
+
+    if (!form.checkValidity()) {
+        form.reportValidity(); 
+        return;
+    }
+
+    if (!validateAge()) {
+        alert('Регистрация доступна только пользователям старше 16 лет');
+        return;
+    }
+
+    const nick = document.querySelector('#nicknameInput').value.trim();
+    const isUnique = await isNicknameUnique(nick);
+    if (!isUnique) {
+        alert('Никнейм уже занят. Используйте другой.');
+        return;
+    }
+
+    const userData = collectFormData(); 
+    try {
+        const response = await fetch(`${API_BASE}/users`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(userData)
+        });
+
+        if (response.ok) {
+            const newUser = await response.json();
+            alert(`Регистрация успешна! Добро пожаловать, ${newUser.nickName}`);
+            form.reset();               
+            document.querySelector('#nicknameInput').style.borderColor = '';
+            errorNickDiv.style.display = 'none';
+        } else {
+            const error = await response.json();
+            alert(`Ошибка сервера: ${error.message || 'попробуйте позже'}`);
+        }
+    } catch (err) {
+        console.error(err);
+        alert('Не удалось соединиться с сервером. Запустите json-server');
+    }
+}
+
 
 
 async function init() {
     await loadUsers();
     generateNicknameBtn.addEventListener('click', createNickByName);
     generatePasswordBtn.addEventListener('click', generatePassword);
-    registerBtn.addEventListener('click', handleRegistration);
-
+    form.addEventListener('submit', onFormSubmit);
     let debounceTimer;
     nicknameInput.addEventListener('input', () => {
         clearTimeout(debounceTimer);

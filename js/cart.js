@@ -51,7 +51,6 @@ function calculateTotal() {
     }, 0);
 }
 
-// Обновление общей суммы без перерисовки всего
 function updateTotalSummary() {
     const summaryDiv = document.querySelector('.cart-summary');
     if (summaryDiv) {
@@ -63,7 +62,6 @@ function updateTotalSummary() {
     }
 }
 
-// Обновление конкретной карточки (количество, итог по товару)
 function updateCartItemCard(cartId) {
     const cartItem = cartItems.find(item => item.id === cartId);
     if (!cartItem) return;
@@ -84,7 +82,6 @@ function updateCartItemCard(cartId) {
     updateCartCounter();
 }
 
-// Удаление карточки из DOM после удаления товара
 function removeCartItemCard(cartId) {
     const card = document.querySelector(`.cart-card[data-cart-id="${cartId}"]`);
     if (card) card.remove();
@@ -97,7 +94,6 @@ function removeCartItemCard(cartId) {
     }
 }
 
-// Показ пустой корзины
 function renderCartEmpty() {
     const container = document.querySelector('.productCards');
     if (!container) return;
@@ -107,7 +103,6 @@ function renderCartEmpty() {
     updateCartCounter();
 }
 
-// Полная отрисовка (только при загрузке и полной очистке)
 function renderCart() {
     const container = document.querySelector('.productCards');
     if (!container) return;
@@ -212,7 +207,7 @@ async function clearCart() {
         const deletePromises = cartItems.map(item => fetch(`${API_BASE}/cart/${item.id}`, { method: 'DELETE' }));
         await Promise.all(deletePromises);
         cartItems = [];
-        renderCart(); // полная перерисовка здесь допустима
+        renderCart();
     } catch (error) {
         console.error('Ошибка при очистке корзины:', error);
         alert('Не удалось очистить корзину');

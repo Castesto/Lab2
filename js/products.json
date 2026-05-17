@@ -145,13 +145,18 @@
   "cart": [
     {
       "productId": "1",
-      "quantity": 22,
-      "id": "tr8tC_MsdY4"
+      "quantity": 2,
+      "id": "e2FunEKHcWk"
     },
     {
-      "productId": "2",
-      "quantity": 7,
-      "id": "u14UmQTnl1w"
+      "productId": "4",
+      "quantity": 1,
+      "id": "01vYN0f6Mlw"
+    },
+    {
+      "productId": "11",
+      "quantity": 1,
+      "id": "TJIhFSjCP6o"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

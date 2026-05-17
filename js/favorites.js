@@ -1,10 +1,9 @@
 const API_BASE = 'http://localhost:3000';
 
 let allProducts = [];
-let favoritesList = [];   // { id, productId }
-let cartItems = [];       // для проверки дублирования и счётчика
+let favoritesList = [];   
+let cartItems = [];       
 
-// Вспомогательные функции (общие)
 function formatPrice(price) {
     if (!price && price !== 0) return "0";
     const num = Number(price);
@@ -22,7 +21,6 @@ function escapeHtml(str) {
     });
 }
 
-// API вызовы
 async function fetchProducts() {
     const res = await fetch(`${API_BASE}/products`);
     if (!res.ok) throw new Error('Ошибка загрузки товаров');

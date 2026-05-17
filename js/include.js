@@ -14,4 +14,4 @@ async function includeComponents() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', includeComponents);
+document.addEventListener('DOMContentLoaded', includeComponents); 

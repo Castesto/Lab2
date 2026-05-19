@@ -4,8 +4,12 @@ async function includeComponents() {
         const response = await fetch('/components/header.html');
         const headerContent = await response.text();
         headerElement.innerHTML = headerContent;
+
+        if (typeof window.updateAuthButtons === 'function') {
+            window.updateAuthButtons();
+        }
     }
-    
+
     const footerElement = document.querySelector('footer');
     if (footerElement) {
         const response = await fetch('/components/footer.html');
@@ -14,4 +18,4 @@ async function includeComponents() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', includeComponents); 
+document.addEventListener('DOMContentLoaded', includeComponents);  

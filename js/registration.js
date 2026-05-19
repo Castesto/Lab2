@@ -232,7 +232,6 @@ registerBtn.disabled = true;
 function updateButtonState() {
     const isFormValid = form.checkValidity();
     if (isFormValid) {
-        console.log('vj;jsdf');
         registerBtn.disabled = false;
     }
     else{
@@ -250,7 +249,7 @@ async function init() {
     let debounceTimer;
     nicknameInput.addEventListener('input', () => {
         clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(checkNicknameAvailability, 500); // ждём 0.5 сек после остановки печати
+        debounceTimer = setTimeout(checkNicknameAvailability, 500); 
     });
 
     form.addEventListener('input', updateButtonState);

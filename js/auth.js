@@ -10,7 +10,12 @@ window.updateAuthButtons = function checkCurrentAutorization() {
         }
         if (registrationRef && registrationRef.firstChild) {
             registrationRef.firstChild.textContent = 'Профиль';
-            registrationRef.firstChild.href = '/profile.html';
+            if (isAdmin()) {
+                registrationRef.firstChild.href = '/admin.html';
+            }
+            else {
+                registrationRef.firstChild.href = '/profile.html';
+            }
         }
     }
     else {
@@ -25,6 +30,11 @@ window.updateAuthButtons = function checkCurrentAutorization() {
     }
 }
 
+function isAdmin() {
+    let user = JSON.parse(localStorage.getItem('currentUser'))
+    return user && user.role === 'admin';
+}
+
 function setupLogoutHandler() {
     document.body.addEventListener('click', (event) => {
         const link = event.target.closest('.contacts a');
@@ -36,6 +46,8 @@ function setupLogoutHandler() {
         }
     });
 }
+
+
 
 
 function logout() {

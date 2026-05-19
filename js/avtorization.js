@@ -34,6 +34,7 @@ async function onFormSubmit(event) {
         saveCurrentUser(currentUser);
     }
     else {
+        alert('Нет пользователя с такими даннми')
         console.log('нету такого');
     }
 }

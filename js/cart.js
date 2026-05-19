@@ -214,13 +214,47 @@ async function clearCart() {
     }
 }
 
-function checkout() {
+async function checkout() {
     if (cartItems.length === 0) {
         alert('Корзина пуста. Добавьте товары для оформления заказа.');
         return;
     }
-    alert('Спасибо за заказ! Наш менеджер свяжется с вами в ближайшее время.');
+
+    if (getCurrentUser() != null) {
+        let arrayCartID = cartItems.map(item => item.productId)
+        const nickName = getCurrentUser();
+        const responce = await fetch(`${API_BASE}/users?nickName=${nickName}`)
+        const users = await responce.json();
+        const user = users[0];
+
+        console.log('Пользователя id' + user.id);
+
+        updatedPurchaseHistory = [...user.purchaseHistory, ...arrayCartID];
+        updatedPurchaseHistory = [...new Set(updatedPurchaseHistory)];
+        
+        console.log();
+
+        const updateResponce = await fetch(`${API_BASE}/users/${user.id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ purchaseHistory: updatedPurchaseHistory })
+        });
+
+        alert('Спасибо за заказ! Наш менеджер свяжется с вами в ближайшее время.');
+    }
 }
+
+function getCurrentUser() {
+    let user = JSON.parse(localStorage.getItem('currentUser'));
+
+    if (user) {
+        return user.nickName;
+    }
+    else {
+        return null;
+    }
+}
+
 
 function attachCartEvents() {
     document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
@@ -252,7 +286,7 @@ function attachCartEvents() {
 }
 
 function minusHandler(e) {
-    e.preventDefault(); 
+    e.preventDefault();
     const cartId = e.currentTarget.getAttribute('data-id');
     const currentItem = cartItems.find(item => item.id === cartId);
 
@@ -266,7 +300,7 @@ function minusHandler(e) {
 }
 
 function plusHandler(e) {
-    e.preventDefault(); 
+    e.preventDefault();
     const cartId = e.currentTarget.getAttribute('data-id');
     const currentItem = cartItems.find(item => item.id === cartId);
 

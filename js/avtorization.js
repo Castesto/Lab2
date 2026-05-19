@@ -2,17 +2,12 @@ const API_BASE = 'http://localhost:3000';
 
 const registerBtn = document.querySelector('.registered');
 const form = document.getElementById('registrationform');
-// const autorizationRef = document.querySelector('.contacts');
-// const registrationRef = document.querySelector('.our-work');
 
 let allUsers = [];
 let formData;
 let nick;
 let password;
 let currentUser;
-
-
-
 
 async function loadUsers() {
     const responce = await fetch(API_BASE + '/users');
@@ -54,6 +49,7 @@ function searchUser(nickName, password) {
 
 function saveCurrentUser(currentUser) {
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    window.location.href = '/';
     console.log('Авторизация успешна');
 }
 

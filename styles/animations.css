@@ -101,6 +101,17 @@
     transform: rotate(-2deg) scale(1.05);
 }
 
+.box:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.box:disabled:hover {
+    transform: none;
+    color: #384685;
+    background-color: white;
+}
 
 .advantages,
 .catalog,

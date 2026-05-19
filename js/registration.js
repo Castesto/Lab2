@@ -106,23 +106,23 @@ const nicknameError = document.createElement('div');
 let debounceTimer;
 async function checkNicknameAvailability() {
     const nick = nicknameInput.value.trim();
-    
+
     if (nick.length === 0) {
         errorNickDiv.style.display = 'none';
         nicknameInput.style.borderColor = '';
         nicknameInput.setCustomValidity('');
         return;
     }
-    
+
     try {
         const response = await fetch(`${API_BASE}/users`);
         const users = await response.json();
         const isTaken = users.some(user => user.nickName === nick);
-        
+
         if (isTaken) {
             errorNickDiv.textContent = 'Никнейм уже занят';
             errorNickDiv.style.color = 'red';
-            errorNickDiv.style.display = 'flex'; 
+            errorNickDiv.style.display = 'flex';
             nicknameInput.style.borderColor = 'red';
             errorNickDiv.style.marginTop = '-15px'
             nicknameInput.setCustomValidity('Никнейм занят');
@@ -183,12 +183,11 @@ async function handleRegistration() {
     }
 }
 
-// Асинхронный обработчик отправки формы
 async function onFormSubmit(event) {
-    event.preventDefault(); // отменяем стандартную перезагрузку
+    event.preventDefault();
 
     if (!form.checkValidity()) {
-        form.reportValidity(); 
+        form.reportValidity();
         return;
     }
 
@@ -204,7 +203,7 @@ async function onFormSubmit(event) {
         return;
     }
 
-    const userData = collectFormData(); 
+    const userData = collectFormData();
     try {
         const response = await fetch(`${API_BASE}/users`, {
             method: 'POST',
@@ -215,7 +214,7 @@ async function onFormSubmit(event) {
         if (response.ok) {
             const newUser = await response.json();
             alert(`Регистрация успешна! Добро пожаловать, ${newUser.nickName}`);
-            form.reset();               
+            form.reset();
             document.querySelector('#nicknameInput').style.borderColor = '';
             errorNickDiv.style.display = 'none';
         } else {
@@ -228,6 +227,19 @@ async function onFormSubmit(event) {
     }
 }
 
+registerBtn.disabled = true;
+
+function updateButtonState() {
+    const isFormValid = form.checkValidity();
+    if (isFormValid) {
+        console.log('vj;jsdf');
+        registerBtn.disabled = false;
+    }
+    else{
+        console.log('нельзя регистрироваться');
+
+    }
+}
 
 
 async function init() {
@@ -240,6 +252,8 @@ async function init() {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(checkNicknameAvailability, 500); // ждём 0.5 сек после остановки печати
     });
+
+    form.addEventListener('input', updateButtonState);
 }
 
 init();

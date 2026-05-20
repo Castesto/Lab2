@@ -24,7 +24,58 @@
     <header id="header-placeholder"></header>
 
     <main>
-       
+        <section>
+            <div class="buttonsText">
+                Кнопки действия
+            </div>
+            <div class="adminButtons">
+
+                <button class="addProduct box">Добавить товар</button>
+                <button class="editProduct box">Изменить товар</button>
+                <button class="deleteProduct box">Удалить товар</button>
+                <button class="wathReviews box">Посмотреть отзывы</button>
+            </div>
+        </section>
+
+        <section class="addEvent eventSection">
+            <div class="actionText">
+                Добавление товара
+            </div>
+            <form action="" id="addProductForm">
+                <fieldset>
+                    <div class="form-row">
+                        <label>Название</label>
+                        <input type="text" id="nameInput" name="name" required>
+                    </div>
+                    <div class="form-row">
+                        <label>Цена</label>
+                        <input type="text" id="priceInput" name="price" pattern="\d*" title="Разрешены только числа"
+                            required>
+                    </div>
+                    <div class="form-row">
+                        <label>Цена со скидкой</label>
+                        <input type="text" id="salePriceInput" name="sailPrice" pattern="\d*"
+                            title="Разрешены только числа" required>
+                    </div>
+                    <div class="form-row">
+                        <label>Рейтинг</label>
+                        <input type="text" id="rateInput" name="rate" pattern="^(?:[0-4](?:\.\d+)?|5(?:\.0+)?)$"
+                            title="Введите число от 0 до 5 (например, 3.5)" required>
+                    </div>
+                    <div class="form-row">
+                        <label>Изображение</label>
+                        <input type="file" id="imageInput" accept="image/*" required>
+                        <input type="hidden" id="imagePathInput" name="image" value="">
+                    </div>
+                </fieldset>
+
+                <fieldset class="addButtonContainer">
+                    <button class="registered box">Добавить</button>
+                </fieldset>
+            </form>
+
+
+        </section>
     </main>
 
     <footer id="footer-placeholder"></footer>

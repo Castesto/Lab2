@@ -1,0 +1,83 @@
+.adminButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+
+.adminButtons button {
+    max-width: 200px;
+    line-height: 20px;
+}
+
+.buttonsText {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.actionText {
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+form {
+    max-width: 500px;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-row label {
+    min-width: 150px;
+    font-weight: bold;
+}
+
+.form-row input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.agreement {
+    margin-top: 40px;
+}
+
+.generateButtons {
+    margin-top: 20px;
+    flex-direction: row;
+}
+
+.generateButtons button {
+    flex: 1;
+}
+
+.addButtonContainer {
+    margin-top: 33px;
+}
+
+.registered:hover {
+    transform: none;
+}
+
+.errorNickMessage {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -20px;
+}
+
+
+.eventSection {
+    display: none;
+}

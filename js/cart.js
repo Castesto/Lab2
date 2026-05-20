@@ -3,6 +3,8 @@ const API_BASE = 'http://localhost:3000';
 let allProducts = [];
 let cartItems = [];
 
+
+
 document.addEventListener('submit', function (e) {
     e.preventDefault();
 });
@@ -231,7 +233,7 @@ async function checkout() {
 
         updatedPurchaseHistory = [...user.purchaseHistory, ...arrayCartID];
         updatedPurchaseHistory = [...new Set(updatedPurchaseHistory)];
-        
+
         console.log();
 
         const updateResponce = await fetch(`${API_BASE}/users/${user.id}`, {

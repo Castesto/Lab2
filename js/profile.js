@@ -4,6 +4,14 @@ let allProducts = [];
 let storyProducts = [];
 let currentUser;
 
+const modal = document.getElementById('reviewModal');
+const reviewTextarea = document.getElementById('reviewText');
+const charCount = document.getElementById('charCount');
+const submitBtn = document.getElementById('submitReview');
+const closeBtn = document.getElementById('closeReviewModal');
+
+let currentProductId = null;
+
 function getCurrentUser() {
     let user = JSON.parse(localStorage.getItem('currentUser'));
 
@@ -33,7 +41,7 @@ async function getBuyStoryForCurrentUser() {
 
 async function getStoryCards() {
     let storyIds = await getBuyStoryForCurrentUser();
-    const responce = await fetch (`${API_BASE}/products`);
+    const responce = await fetch(`${API_BASE}/products`);
     const allProducts = await responce.json();
 
     return allProducts.filter(prod => storyIds.includes(prod.id));
@@ -57,17 +65,61 @@ async function renderStoryCards(products) {
 
         const btn = reviewDiv.querySelector('.printReview');
         btn.addEventListener('click', () => {
-            console.log('Товар:', product.name, 'ID:', product.id);
+            openReviewModal(product.id, product.name);
         });
 
         container.appendChild(reviewDiv);
     });
 }
 
-// getStoryCards().then(array => {
-//   console.log(array);
-// });
+function openReviewModal(productId, productName) {
+    currentProductId = productId;
+    document.querySelector('.modal-content h3').textContent = `Отзыв: ${productName}`;
+    reviewTextarea.value = '';
+    charCount.textContent = `0 / ${reviewTextarea.maxLength}`;
+    modal.classList.add('active');
+}
 
+function closeReviewModal() {
+    modal.classList.remove('active');
+    currentProductId = null;
+}
+
+
+closeBtn.addEventListener('click', closeReviewModal);
+
+reviewTextarea.addEventListener('input', () => {
+    const len = reviewTextarea.value.length;
+    charCount.textContent = `${len} / ${reviewTextarea.maxLength}`;
+});
+
+
+submitBtn.addEventListener('click', () => {
+    const text = reviewTextarea.value.trim();
+    if (!text) {
+        alert('Введите текст отзыва');
+        return;
+    }
+
+    sumbitReview(currentProductId, text);
+
+    alert('Спасибо за отзыв!');
+    closeReviewModal();
+});
+
+async function sumbitReview(productId, text) {
+    const responce = await fetch(`${API_BASE}/feedback`, {
+        method: 'POST',
+        header: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            nickName: currentUser,
+            review: text,
+            productId: productId,
+            date: new Date().toISOString()
+        })
+    }
+    )
+}
 
 
 async function init() {

@@ -24,7 +24,21 @@
     <header id="header-placeholder"></header>
 
     <main>
-       <div class="reviews">
+        <div id="reviewModal" class="modal-overlay">
+            <div class="modal-content">
+                <h3>Оставить отзыв</h3>
+                <textarea id="reviewText" placeholder="Напишите ваш отзыв..." maxlength="500"></textarea>
+                <div class="modal-footer">
+                    <span id="charCount">0 / 500</span>
+                    <div class="modal-buttons">
+                        <button id="submitReview" class="btn-submit">Отправить</button>
+                        <button id="closeReviewModal" class="btn-cancel">Отмена</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="reviews">
             <div class="review">
                 <div data-id="" class="photo">
                     <img src="" alt="">
@@ -32,7 +46,7 @@
                 <div class="name"></div>
                 <button class="printReview"></button>
             </div>
-       </div>
+        </div>
     </main>
 
     <footer id="footer-placeholder"></footer>

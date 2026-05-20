@@ -59,7 +59,7 @@
                     </div>
                     <div class="form-row">
                         <label>Рейтинг</label>
-                        <input type="text" id="rateInput" name="rate" pattern="^(?:[0-4](?:\.\d+)?|5(?:\.0+)?)$"
+                        <input type="text" id="rateInput" name="rating" pattern="^(?:[0-4](?:\.\d+)?|5(?:\.0+)?)$"
                             title="Введите число от 0 до 5 (например, 3.5)" required>
                     </div>
                     <div class="form-row">
@@ -81,8 +81,41 @@
             </div>
             <label>Поиск товара: <input type="text" class="searchForEdit"></label>
             <div class="searchResultBox">
-               
             </div>
+
+            <form action="" id="editProductForm">
+                 <fieldset>
+                    <legend class="editProductLegend">Цель изменения: <span></span></legend>
+                    <div class="form-row">
+                        <label>Название</label>
+                        <input type="text" id="nameEditInput" name="name" required>
+                    </div>
+                    <div class="form-row">
+                        <label>Цена</label>
+                        <input type="text" id="priceEditInput" name="price" pattern="\d*" title="Разрешены только числа"
+                            required>
+                    </div>
+                    <div class="form-row">
+                        <label>Цена со скидкой</label>
+                        <input type="text" id="salePriceEditInput" name="sailPrice" pattern="\d*"
+                            title="Разрешены только числа" required>
+                    </div>
+                    <div class="form-row">
+                        <label>Рейтинг</label>
+                        <input type="text" id="rateEditInput" name="rating" pattern="^(?:[0-4](?:\.\d+)?|5(?:\.0+)?)$"
+                            title="Введите число от 0 до 5 (например, 3.5)" required>
+                    </div>
+                    <div class="form-row">
+                        <label>Изображение</label>
+                        <input type="file" id="imageEditInput" accept="image/*">
+                        <input type="hidden" id="imagePathEditInput" name="image" value="">
+                    </div>
+                </fieldset>
+
+                <fieldset class="addButtonContainer">
+                    <button class="registered box">Изменить</button>
+                </fieldset>
+            </form>
         </section>
     </main>
 

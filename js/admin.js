@@ -3,13 +3,16 @@ const API_BASE = 'http://localhost:3000';
 
 let addButton = document.querySelector('.addProduct');
 const form = document.getElementById('addProductForm');
+const editForm = document.getElementById('editProductForm');
 const imageInput = document.getElementById('imageInput');
+const imageEditInput = document.getElementById('imageEditInput');
 const imagePathInput = document.getElementById('imagePathInput');
+const imagePathEditInput = document.getElementById('imagePathEditInput');
 const searchInput = document.querySelector('.searchForEdit');
 const searchResultBox = document.querySelector('.searchResultBox');
 
 let allProducts = [];
-let currentProduct;
+let currentItem;
 
 
 function isAdmin() {
@@ -26,6 +29,13 @@ imageInput.addEventListener('change', function () {
     const file = this.files[0];
     if (file) {
         imagePathInput.value = 'images/' + file.name;
+    }
+});
+
+imageEditInput.addEventListener('change', function () {
+    const file = this.files[0];
+    if (file) {
+        imagePathEditInput.value = 'images/' + file.name;
     }
 });
 
@@ -51,6 +61,21 @@ function collectFormData() {
     return userData;
 }
 
+function collectEditFormData() {
+    const form = document.getElementById('editProductForm');
+    const formData = new FormData(form);
+    const userData = Object.fromEntries(formData.entries());
+    userData.image = document.getElementById('imagePathEditInput').value;
+    const imagePath = document.getElementById('imagePathEditInput').value.trim();
+    if (imagePath) {
+        userData.image = imagePath;
+    } else {
+        delete userData.image;
+    }
+
+    return userData;
+}
+
 async function onFormSubmit(event) {
     event.preventDefault();
 
@@ -70,11 +95,9 @@ async function onFormSubmit(event) {
             errorNickDiv.style.display = 'none';
         } else {
             const error = await response.json();
-            alert(`Ошибка сервера: ${error.message || 'попробуйте позже'}`);
         }
     } catch (err) {
         console.error(err);
-        alert('Не удалось соединиться с сервером. Запустите json-server');
     }
 }
 
@@ -83,14 +106,34 @@ async function loadAllProducts() {
     return response.json();
 }
 
-function clickEditElementEvent() {
-    alert('test');
+function clickEditElementEvent(e) {
+    const productDiv = e.currentTarget;
+    const id = productDiv.dataset.id;
+    currentItem = id;
+
+    searchResultBox.innerHTML = '';
+    searchInput.value = '';
+
+    let p = [...allProducts].find(prod => prod.id === id);
+    console.log(p);
+
+    const div = document.createElement('div');
+    div.className = 'productForEdit';
+    div.dataset.id = p.id;
+    div.innerHTML = `
+                    <div class="productName">${p.name}</div>
+                    <div class="productPrice">${p.price}</div>
+                    <div class="productSalePrice">${p.sailPrice}</div>
+                `
+    searchResultBox.appendChild(div);
+
+    inputDefaultDataOnForm(id);
+
 }
 
 function renderProducts(products, name) {
     searchResultBox.innerHTML = '';
     let filteredProducts = [...products].filter(prod => prod.name.toLowerCase().includes(name.toLowerCase()));
-
     filteredProducts.forEach(p => {
         const div = document.createElement('div');
         div.className = 'productForEdit';
@@ -110,10 +153,47 @@ function updateInputEvent() {
     renderProducts(allProducts, searchInput.value);
 }
 
+async function inputDefaultDataOnForm(id) {
+    const nameEditInput = document.getElementById('nameEditInput');
+    const priceEditInput = document.getElementById('priceEditInput');
+    const salePriceEditInput = document.getElementById('salePriceEditInput');
+    const rateEditInput = document.getElementById('rateEditInput');
 
+    const product = allProducts.find(pr => pr.id === id);
+
+    nameEditInput.value = product.name;
+    priceEditInput.value = product.price;
+    salePriceEditInput.value = product.sailPrice;
+    rateEditInput.value = product.rating;
+}
+
+
+async function onEditFormSumbit(event) {
+    event.preventDefault();
+
+    const userData = collectEditFormData();
+    try {
+        const response = await fetch(`${API_BASE}/products/${currentItem}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(userData)
+        });
+
+        if (response.ok) {
+            const newProduct = await response.json();
+            alert(`Товар успешно изменен`);
+            form.reset();
+        } else {
+            const error = await response.json();
+        }
+    } catch (err) {
+        console.error(err);
+    }
+}
 
 async function init() {
     form.addEventListener('submit', onFormSubmit);
+    editForm.addEventListener('submit', onEditFormSumbit)
     addButton.addEventListener('click', addButtonEvent);
     allProducts = await loadAllProducts();
     searchInput.addEventListener('input', updateInputEvent);

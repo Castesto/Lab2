@@ -1,5 +1,7 @@
 const API_BASE = 'http://localhost:3000';
 
+
+
 let allProducts = [];
 let storyProducts = [];
 let currentUser;
@@ -11,6 +13,16 @@ const submitBtn = document.getElementById('submitReview');
 const closeBtn = document.getElementById('closeReviewModal');
 
 let currentProductId = null;
+
+
+function isAdmin() {
+    let user = JSON.parse(localStorage.getItem('currentUser'))
+    return user && user.role === 'admin';
+}
+
+if (isAdmin() === true) {
+    document.location.href = '/';
+}
 
 function getCurrentUser() {
     let user = JSON.parse(localStorage.getItem('currentUser'));
@@ -35,9 +47,6 @@ async function getBuyStoryForCurrentUser() {
 
     return buyStory;
 }
-
-
-
 
 async function getStoryCards() {
     let storyIds = await getBuyStoryForCurrentUser();

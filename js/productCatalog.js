@@ -479,12 +479,21 @@ function bindMethodButtons() {
     document.getElementById('resetAll')?.addEventListener('click', resetToAll);
 }
 
+// function searchBox() {
+//     const searchInput = document.querySelector('.search-input');
+//     if (!searchInput) return;
+//     searchInput.addEventListener('input', (e) => {
+//         currentSearchTerm = e.target.value;
+//         updateCatalogWithSort();
+//     });
+// }
+
 function searchBox() {
-    const searchInput = document.querySelector('.search-input');
-    if (!searchInput) return;
-    searchInput.addEventListener('input', (e) => {
-        currentSearchTerm = e.target.value;
-        updateCatalogWithSort();
+    document.addEventListener('input', (e) => {
+        if (e.target.classList.contains('search-input')) {
+            currentSearchTerm = e.target.value;
+            updateCatalogWithSort();
+        }
     });
 }
 

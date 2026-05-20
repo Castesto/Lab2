@@ -2,6 +2,7 @@ const API_BASE = 'http://localhost:3000';
 
 
 let addButton = document.querySelector('.addProduct');
+let editButton = document.querySelector('.editProduct');
 const form = document.getElementById('addProductForm');
 const editForm = document.getElementById('editProductForm');
 const imageInput = document.getElementById('imageInput');
@@ -10,6 +11,8 @@ const imagePathInput = document.getElementById('imagePathInput');
 const imagePathEditInput = document.getElementById('imagePathEditInput');
 const searchInput = document.querySelector('.searchForEdit');
 const searchResultBox = document.querySelector('.searchResultBox');
+const editProductLegend = document.querySelector('.editProductLegend');
+const editProductForm = document.getElementById('editProductForm');
 
 let allProducts = [];
 let currentItem;
@@ -41,16 +44,23 @@ imageEditInput.addEventListener('change', function () {
 
 
 function addButtonEvent() {
-    allSections = document.querySelectorAll('.eventSection');
     currentSection = document.querySelector('.addEvent');
+    hideAllSections();
+    currentSection.style.display = 'block';
+}
 
+function editButtonEvent() {
+    currentSection = document.querySelector('.editEvent');
+    hideAllSections();
+    currentSection.style.display = 'block';
+}
+
+function hideAllSections() {
+    allSections = document.querySelectorAll('.eventSection');
     allSections.forEach(section => {
         section.style.display = 'none';
     });
-
-    currentSection.style.display = 'block';
-
-}
+};
 
 function collectFormData() {
     const form = document.getElementById('addProductForm');
@@ -126,8 +136,10 @@ function clickEditElementEvent(e) {
                     <div class="productSalePrice">${p.sailPrice}</div>
                 `
     searchResultBox.appendChild(div);
-
     inputDefaultDataOnForm(id);
+
+    editProductForm.style.display = 'block';
+
 
 }
 
@@ -195,6 +207,7 @@ async function init() {
     form.addEventListener('submit', onFormSubmit);
     editForm.addEventListener('submit', onEditFormSumbit)
     addButton.addEventListener('click', addButtonEvent);
+    editButton.addEventListener('click', editButtonEvent);
     allProducts = await loadAllProducts();
     searchInput.addEventListener('input', updateInputEvent);
 

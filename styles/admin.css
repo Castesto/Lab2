@@ -118,5 +118,8 @@ fieldset {
 
 #editProductForm {
     margin-top: 20px;
+    display: none;
 }
+
+
 

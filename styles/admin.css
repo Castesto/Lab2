@@ -81,3 +81,38 @@ fieldset {
 .eventSection {
     display: none;
 }
+
+.searchForEdit {
+    min-width: 300px;
+}
+
+.searchResultBox {
+    max-width: 500px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.productForEdit {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #384685;
+    padding: 2px;
+    gap: 30px;
+    align-items: center;
+    cursor: default;
+}
+
+.productForEdit div:first-child {
+    flex:3;
+}
+
+.productForEdit div:not(first-child) {
+    flex:1;
+}
+
+.productForEdit:hover {
+    background-color: rgb(244, 242, 242);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+

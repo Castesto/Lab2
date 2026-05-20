@@ -5,7 +5,11 @@ let addButton = document.querySelector('.addProduct');
 const form = document.getElementById('addProductForm');
 const imageInput = document.getElementById('imageInput');
 const imagePathInput = document.getElementById('imagePathInput');
+const searchInput = document.querySelector('.searchForEdit');
+const searchResultBox = document.querySelector('.searchResultBox');
 
+let allProducts = [];
+let currentProduct;
 
 
 function isAdmin() {
@@ -37,10 +41,6 @@ function addButtonEvent() {
     currentSection.style.display = 'block';
 
 }
-
-
-
-
 
 function collectFormData() {
     const form = document.getElementById('addProductForm');
@@ -78,11 +78,48 @@ async function onFormSubmit(event) {
     }
 }
 
+async function loadAllProducts() {
+    const response = await fetch(`${API_BASE}/products`);
+    return response.json();
+}
+
+function clickEditElementEvent() {
+    alert('test');
+}
+
+function renderProducts(products, name) {
+    searchResultBox.innerHTML = '';
+    let filteredProducts = [...products].filter(prod => prod.name.toLowerCase().includes(name.toLowerCase()));
+
+    filteredProducts.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'productForEdit';
+        div.dataset.id = p.id;
+        div.innerHTML = `
+                    <div class="productName">${p.name}</div>
+                    <div class="productPrice">${p.price}</div>
+                    <div class="productSalePrice">${p.sailPrice}</div>
+                `
+
+        div.addEventListener('click', clickEditElementEvent);
+        searchResultBox.appendChild(div);
+    });
+}
+
+function updateInputEvent() {
+    renderProducts(allProducts, searchInput.value);
+}
+
+
 
 async function init() {
     form.addEventListener('submit', onFormSubmit);
     addButton.addEventListener('click', addButtonEvent);
+    allProducts = await loadAllProducts();
+    searchInput.addEventListener('input', updateInputEvent);
+
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
     init();

@@ -47,12 +47,10 @@ function setupLogoutHandler() {
     });
 }
 
-
-
-
 function logout() {
     localStorage.removeItem('currentUser');
     updateAuthButtons();
+    window.location.href = '/';
 }
 
 

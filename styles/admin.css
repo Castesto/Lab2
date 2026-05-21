@@ -160,17 +160,27 @@ fieldset {
     min-width: 260px;
 }
 
-.reviewsContainer {
-    margin-top: 10px;
+.reviewContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewHelement {
     display: flex;
     flex-direction: row;
     border: 1px solid #384685;
+    height: auto;
+    gap: 2px;
 }
 
-.reviewsContainer div {
+.reviewHelement div:nth-child(1) {
     flex: 1;
 }
 
-.reviewsContainer div:last-child {
+.reviewHelement div:nth-child(2) {
+    flex: 0.5;
+}
+
+.reviewHelement div:nth-child(3) {
     flex: 2;
 }

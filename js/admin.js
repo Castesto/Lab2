@@ -18,6 +18,9 @@ const editProductForm = document.getElementById('editProductForm');
 const deleteProductButton = document.querySelector('.deleteProductButton');
 const deleteProduct = document.querySelector('.deleteProduct');
 const deleteEvent = document.querySelector('.deleteEvent');
+const searchParameterSelect = document.getElementById('searchParameterSelect');
+const reviewsContainer = document.querySelector('.reviewsContainer');
+const searchReviewsByName = document.querySelector('.searchReviewsByName');
 
 let allProducts = [];
 let currentItem;
@@ -245,7 +248,7 @@ async function onEditFormSumbit(event) {
 async function deleteProductEvent() {
     const rescponce = await fetch(`${API_BASE}/products/${currentItem}`, {
         method: 'DELETE',
-        headers: {'Content-Type': 'application/json'}
+        headers: { 'Content-Type': 'application/json' }
     })
 }
 
@@ -259,6 +262,61 @@ async function getAllReviews() {
     return await response.json();
 }
 
+
+function leftJoinReviewsWithProducts(reviews, products) {
+    const productsMap = new Map();
+    products.forEach(product => {
+        productsMap.set(product.id, product);
+    });
+
+    return reviews.map(review => {
+        const product = productsMap.get(review.productId);
+        return {
+            ...review,
+            productName: product ? product.name : null
+        };
+    });
+}
+
+async function renderReviews(searchText) {
+    let allReviewsWithName = leftJoinReviewsWithProducts(await getAllReviews(), allProducts);
+    let parseReviews = [];
+
+    if (!searchText || searchText.trim() === '') {
+        parseReviews = allReviewsWithName;
+    } else {
+        if (searchParameterSelect.value === 'name') {
+            parseReviews = allReviewsWithName.filter(
+                rew => rew.productName && rew.productName.toLowerCase().includes(searchText.toLowerCase())
+            );
+        } else if (searchParameterSelect.value === 'nickName') {
+            parseReviews = allReviewsWithName.filter(
+                rew => rew.nickName && rew.nickName.toLowerCase().includes(searchText.toLowerCase())
+            );
+        } else {
+            parseReviews = allReviewsWithName;
+        }
+    }
+
+    reviewsContainer.innerHTML = '';
+
+    parseReviews.forEach(rew => {
+        const reviewDiv = document.createElement('div');
+        reviewDiv.className = 'reviewHelement';
+        reviewDiv.innerHTML = `
+            <div class="productName">${rew.productName || 'Товар не найден'}</div>
+            <div class="nickName">${rew.nickName}</div>
+            <div class="reviewsText">${rew.review}</div>
+        `;
+        reviewsContainer.appendChild(reviewDiv);
+    });
+}
+
+function reviewInputEvent(e) {
+    renderReviews(e.target.value);
+}
+
+
 async function init() {
     form.addEventListener('submit', onFormSubmit);
     editForm.addEventListener('submit', onEditFormSumbit)
@@ -269,8 +327,9 @@ async function init() {
     searchDeleteInput.addEventListener('input', updateDeleteInput);
     deleteProductButton.addEventListener('click', deleteProductEvent);
     deleteProduct.addEventListener('click', deleteButtonEvent);
+    searchReviewsByName.addEventListener('input', reviewInputEvent);
 
-    let reviews = await getAllReviews();
+    let reviews = await renderReviews('Анто');
     console.log(reviews);
 }
 

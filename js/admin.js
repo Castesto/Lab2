@@ -10,9 +10,12 @@ const imageEditInput = document.getElementById('imageEditInput');
 const imagePathInput = document.getElementById('imagePathInput');
 const imagePathEditInput = document.getElementById('imagePathEditInput');
 const searchInput = document.querySelector('.searchForEdit');
+const searchDeleteInput = document.querySelector('.searchForDelete');
 const searchResultBox = document.querySelector('.searchResultBox');
+const searchDeleteResultBox = document.querySelector('.searchDeleteResultBox')
 const editProductLegend = document.querySelector('.editProductLegend');
 const editProductForm = document.getElementById('editProductForm');
+const deleteProductButton = document.querySelector('.deleteProductButton');
 
 let allProducts = [];
 let currentItem;
@@ -139,16 +142,40 @@ function clickEditElementEvent(e) {
     inputDefaultDataOnForm(id);
 
     editProductForm.style.display = 'block';
-
-
 }
 
-function renderProducts(products, name) {
-    searchResultBox.innerHTML = '';
+
+function clickDeleteElementEvent(e) {
+    const productDiv = e.currentTarget;
+    const id = productDiv.dataset.id;
+    currentItem = id;
+
+    searchDeleteResultBox.innerHTML = '';
+    searchInput.value = '';
+
+    let p = [...allProducts].find(prod => prod.id === id);
+    console.log(p);
+
+    const div = document.createElement('div');
+    div.className = 'productForDelete';
+    div.dataset.id = p.id;
+    div.innerHTML = `
+                    <div class="productName">${p.name}</div>
+                    <div class="productPrice">${p.price}</div>
+                    <div class="productSalePrice">${p.sailPrice}</div>
+                `
+    searchDeleteResultBox.appendChild(div);
+
+    deleteProductButton.style.display = 'flex';
+}
+
+function renderProducts(products, name, className, box) {
+    box.innerHTML = '';
     let filteredProducts = [...products].filter(prod => prod.name.toLowerCase().includes(name.toLowerCase()));
+
     filteredProducts.forEach(p => {
         const div = document.createElement('div');
-        div.className = 'productForEdit';
+        div.className = `${className}`;
         div.dataset.id = p.id;
         div.innerHTML = `
                     <div class="productName">${p.name}</div>
@@ -156,13 +183,23 @@ function renderProducts(products, name) {
                     <div class="productSalePrice">${p.sailPrice}</div>
                 `
 
-        div.addEventListener('click', clickEditElementEvent);
-        searchResultBox.appendChild(div);
+        if (className === 'productForEdit') {
+            div.addEventListener('click', clickEditElementEvent);
+        }
+        else {
+            div.addEventListener('click', clickDeleteElementEvent);
+        }
+        box.appendChild(div);
     });
 }
 
 function updateInputEvent() {
-    renderProducts(allProducts, searchInput.value);
+    renderProducts(allProducts, searchInput.value, 'productForEdit', searchResultBox);
+}
+
+
+function updateDeleteInput() {
+    renderProducts(allProducts, searchDeleteInput.value, 'productForDelete', searchDeleteResultBox)
 }
 
 async function inputDefaultDataOnForm(id) {
@@ -203,6 +240,14 @@ async function onEditFormSumbit(event) {
     }
 }
 
+async function deleteProductEvent() {
+    const rescponce = await fetch(`${API_BASE}/products/${currentItem}`, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'}
+    })
+
+}
+
 async function init() {
     form.addEventListener('submit', onFormSubmit);
     editForm.addEventListener('submit', onEditFormSumbit)
@@ -210,6 +255,8 @@ async function init() {
     editButton.addEventListener('click', editButtonEvent);
     allProducts = await loadAllProducts();
     searchInput.addEventListener('input', updateInputEvent);
+    searchDeleteInput.addEventListener('input', updateDeleteInput);
+    deleteProductButton.addEventListener('click', deleteProductEvent);
 
 }
 

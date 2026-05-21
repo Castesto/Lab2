@@ -82,18 +82,18 @@ fieldset {
     display: none;
 }
 
-.searchForEdit {
+.searchForEdit, .searchForDelete {
     min-width: 300px;
 }
 
-.searchResultBox {
+.searchResultBox, .searchDeleteResultBox {
     max-width: 500px;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
 }
 
-.productForEdit {
+.productForEdit, .productForDelete {
     display: flex;
     flex-direction: row;
     border: 1px solid #384685;
@@ -103,15 +103,15 @@ fieldset {
     cursor: default;
 }
 
-.productForEdit div:first-child {
+.productForEdit div:first-child, .productForDelete div:first-child {
     flex:3;
 }
 
-.productForEdit div:not(first-child) {
+.productForEdit div:not(first-child), .productForDelete div:not(first-child)  {
     flex:1;
 }
 
-.productForEdit:hover {
+.productForEdit:hover, .productForDelete:hover  {
     background-color: rgb(244, 242, 242);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -121,5 +121,9 @@ fieldset {
     display: none;
 }
 
-
+.deleteProductButton {
+    margin-top: 10px;
+    max-width: 100px;
+    display: none;
+}
 

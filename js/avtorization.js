@@ -31,6 +31,7 @@ async function onFormSubmit(event) {
 
     if (currentUser != undefined) {
         console.log(currentUser);
+        await clearCartViaAction();
         saveCurrentUser(currentUser);
     }
     else {
@@ -54,11 +55,29 @@ function saveCurrentUser(currentUser) {
     console.log('Авторизация успешна');
 }
 
+async function clearCartViaAction() {
+    try {
+        const getResponse = await fetch(`${API_BASE}/cart`);
+        if (!getResponse.ok) throw new Error(`GET error: ${getResponse.status}`);
+        const cartItems = await getResponse.json();
+
+        const deletePromises = cartItems.map(item =>
+            fetch(`${API_BASE}/cart/${item.id}`, { method: 'DELETE' })
+        );
+        await Promise.all(deletePromises);
+
+        console.log('Корзина очищена, удалено элементов:', cartItems.length);
+    } catch (error) {
+        console.error('Ошибка очистки корзины:', error);
+    }
+}
+
+
+
 
 async function init() {
     await loadUsers();
     form.addEventListener('submit', onFormSubmit);
-    
 }
 
 document.addEventListener('DOMContentLoaded', () => {

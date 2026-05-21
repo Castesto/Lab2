@@ -82,18 +82,21 @@ fieldset {
     display: none;
 }
 
-.searchForEdit, .searchForDelete {
+.searchForEdit,
+.searchForDelete {
     min-width: 300px;
 }
 
-.searchResultBox, .searchDeleteResultBox {
+.searchResultBox,
+.searchDeleteResultBox {
     max-width: 500px;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
 }
 
-.productForEdit, .productForDelete {
+.productForEdit,
+.productForDelete {
     display: flex;
     flex-direction: row;
     border: 1px solid #384685;
@@ -103,15 +106,18 @@ fieldset {
     cursor: default;
 }
 
-.productForEdit div:first-child, .productForDelete div:first-child {
-    flex:3;
+.productForEdit div:first-child,
+.productForDelete div:first-child {
+    flex: 3;
 }
 
-.productForEdit div:not(first-child), .productForDelete div:not(first-child)  {
-    flex:1;
+.productForEdit div:not(first-child),
+.productForDelete div:not(first-child) {
+    flex: 1;
 }
 
-.productForEdit:hover, .productForDelete:hover  {
+.productForEdit:hover,
+.productForDelete:hover {
     background-color: rgb(244, 242, 242);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -127,3 +133,44 @@ fieldset {
     display: none;
 }
 
+
+.sorting-select {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 1px solid #384685;
+    border-radius: 5px;
+    background-color: white;
+    color: #384685;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+
+#searchParameterSelect {
+    padding: 3.5px 20px;
+}
+
+.searchAndSelect {
+    display: flex;
+    flex-direction: column;
+    gap: 4px
+}
+
+.searchReviewsByName {
+    min-width: 260px;
+}
+
+.reviewsContainer {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #384685;
+}
+
+.reviewsContainer div {
+    flex: 1;
+}
+
+.reviewsContainer div:last-child {
+    flex: 2;
+}

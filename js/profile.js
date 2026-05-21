@@ -131,6 +131,7 @@ async function sumbitReview(productId, text) {
 }
 
 
+
 async function init() {
     getBuyStoryForCurrentUser();
     storyProducts = await getStoryCards();

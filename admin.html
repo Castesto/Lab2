@@ -83,7 +83,7 @@
             </div>
 
             <form action="" id="editProductForm">
-                 <fieldset>
+                <fieldset>
                     <legend class="editProductLegend">Внесение изменений: <span></span></legend>
                     <div class="form-row">
                         <label>Название</label>
@@ -117,14 +117,34 @@
             </form>
         </section>
 
-        <section class="deleteEvent">
+        <section class="deleteEvent eventSection">
             <div class="actionText">
                 Удаление товара
             </div>
             <label>Поиск товара: <input type="text" class="searchForDelete"></label>
             <div class="searchDeleteResultBox">
             </div>
-            <div class="deleteProductButton box registered">Удалить </div>
+            <button class="deleteProductButton box registered">Удалить </и>
+        </section>
+
+        <section class="reviewsEvent">
+            <div class="actionText">
+                Просмотр отзывов
+            </div>
+            <div class="searchAndSelect">
+                <label>Параметр поиска:
+                    <select id="searchParameterSelect">
+                        <option value="name" selected>Название товара</option>
+                        <option value="nickName">Никнейм</option>
+                    </select>
+                </label>
+                <label>Поиск: <input type="text" class="searchReviewsByName"></label>
+                <div class="reviewsContainer">
+                    <div class="productName">Стол керамический надежный</div>
+                    <div class="nickName">Джод</div>
+                    <div class="reviewsText">Понравилось, бывает и лучше, но что поделать, я и не расчитывал, что всё будет чики брики</div>
+                </div>
+            </div>
         </section>
     </main>
 

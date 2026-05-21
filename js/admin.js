@@ -16,6 +16,8 @@ const searchDeleteResultBox = document.querySelector('.searchDeleteResultBox')
 const editProductLegend = document.querySelector('.editProductLegend');
 const editProductForm = document.getElementById('editProductForm');
 const deleteProductButton = document.querySelector('.deleteProductButton');
+const deleteProduct = document.querySelector('.deleteProduct');
+const deleteEvent = document.querySelector('.deleteEvent');
 
 let allProducts = [];
 let currentItem;
@@ -245,7 +247,16 @@ async function deleteProductEvent() {
         method: 'DELETE',
         headers: {'Content-Type': 'application/json'}
     })
+}
 
+async function deleteButtonEvent() {
+    hideAllSections();
+    deleteEvent.style.display = 'block';
+}
+
+async function getAllReviews() {
+    const response = await fetch(`${API_BASE}/feedback`);
+    return await response.json();
 }
 
 async function init() {
@@ -257,9 +268,11 @@ async function init() {
     searchInput.addEventListener('input', updateInputEvent);
     searchDeleteInput.addEventListener('input', updateDeleteInput);
     deleteProductButton.addEventListener('click', deleteProductEvent);
+    deleteProduct.addEventListener('click', deleteButtonEvent);
 
+    let reviews = await getAllReviews();
+    console.log(reviews);
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
     init();

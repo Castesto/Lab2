@@ -87,6 +87,7 @@ function collectFormData() {
     const formData = new FormData(form);
     const userData = Object.fromEntries(formData.entries());
 
+    userData.purchaseHistory = "";
     delete userData.agreement;
     delete userData.confirmPassword;
 

@@ -21,6 +21,8 @@ const deleteEvent = document.querySelector('.deleteEvent');
 const searchParameterSelect = document.getElementById('searchParameterSelect');
 const reviewsContainer = document.querySelector('.reviewsContainer');
 const searchReviewsByName = document.querySelector('.searchReviewsByName');
+const reviewsEvent = document.querySelector('.reviewsEvent');
+const wathReviews = document.querySelector('.wathReviews');
 
 let allProducts = [];
 let currentItem;
@@ -257,6 +259,11 @@ async function deleteButtonEvent() {
     deleteEvent.style.display = 'block';
 }
 
+async function reviewsButtonEvent() {
+    hideAllSections();
+    reviewsEvent.style.display = 'block';
+}
+
 async function getAllReviews() {
     const response = await fetch(`${API_BASE}/feedback`);
     return await response.json();
@@ -284,16 +291,19 @@ async function renderReviews(searchText) {
 
     if (!searchText || searchText.trim() === '') {
         parseReviews = allReviewsWithName;
-    } else {
+    }
+    else {
         if (searchParameterSelect.value === 'name') {
             parseReviews = allReviewsWithName.filter(
                 rew => rew.productName && rew.productName.toLowerCase().includes(searchText.toLowerCase())
             );
-        } else if (searchParameterSelect.value === 'nickName') {
+        }
+        else if (searchParameterSelect.value === 'nickName') {
             parseReviews = allReviewsWithName.filter(
                 rew => rew.nickName && rew.nickName.toLowerCase().includes(searchText.toLowerCase())
             );
-        } else {
+        }
+        else {
             parseReviews = allReviewsWithName;
         }
     }
@@ -303,11 +313,14 @@ async function renderReviews(searchText) {
     parseReviews.forEach(rew => {
         const reviewDiv = document.createElement('div');
         reviewDiv.className = 'reviewHelement';
+        reviewDiv.dataset.id = rew.id;
         reviewDiv.innerHTML = `
             <div class="productName">${rew.productName || 'Товар не найден'}</div>
             <div class="nickName">${rew.nickName}</div>
             <div class="reviewsText">${rew.review}</div>
         `;
+
+        reviewDiv.addEventListener('click', reviewClickEvent)
         reviewsContainer.appendChild(reviewDiv);
     });
 }
@@ -316,6 +329,42 @@ function reviewInputEvent(e) {
     renderReviews(e.target.value);
 }
 
+async function reviewClickEvent(e) {
+    const targetDiv = e.target.closest('.reviewHelement');
+    if (!targetDiv) return;
+    
+    let id = targetDiv.dataset.id;
+    currentItem = id;
+    
+    let allReviewsWithName = leftJoinReviewsWithProducts(await getAllReviews(), allProducts);
+    let rew = allReviewsWithName.find(hel => hel.id === id);
+
+    reviewsContainer.innerHTML = '';
+
+    const reviewDiv = document.createElement('div');
+    reviewDiv.className = 'reviewHelement';
+    reviewDiv.dataset.id = rew.id;
+    reviewDiv.innerHTML = `
+        <div class="productName">${rew.productName || 'Товар не найден'}</div>
+        <div class="nickName">${rew.nickName}</div>
+        <div class="reviewsText">${rew.review}</div>
+    `;
+    reviewsContainer.appendChild(reviewDiv);
+
+    const button = document.createElement('button');
+    button.className = 'deleteReview box';
+    button.textContent = 'Удалить';
+
+    button.addEventListener('click', deleteReview);
+    reviewsContainer.appendChild(button);
+}
+
+async function deleteReview(e) {
+    const rescponce = await fetch(`${API_BASE}/feedback/${currentItem}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' }
+    })
+}
 
 async function init() {
     form.addEventListener('submit', onFormSubmit);
@@ -328,6 +377,7 @@ async function init() {
     deleteProductButton.addEventListener('click', deleteProductEvent);
     deleteProduct.addEventListener('click', deleteButtonEvent);
     searchReviewsByName.addEventListener('input', reviewInputEvent);
+    wathReviews.addEventListener('click', reviewsButtonEvent);
 
     let reviews = await renderReviews('Анто');
     console.log(reviews);

@@ -171,6 +171,7 @@ fieldset {
     border: 1px solid #384685;
     height: auto;
     gap: 2px;
+    cursor: pointer;
 }
 
 .reviewHelement div:nth-child(1) {
@@ -184,3 +185,13 @@ fieldset {
 .reviewHelement div:nth-child(3) {
     flex: 2;
 }
+
+
+.reviewHelement:hover {
+    background-color: rgb(234, 230, 230);
+}
+
+.deleteReview {
+    margin-top: 10px;
+}
+

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="styles/productCatalog.css">
     <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/preloader.css">
     <link rel="stylesheet" href="styles/profile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +22,12 @@
 </head>
 
 <body class="page-catalog">
-    <header id="header-placeholder"></header>
+
+    <div id="preloader" class="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <header></header>
 
     <main>
         <div id="reviewModal" class="modal-overlay">
@@ -49,7 +55,7 @@
         </div>
     </main>
 
-    <footer id="footer-placeholder"></footer>
+    <footer></footer>
     <script src="/js/auth.js"></script>
     <script src="/js/include.js"></script>
     <script src="/js/profile.js"></script>

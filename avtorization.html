@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/preloader.css">
     <link rel="stylesheet" href="styles/registration.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,27 +20,31 @@
 </head>
 
 <body>
+    <div id="preloader" class="preloader">
+        <div class="spinner"></div>
+    </div>
+
     <header></header>
     <main>
         <form action="" id="registrationform">
             <fieldset>
                 <legend>Авторизация</legend>
 
-              
+
                 <div class="form-row">
                     <label>Ник</label>
                     <input type="text" id="nicknameInput" name="nickName" required>
                 </div>
-                    <div class="errorNickMessage"></div>
+                <div class="errorNickMessage"></div>
                 <div class="form-row">
                     <label>Пароль</label>
-                    <input type="password" id="passwordInput" name="password" required pattern=".{8,}" title="Минимум 8 символов" class="passwordInput"
-                        required>
+                    <input type="password" id="passwordInput" name="password" required pattern=".{8,}"
+                        title="Минимум 8 символов" class="passwordInput" required>
                 </div>
-                
+
             </fieldset>
 
-          
+
             <fieldset class="registeredContainer">
                 <button class="registered box">Авторизироваться</button>
             </fieldset>

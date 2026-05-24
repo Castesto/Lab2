@@ -57,7 +57,7 @@ async function loadAllData() {
         updateFavAndCartIndicators();
     } catch (error) {
         console.error('Ошибка загрузки данных:', error);
-        alert('Не удалось загрузить данные с сервера. Убедитесь, что json-server запущен.');
+        showNotification('Ошибка загрузки данных', 'error');
     }
 }
 
@@ -78,7 +78,7 @@ async function addToFavorites(productId) {
             const created = await response.json();
             favoritesList.push(created);
         }
-        alert('Товар добавлен в избранное!');
+        showNotification('Товар добавлен в избранное', 'success');
         updateFavAndCartIndicators();
     } catch (error) {
         console.error('Ошибка при изменении избранного:', error);
@@ -105,7 +105,7 @@ async function addToCart(productId) {
             const newItem = await response.json();
             cartItems.push(newItem);
         }
-        alert('Товар добавлен в корзину');
+        showNotification('Товар добавлен в корзину', 'success');
         updateCartCounter();
     } catch (error) {
         console.error('Ошибка добавления в корзину:', error);

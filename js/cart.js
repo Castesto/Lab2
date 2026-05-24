@@ -242,7 +242,7 @@ async function checkout() {
             body: JSON.stringify({ purchaseHistory: updatedPurchaseHistory })
         });
 
-        alert('Спасибо за заказ! Наш менеджер свяжется с вами в ближайшее время.');
+        showNotification('Спасибо за заказ! Наш менеджер свяжется с вами в ближайшее время.');
     }
 }
 
@@ -257,7 +257,7 @@ function getCurrentUser() {
     }
 }
 
-
+//
 function attachCartEvents() {
     document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
         btn.removeEventListener('click', minusHandler);

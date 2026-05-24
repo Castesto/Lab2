@@ -39,7 +39,6 @@ async function fetchCart() {
     return res.json();
 }
 
-// Обновление счётчика корзины (в хедере)
 function updateCartCounter() {
     const span = document.getElementById('cartCount');
     if (span && cartItems.length) {
@@ -50,7 +49,6 @@ function updateCartCounter() {
     }
 }
 
-// Обновление счётчика избранного (если добавить элемент в header)
 function updateFavCounter() {
     const favSpan = document.getElementById('favoritesCount');
     if (favSpan) {
@@ -58,7 +56,6 @@ function updateFavCounter() {
     }
 }
 
-// Добавление в корзину
 async function addToCart(productId) {
     try {
         const existing = cartItems.find(item => item.productId === productId);
@@ -79,15 +76,14 @@ async function addToCart(productId) {
             const newItem = await res.json();
             cartItems.push(newItem);
         }
-        alert('Товар добавлен в корзину');
+        showNotification('Товар добавлен в корзину');
         updateCartCounter();
     } catch (err) {
         console.error('Ошибка добавления в корзину:', err);
-        alert('Не удалось добавить товар в корзину');
+        showNotification('Не удалось добавить товар в корзину');
     }
 }
 
-// Удаление из избранного
 async function removeFromFavorites(favId, productId) {
     try {
         await fetch(`${API_BASE}/favorites/${favId}`, { method: 'DELETE' });
@@ -96,11 +92,10 @@ async function removeFromFavorites(favId, productId) {
         updateFavCounter();
     } catch (err) {
         console.error('Ошибка удаления из избранного:', err);
-        alert('Не удалось удалить товар из избранного');
+        showNotification('Не удалось удалить товар из избранного');
     }
 }
 
-// Отрисовка списка избранного
 function renderFavorites() {
     const container = document.querySelector('.favorites-grid');
     if (!container) return;
@@ -115,7 +110,6 @@ function renderFavorites() {
         return;
     }
 
-    // Сопоставляем favorites с продуктами
     const favProducts = favoritesList
         .map(fav => {
             const product = allProducts.find(p => p.id === fav.productId);
@@ -151,7 +145,6 @@ function renderFavorites() {
     });
     container.innerHTML = html;
 
-    // Навесить события
     document.querySelectorAll('.favorite-card').forEach(card => {
         const favId = card.getAttribute('data-fav-id');
         const productId = card.getAttribute('data-product-id');
@@ -172,7 +165,6 @@ function renderFavorites() {
     });
 }
 
-// Инициализация страницы
 async function initFavorites() {
     try {
         const [products, favorites, cart] = await Promise.all([

@@ -25,50 +25,61 @@
         <form action="" id="registrationform">
             <fieldset>
                 <legend>Регистрация</legend>
-
                 <div class="form-row">
                     <label>Фамилия</label>
                     <input type="text" id="lastNameInput" name="lastName" required>
                 </div>
+                <div class="lastNameErrorMessage errMsg">это поле не может быть пустым</div>
                 <div class="form-row">
                     <label>Имя</label>
                     <input type="text" id="nameInput" name="firstName" required>
                 </div>
+                <div class="firstNameErrorMessage errMsg">это поле не может быть пустым</div>
                 <div class="form-row">
                     <label>Отчество</label>
                     <input type="text" id="fatherNameInput" name="fatherName" required>
                 </div>
+                <div class="fatherNameErrorMessage errMsg">это поле не может быть пустым</div>
                 <div class="form-row">
                     <label>Дата рождения</label>
                     <input type="date" id="birthdate" name="dateBirthday" required>
                     <small id="dateError" style="color: red; display: none;"></small>
                 </div>
+                <div class="dateErrorMessage errMsg">возраст должен быть старше 16</div>
                 <div class="form-row">
                     <label>Ник</label>
                     <input type="text" id="nicknameInput" name="nickName" required>
                 </div>
-                    <div class="errorNickMessage"></div>
+                <div class="nickNameErrorMessage errMsg">этот никнейм уже занят</div>
+
+                <div class="errorNickMessage"></div>
                 <div class="form-row">
                     <label>Пароль</label>
-                    <input type="password" id="passwordInput" name="password" required pattern=".{8,}" title="Минимум 8 символов" class="passwordInput"
-                        required>
+                    <input type="password" id="passwordInput" name="password" required pattern=".{8,}"
+                        title="Минимум 8 символов" class="passwordInput" required>
                 </div>
+                <div class="passwordErrorMessage errMsg">минимальная длинна 8 символов</div>
+
                 <div class="form-row">
                     <label>Повторите пароль</label>
                     <input type="password" class="secondPasswordInput"
                         oninput="this.setCustomValidity(this.value !== document.querySelector('.passwordInput').value ? 'Пароли не совпадают' : '')"
                         required>
                 </div>
+                <div class="secondPasswordErrorMessage errMsg">пароли не совпадают</div>
                 <div class="form-row">
                     <label>E-mail</label>
                     <input type="email" id="emailInput" name="email" required>
                 </div>
+                <div class="mailErrorMessage errMsg">соблюдайте формат mail@mail.ru</div>
                 <div class="form-row">
                     <label>Номер</label>
                     <input type="tel"
                         title="Номер должен начинаться с +375 и содержать 9 цифр после кода (всего 13 символов)"
                         pattern="\+375[0-9]{9}" id="numberInput" name="phoneNumber" required>
                 </div>
+                <div class="phoneErrorMessage errMsg">разрешены только белоруские номера</div>
+
             </fieldset>
 
             <fieldset class="generateButtons">
@@ -79,6 +90,7 @@
                 <legend class="agreement">Соглашение</legend>
                 <label><input type="checkbox" name="agreement" required> Согласен с <a href="#">пользовательским
                         соглашением</a></label>
+
             </fieldset>
             <fieldset class="registeredContainer">
                 <button class="registered box">Зарегестрироваться</button>

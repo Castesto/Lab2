@@ -28,6 +28,15 @@ fieldset {
     border-radius: 4px;
 }
 
+.errMsg {
+    display: flex;
+    justify-content: flex-end;
+    height: auto;
+    color:rgb(161, 24, 24);
+    margin-top: -19px;
+    font-size: 13px;
+}
+
 .agreement {
     margin-top: 40px;
 }

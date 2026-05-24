@@ -137,7 +137,7 @@ async function checkNicknameAvailability() {
         }
     } catch (err) {
         console.error('Ошибка при проверке ника:', err);
-        errorNickDiv.textContent = '⚠️ Ошибка проверки';
+        errorNickDiv.textContent = 'Ошибка проверки';
         errorNickDiv.style.color = 'orange';
         errorNickDiv.style.display = 'flex';
     }
@@ -240,6 +240,142 @@ function updateButtonState() {
 
     }
 }
+
+
+function toggleError(input, errorElement, isValid) {
+    if (!errorElement) return;
+    if (!isValid) {
+        errorElement.style.display = 'flex';
+        input.classList.add('invalid');
+    } else {
+        errorElement.style.display = 'none';
+        input.classList.remove('invalid');
+    }
+}
+
+function validateLastName() {
+    const input = document.getElementById('lastNameInput');
+    const error = document.querySelector('.lastNameErrorMessage');
+    const isValid = input.value.trim() !== '';
+    toggleError(input, error, isValid);
+    return isValid;
+}
+
+function validateFirstName() {
+    const input = document.getElementById('nameInput');
+    const error = document.querySelector('.firstNameErrorMessage');
+    const isValid = input.value.trim() !== '';
+    toggleError(input, error, isValid);
+    return isValid;
+}
+
+function validateFatherName() {
+    const input = document.getElementById('fatherNameInput');
+    const error = document.querySelector('.fatherNameErrorMessage');
+    const isValid = input.value.trim() !== '';
+    toggleError(input, error, isValid);
+    return isValid;
+}
+
+function validateBirthdate() {
+    const input = document.getElementById('birthdate');
+    const error = document.querySelector('.dateErrorMessage');
+    let isValid = true;
+    if (!input.value) {
+        isValid = false;
+    } else {
+        const birthDate = new Date(input.value);
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const hasBirthdayPassed = (today.getMonth() > birthDate.getMonth()) ||
+            (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
+        if (!hasBirthdayPassed) age--;
+        isValid = age >= 16;
+    }
+    toggleError(input, error, isValid);
+    return isValid;
+}
+
+function validateNickname() {
+    const input = document.getElementById('nicknameInput');
+    const error = document.querySelector('.nickNameErrorMessage');
+    const isValid = input.value.trim() !== '' && !input.getAttribute('data-invalid') === 'true';
+    toggleError(input, error, input.value.trim() !== '');
+    return input.value.trim() !== '';
+}
+
+function validatePassword() {
+    const input = document.getElementById('passwordInput');
+    const error = document.querySelector('.passwordErrorMessage');
+    const isValid = input.value.length >= 8;
+    toggleError(input, error, isValid);
+    return isValid;
+}
+
+function validateConfirmPassword() {
+    const input = document.querySelector('.secondPasswordInput');
+    const error = document.querySelector('.secondPasswordErrorMessage');
+    const password = document.getElementById('passwordInput').value;
+    const isValid = input.value === password;
+    toggleError(input, error, isValid);
+    return isValid;
+}
+
+function validateEmail() {
+    const input = document.getElementById('emailInput');
+    const error = document.querySelector('.mailErrorMessage');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isValid = emailRegex.test(input.value);
+    toggleError(input, error, isValid);
+    return isValid;
+}
+
+function validatePhone() {
+    const input = document.getElementById('numberInput');
+    const error = document.querySelector('.phoneErrorMessage');
+    const phoneRegex = /^\+375[0-9]{9}$/;
+    const isValid = phoneRegex.test(input.value);
+    toggleError(input, error, isValid);
+    return isValid;
+}
+
+function validateAll() {
+    const validations = [
+        validateLastName(),
+        validateFirstName(),
+        validateFatherName(),
+        validateBirthdate(),
+        validateNickname(),
+        validatePassword(),
+        validateConfirmPassword(),
+        validateEmail(),
+        validatePhone()
+    ];
+    return validations.every(v => v === true);
+}
+
+function initValidation() {
+    const fields = [
+        { id: 'lastNameInput', event: 'input', handler: validateLastName },
+        { id: 'nameInput', event: 'input', handler: validateFirstName },
+        { id: 'fatherNameInput', event: 'input', handler: validateFatherName },
+        { id: 'birthdate', event: 'change', handler: validateBirthdate },
+        { id: 'nicknameInput', event: 'input', handler: validateNickname },
+        { id: 'passwordInput', event: 'input', handler: () => { validatePassword(); validateConfirmPassword(); } },
+        { selector: '.secondPasswordInput', event: 'input', handler: validateConfirmPassword },
+        { id: 'emailInput', event: 'input', handler: validateEmail },
+        { id: 'numberInput', event: 'input', handler: validatePhone }
+    ];
+
+    fields.forEach(field => {
+        const el = field.id ? document.getElementById(field.id) : document.querySelector(field.selector);
+        if (el) el.addEventListener(field.event, field.handler);
+    });
+
+    document.querySelectorAll('.errMsg').forEach(msg => msg.style.display = 'none');
+}
+
+document.addEventListener('DOMContentLoaded', initValidation);
 
 
 async function init() {

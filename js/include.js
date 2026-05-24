@@ -30,75 +30,36 @@ window.addEventListener('load', function () {
 });
 
 
-function showNotification(message, type = 'success') {
-    const oldToast = document.querySelector('.custom-toast');
-    if (oldToast) oldToast.remove();
+function createScrollToTopButton() {
+    if (document.getElementById('scrollToTopBtn')) return;
 
-    const toast = document.createElement('div');
-    toast.className = `custom-toast custom-toast-${type}`;
-    toast.innerHTML = `
-        <div class="toast-icon">${type === 'success' ? '✅' : (type === 'error' ? '❌' : 'ℹ️')}</div>
-        <div class="toast-message">${message}</div>
-    `;
+    const btn = document.createElement('button');
+    btn.id = 'scrollToTopBtn';
+    btn.innerHTML = '↑';
+    btn.setAttribute('aria-label', 'Наверх');
+    document.body.appendChild(btn);
 
-    if (!document.querySelector('#toast-styles')) {
-        const style = document.createElement('style');
-        style.id = 'toast-styles';
-        style.textContent = `
-            .custom-toast {
-                position: fixed;
-                bottom: 30px;
-                right: 30px;
-                background: white;
-                border-radius: 12px;
-                box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-                padding: 14px 24px;
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                z-index: 10000;
-                animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
-                font-family: 'PT Sans', sans-serif;
-                font-size: 16px;
-                max-width: 350px;
-                border-left: 5px solid;
-            }
-            .custom-toast-success { border-left-color: #28a745; }
-            .custom-toast-error { border-left-color: #dc3545; }
-            .custom-toast-info { border-left-color: #17a2b8; }
-            .toast-icon { font-size: 22px; }
-            .toast-message { color: #333; }
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes fadeOut {
-                to { opacity: 0; visibility: hidden; }
-            }
-            @media (max-width: 576px) {
-                .custom-toast { bottom: 20px; right: 20px; left: 20px; max-width: none; }
-            }
-        `;
-        document.head.appendChild(style);
-    }
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            btn.classList.add('show');
+        } else {
+            btn.classList.remove('show');
+        }
+    });
 
-    document.body.appendChild(toast);
-
-    setTimeout(() => {
-        if (toast.parentNode) toast.remove();
-    }, 3000);
+    btn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 }
 
-window.closeModal = function (modalElement) {
-    if (modalElement) modalElement.classList.remove('active');
-};
-
-document.addEventListener('click', (e) => {
-    const modal = e.target.closest('.modal-overlay');
-    if (modal && (e.target === modal || e.target.classList.contains('modal-close'))) {
-        closeModal(modal);
-    }
-});
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', createScrollToTopButton);
+} else {
+    createScrollToTopButton();
+}
 
 
 
@@ -224,6 +185,83 @@ if (document.readyState === 'loading') {
     });
 } else {
     includeComponents().then(() => initBurgerMenu());
+}
+
+
+function createScrollToTopButton() {
+    // Проверяем, существует ли уже кнопка
+    if (document.getElementById('scrollToTopBtn')) return;
+
+    const btn = document.createElement('button');
+    btn.id = 'scrollToTopBtn';
+    btn.innerHTML = '↑';
+    btn.setAttribute('aria-label', 'Наверх');
+    document.body.appendChild(btn);
+
+    const style = document.createElement('style');
+    style.textContent = `
+        #scrollToTopBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #384685;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+        }
+        #scrollToTopBtn:hover {
+            background-color: #2c3669;
+            transform: scale(1.05);
+        }
+        #scrollToTopBtn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        @media (max-width: 768px) {
+            #scrollToTopBtn {
+                bottom: 20px;
+                right: 20px;
+                width: 44px;
+                height: 44px;
+                font-size: 24px;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            btn.classList.add('show');
+        } else {
+            btn.classList.remove('show');
+        }
+    });
+
+    btn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', createScrollToTopButton);
+} else {
+    createScrollToTopButton();
 }
 
 document.addEventListener('DOMContentLoaded', includeComponents);  

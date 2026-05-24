@@ -312,7 +312,157 @@ header {
 
 
 
+.burger-menu {
+    display: none; 
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    position: relative;
+}
+.burger-menu span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #1D1818;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+.burger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+.burger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+.burger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
 
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+.mobile-menu-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.mobile-menu-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    max-width: 350px;
+    height: 100%;
+    background: white;
+    z-index: 1002;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    padding: 80px 20px 30px;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+}
+.mobile-menu-panel.active {
+    transform: translateX(0);
+}
+.mobile-menu-panel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.mobile-menu-panel li {
+    margin-bottom: 20px;
+}
+.mobile-menu-panel a {
+    font-size: 18px;
+    color: #1D1818;
+    text-decoration: none;
+    display: block;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+.mobile-menu-panel a:hover {
+    color: #E13B3F;
+}
+.mobile-menu-panel .mobile-phone {
+    margin: 20px 0;
+    font-weight: bold;
+    font-size: 20px;
+}
+.mobile-menu-panel .mobile-icons {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+.mobile-menu-panel .mobile-icons a {
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mobile-menu-panel .mobile-icons {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+}
+.mobile-menu-panel .mobile-icons a {
+    text-decoration: none;
+    color: #1D1818;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+}
+.mobile-menu-panel .mobile-icons img {
+    width: 24px;
+    height: 24px;
+}
+
+.mobile-special-links {
+    display: flex;
+    gap: 20px;
+    margin: 15px 0 20px 0;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+.mobile-special-links a {
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 8px 0;
+    background-color: white;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+.mobile-special-links a:hover {
+    background-color: #384685;
+    color: white !important;
+}
+.mobile-special-links a div {
+    font-weight: 600;
+    color: #1D1818;
+}
+.mobile-special-links a:hover div {
+    color: white;
+}
 
 
 @media (max-width: 1919px) {
@@ -531,5 +681,11 @@ header {
         .phoneNumber {
             display: none;
         }
+    }
+}
+
+@media (max-width: 1200px) {
+    .burger-menu {
+        display: flex;
     }
 }

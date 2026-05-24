@@ -264,4 +264,34 @@ if (document.readyState === 'loading') {
     createScrollToTopButton();
 }
 
+
+function initModalClose() {
+    const modal = document.getElementById('productDetailModal');
+    if (!modal) return;
+
+    const closeBtn = modal.querySelector('.modal-close');
+    if (closeBtn) {
+        closeBtn.removeEventListener('click', closeModalHandler);
+        closeBtn.addEventListener('click', closeModalHandler);
+    }
+
+    modal.removeEventListener('click', overlayClickHandler);
+    modal.addEventListener('click', overlayClickHandler);
+}
+
+function closeModalHandler(e) {
+    const modal = document.getElementById('productDetailModal');
+    if (modal) modal.classList.remove('active');
+}
+
+function overlayClickHandler(e) {
+    if (e.target === e.currentTarget) { 
+        closeModalHandler();
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initModalClose();
+});
+
 document.addEventListener('DOMContentLoaded', includeComponents);  

@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const cardImages = document.querySelectorAll('.card .cardImage img');
-    const bottomImg = document.getElementById('bottomVideoImage');
+    const targetImg = document.getElementById('bottomVideoImage');
+    if (!targetImg) return;
+
+    targetImg.classList.add('video-trigger');
 
     const modal = document.createElement('div');
     modal.className = 'video-modal';
@@ -34,15 +36,5 @@ document.addEventListener('DOMContentLoaded', () => {
         video.play().catch(e => console.log('Автовоспроизведение заблокировано браузером'));
     };
 
-    if (cardImages.length) {
-        cardImages.forEach(img => {
-            img.classList.add('video-trigger');
-            img.addEventListener('click', openModalAndPlay);
-        });
-    }
-
-    if (bottomImg) {
-        bottomImg.classList.add('video-trigger');
-        bottomImg.addEventListener('click', openModalAndPlay);
-    }
+    targetImg.addEventListener('click', openModalAndPlay);
 });

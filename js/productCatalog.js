@@ -135,6 +135,31 @@ function updateCartCounter() {
     }
 }
 
+function showProductDetail(product) {
+    const modal = document.getElementById('productDetailModal');
+    if (!modal) return;
+    const title = document.getElementById('detailTitle');
+    const content = document.getElementById('detailContent');
+    if (!title || !content) return;
+    title.textContent = product.name;
+    content.innerHTML = `
+        <img src="${product.image}" style="max-width:100%; border-radius:8px; margin-bottom:15px;">
+        <p><strong>Цена:</strong> ${formatPrice(product.price)} руб.</p>
+        <p><strong>Цена со скидкой:</strong> ${formatPrice(product.sailPrice)} руб.</p>
+        <p><strong>Рейтинг:</strong> ${product.rating} ★</p>
+        <button class="buyButton" data-id="${product.id}" style="margin-top:15px;">Купить</button>
+    `;
+    modal.classList.add('active');
+    const buyBtn = content.querySelector('.buyButton');
+    if (buyBtn) {
+        buyBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            addToCart(product.id);
+            closeModal(modal);
+        });
+    }
+}
+
 function renderProducts(productsArray) {
     if (productsArray !== undefined) {
         currentFullProducts = productsArray;
@@ -180,6 +205,12 @@ function renderProducts(productsArray) {
                 </div>
             </div>
         `;
+
+        card.addEventListener('click', (e) => {
+            if (e.target.closest('.buyButton') || e.target.closest('.like')) return;
+            showProductDetail(product);
+        });
+
         container.appendChild(card);
     });
 

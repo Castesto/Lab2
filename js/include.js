@@ -89,4 +89,15 @@ function showNotification(message, type = 'success') {
     }, 3000);
 }
 
+window.closeModal = function(modalElement) {
+    if (modalElement) modalElement.classList.remove('active');
+};
+
+document.addEventListener('click', (e) => {
+    const modal = e.target.closest('.modal-overlay');
+    if (modal && (e.target === modal || e.target.classList.contains('modal-close'))) {
+        closeModal(modal);
+    }
+});
+
 document.addEventListener('DOMContentLoaded', includeComponents);  

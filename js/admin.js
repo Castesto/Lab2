@@ -28,6 +28,21 @@ let allProducts = [];
 let currentItem;
 
 
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) modal.classList.add('active');
+}
+function closeModal(modal) {
+    modal.classList.remove('active');
+}
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay || e.target.classList.contains('modal-close')) {
+            closeModal(overlay);
+        }
+    });
+});
+
 function isAdmin() {
     let user = JSON.parse(localStorage.getItem('currentUser'))
     return user && user.role === 'admin';
@@ -332,10 +347,10 @@ function reviewInputEvent(e) {
 async function reviewClickEvent(e) {
     const targetDiv = e.target.closest('.reviewHelement');
     if (!targetDiv) return;
-    
+
     let id = targetDiv.dataset.id;
     currentItem = id;
-    
+
     let allReviewsWithName = leftJoinReviewsWithProducts(await getAllReviews(), allProducts);
     let rew = allReviewsWithName.find(hel => hel.id === id);
 
@@ -378,6 +393,10 @@ async function init() {
     deleteProduct.addEventListener('click', deleteButtonEvent);
     searchReviewsByName.addEventListener('input', reviewInputEvent);
     wathReviews.addEventListener('click', reviewsButtonEvent);
+    document.querySelector('.addProduct').addEventListener('click', () => openModal('addModal'));
+    document.querySelector('.editProduct').addEventListener('click', () => openModal('editModal'));
+    document.querySelector('.deleteProduct').addEventListener('click', () => openModal('deleteModal'));
+    document.querySelector('.wathReviews').addEventListener('click', () => openModal('reviewsModal'));
 
     let reviews = await renderReviews('Анто');
     console.log(reviews);

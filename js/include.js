@@ -189,7 +189,6 @@ if (document.readyState === 'loading') {
 
 
 function createScrollToTopButton() {
-    // Проверяем, существует ли уже кнопка
     if (document.getElementById('scrollToTopBtn')) return;
 
     const btn = document.createElement('button');
@@ -289,6 +288,32 @@ function overlayClickHandler(e) {
         closeModalHandler();
     }
 }
+
+// Глобальное уведомление
+window.showNotification = function(message, duration = 3000) {
+    const notification = document.createElement('div');
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #384685;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 16px;
+        z-index: 10000;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    `;
+    document.body.appendChild(notification);
+    setTimeout(() => notification.style.opacity = '1', 10);
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => notification.remove(), 300);
+    }, duration);
+};
 
 document.addEventListener('DOMContentLoaded', () => {
     initModalClose();

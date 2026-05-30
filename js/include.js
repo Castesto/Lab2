@@ -8,7 +8,6 @@ async function includeComponents() {
         if (typeof window.updateAuthButtons === 'function') {
             window.updateAuthButtons();
         }
-        // Notify that components were included so other scripts (i18n) can react
         try { document.dispatchEvent(new Event('componentsIncluded')); } catch (e) { /* ignore */ }
     }
 

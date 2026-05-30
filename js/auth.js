@@ -1,33 +1,39 @@
 window.updateAuthButtons = function checkCurrentAutorization() {
     const savedUser = JSON.parse(localStorage.getItem('currentUser'));
-    const autorizationRef = document.querySelector('.contacts');
-    const registrationRef = document.querySelector('.our-work');
+    const autorizationAnchor = document.querySelector('.contacts a');
+    const registrationAnchor = document.querySelector('.our-work a');
 
     if (savedUser) {
-        if (autorizationRef && autorizationRef.firstChild) {
-            autorizationRef.firstChild.textContent = 'Выйти';
-            autorizationRef.firstChild.href = 'javascript:void(0)';
+        if (autorizationAnchor) {
+            // mark as logout action; text comes from translations
+            autorizationAnchor.dataset.action = 'logout';
+            autorizationAnchor.setAttribute('href', 'javascript:void(0)');
+            autorizationAnchor.setAttribute('data-i18n', 'nav.logout');
         }
-        if (registrationRef && registrationRef.firstChild) {
-            registrationRef.firstChild.textContent = 'Профиль';
+        if (registrationAnchor) {
+            registrationAnchor.dataset.action = 'profile';
             if (isAdmin()) {
-                registrationRef.firstChild.href = '/admin.html';
+                registrationAnchor.setAttribute('href', '/admin.html');
+            } else {
+                registrationAnchor.setAttribute('href', '/profile.html');
             }
-            else {
-                registrationRef.firstChild.href = '/profile.html';
-            }
+            registrationAnchor.setAttribute('data-i18n', 'nav.profile');
+        }
+    } else {
+        if (autorizationAnchor) {
+            autorizationAnchor.removeAttribute('data-action');
+            autorizationAnchor.setAttribute('href', 'avtorization.html');
+            autorizationAnchor.setAttribute('data-i18n', 'nav.login');
+        }
+        if (registrationAnchor) {
+            registrationAnchor.removeAttribute('data-action');
+            registrationAnchor.setAttribute('href', 'registration.html');
+            registrationAnchor.setAttribute('data-i18n', 'nav.register');
         }
     }
-    else {
-        if (autorizationRef?.firstChild) {
-            autorizationRef.firstChild.textContent = 'Авторизация';
-            autorizationRef.firstChild.href = 'avtorization.html';
-        }
-        if (registrationRef?.firstChild) {
-            registrationRef.firstChild.textContent = 'Регистрация';
-            registrationRef.firstChild.href = 'registration.html';
-        }
-    }
+
+    // re-run translator to apply the proper labels (if i18n is loaded)
+    try { if (typeof translatePage === 'function') translatePage(); } catch (e) {}
 }
 
 function isAdmin() {
@@ -37,10 +43,10 @@ function isAdmin() {
 
 function setupLogoutHandler() {
     document.body.addEventListener('click', (event) => {
-        const link = event.target.closest('.contacts a');
+        const link = event.target.closest('.contacts a, .contacts');
         if (!link) return;
-        const text = link.textContent.trim();
-        if (text === 'Выйти') {
+        const anchor = event.target.closest('.contacts a');
+        if (anchor && anchor.dataset.action === 'logout') {
             event.preventDefault();
             logout();
         }
@@ -55,6 +61,12 @@ function logout() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+    setupLogoutHandler();
+    updateAuthButtons();
+});
+
+// Also ensure auth buttons are updated after components are inserted and translated
+document.addEventListener('componentsTranslated', () => {
     setupLogoutHandler();
     updateAuthButtons();
 });

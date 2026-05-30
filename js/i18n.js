@@ -511,7 +511,6 @@ function setLanguage(lang) {
 
 function initI18n() {
   setLanguage(currentLanguage);
-  // Helper: attach click handlers to existing lang buttons
   function attachLangButtons() {
     const buttons = document.querySelectorAll('.lang-btn');
     if (!buttons || buttons.length === 0) return false;
@@ -524,19 +523,17 @@ function initI18n() {
       });
       btn.dataset.listenerAttached = '1';
     });
-    // set active class on load
     document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-lang') === currentLanguage));
     return true;
   }
 
   const header = document.querySelector('header');
-  // If no lang-switcher in DOM, create default one inside header/header2
   if (header && !document.querySelector('.lang-switcher')) {
     const langSwitcher = document.createElement('div');
     langSwitcher.className = 'lang-switcher';
     langSwitcher.innerHTML = `
-      <button type="button" class="lang-btn" data-lang="ru">RU</button>
-      <button type="button" class="lang-btn" data-lang="en">EN</button>
+      <button type="button" class="lang-btn box" data-lang="ru">RU</button>
+      <button type="button" class="lang-btn box" data-lang="en">EN</button>
     `;
     const header2 = document.querySelector('.header2');
     if (header2) {
@@ -546,11 +543,9 @@ function initI18n() {
     }
   }
 
-  // Try to attach handlers immediately. If lang-switcher is inserted later (via include.js), observe DOM and attach when available.
   if (!attachLangButtons()) {
     const observer = new MutationObserver((mutations, obs) => {
       if (attachLangButtons()) {
-        // translate newly inserted content as well
         translatePage();
         obs.disconnect();
       }
@@ -558,7 +553,6 @@ function initI18n() {
     observer.observe(document.documentElement || document.body, { childList: true, subtree: true });
   }
 
-  // Delegated click handler as a fallback for late-inserted buttons
   if (!document.__langBtnDelegated) {
     document.addEventListener('click', (e) => {
       const btn = e.target.closest && e.target.closest('.lang-btn');
@@ -575,14 +569,12 @@ function initI18n() {
   }
 }
 
-// React when include.js inserts header/footer
 document.addEventListener('componentsIncluded', () => {
-  // small delay to allow DOM nodes to be parsed
   setTimeout(() => {
-    // attach buttons and translate newly inserted content
     try { if (typeof translatePage === 'function') translatePage(); } catch (e) {}
     try { document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-lang') === currentLanguage)); } catch (e) {}
   }, 50);
 });
+  document.dispatchEvent(new CustomEvent('componentsTranslated'));
 
 document.addEventListener('DOMContentLoaded', initI18n);

@@ -216,6 +216,8 @@
     'profile.cancel': 'Отмена',
     'profile.review_thanks': 'Спасибо за отзыв!',
     'profile.review_empty': 'Введите текст отзыва',
+    'profile.edit_title': 'Редактирование профиля',
+    'profile.save': 'Сохранить',
     
     // Common
     'common.loading': 'Загрузка...',
@@ -443,6 +445,8 @@
     'profile.cancel': 'Cancel',
     'profile.review_thanks': 'Thank you for your review!',
     'profile.review_empty': 'Please enter your review text',
+    'profile.edit_title': 'Edit Profile',
+    'profile.save': 'Save',
     
     // Common
     'common.loading': 'Loading...',

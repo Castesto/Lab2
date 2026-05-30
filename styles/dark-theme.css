@@ -28,7 +28,9 @@ html[data-theme="dark"] .header3 {
 }
 
 html[data-theme="dark"] .modal-container,
-html[data-theme="dark"] .modal-content {
+html[data-theme="dark"] .modal-content,
+html[data-theme="dark"] .profile-edit-section
+{
   background-color: #0b1220;
   color: var(--dark-text);
   border: 1px solid var(--dark-border);
@@ -72,12 +74,12 @@ html[data-theme="dark"] .card {
   transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
 }
 
-html[data-theme="dark"] .productCards .card,
+/* html[data-theme="dark"] .productCards .card,
 html[data-theme="dark"] .product-card {
   position: relative;
   overflow: hidden;
   background-color: #0b1220;
-}
+} */
 
 html[data-theme="dark"] .productCards .card img,
 html[data-theme="dark"] .product-card img {
@@ -89,11 +91,13 @@ html[data-theme="dark"] .product-card img {
 }
 
 html[data-theme="dark"] .productCards .card::before,
-html[data-theme="dark"] .product-card::before {
+html[data-theme="dark"] .product-card::before,
+html[data-theme="dark"] .saleProductCards .card::before
+{
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(2,6,23,0.38); /* gentle darkening */
+  background: rgba(2,6,23,0.38); 
   z-index: 1;
   transition: background 220ms ease;
   pointer-events: none;
@@ -181,5 +185,9 @@ html[data-theme="dark"] .basket > img {
 }
 
 html[data-theme="dark"] .btn-remove-fav {
+    filter: invert(100%);
+}
+
+html[data-theme="dark"] .number {
     filter: invert(100%);
 }

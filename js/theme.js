@@ -1,4 +1,3 @@
-// Theme toggle: stores 'light' or 'dark' in localStorage under 'theme'
 (function(){
   const THEME_KEY = 'theme';
 
@@ -40,7 +39,6 @@
       }
     });
 
-    // Ensure update when components inserted
     document.addEventListener('componentsIncluded', () => setTimeout(updateToggleButton, 50));
   }
 

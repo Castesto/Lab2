@@ -1,29 +1,22 @@
-/* Dark theme: careful overrides that darken backgrounds and set readable text color
-   while preserving original layout and most site styles. Uses specific selectors
-   so it overrides common white backgrounds without global * or excessive !important. */
-
 :root[data-theme="dark"]{
-  --dark-bg: #0f1724;       /* page background */
-  --dark-surface: #111827;  /* panels/cards */
-  --dark-muted: #9aa4b2;    /* muted text */
-  --dark-text: #e6eef8;     /* primary text */
+  --dark-bg: #0f1724;       
+  --dark-surface: #111827;  
+  --dark-muted: #9aa4b2;    
+  --dark-text: #e6eef8;    
   --dark-border: rgba(255,255,255,0.05);
   --dark-accent: #6ea8fe;
 }
 
-/* Page background and base text color */
 html[data-theme="dark"] {
   background-color: var(--dark-bg);
   color: var(--dark-text);
 }
 
-/* Ensure body inherits the page background when other rules set body explicitly */
 html[data-theme="dark"] body {
   background-color: transparent;
   color: inherit;
 }
 
-/* Header/footer and main panels: dark surface but keep original padding/layout */
 html[data-theme="dark"] header,
 html[data-theme="dark"] footer,
 html[data-theme="dark"] main,
@@ -34,18 +27,13 @@ html[data-theme="dark"] .header3 {
   color: var(--dark-text);
 }
 
-/* Cards, product tiles and modals */
-/* html[data-theme="dark"] .card,
-html[data-theme="dark"] .productCards .card,
-html[data-theme="dark"] .product-card,
 html[data-theme="dark"] .modal-container,
 html[data-theme="dark"] .modal-content {
   background-color: #0b1220;
   color: var(--dark-text);
   border: 1px solid var(--dark-border);
-} */
+} 
 
-/* Forms and inputs */
 html[data-theme="dark"] input,
 html[data-theme="dark"] textarea,
 html[data-theme="dark"] select {
@@ -54,7 +42,6 @@ html[data-theme="dark"] select {
   border: 1px solid var(--dark-border);
 }
 
-/* Buttons: keep site's look but adjust border/text */
 html[data-theme="dark"] button,
 html[data-theme="dark"] .box,
 html[data-theme="dark"] .registered,
@@ -65,7 +52,6 @@ html[data-theme="dark"] .theme-btn {
   border: 1px solid var(--dark-border);
 }
 
-/* Active state for language/theme buttons */
 html[data-theme="dark"] .lang-btn.active,
 html[data-theme="dark"] .theme-btn.active,
 html[data-theme="dark"] .theme-btn {
@@ -74,13 +60,11 @@ html[data-theme="dark"] .theme-btn {
   border-color: transparent;
 }
 
-/* Links */
 html[data-theme="dark"] a,
 html[data-theme="dark"] a:visited {
   color: var(--dark-accent);
 }
 
-/* Transitions for pleasant switching */
 html[data-theme="dark"] body,
 html[data-theme="dark"] header,
 html[data-theme="dark"] footer,
@@ -88,7 +72,6 @@ html[data-theme="dark"] .card {
   transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
 }
 
-/* Product cards: overlay and stacking so images don't wash out text on hover */
 html[data-theme="dark"] .productCards .card,
 html[data-theme="dark"] .product-card {
   position: relative;
@@ -105,7 +88,6 @@ html[data-theme="dark"] .product-card img {
   transform-origin: center center;
 }
 
-/* Dark overlay sits above image but below content */
 html[data-theme="dark"] .productCards .card::before,
 html[data-theme="dark"] .product-card::before {
   content: "";
@@ -117,7 +99,6 @@ html[data-theme="dark"] .product-card::before {
   pointer-events: none;
 }
 
-/* On hover, enlarge image but make overlay stronger to preserve readability */
 html[data-theme="dark"] .productCards .card:hover img,
 html[data-theme="dark"] .product-card:hover img {
   transform: scale(1.06);
@@ -127,7 +108,6 @@ html[data-theme="dark"] .product-card:hover::before {
   background: rgba(2,6,23,0.56);
 }
 
-/* Ensure inner text/content sits above the overlay */
 html[data-theme="dark"] .productCards .card .card-content,
 html[data-theme="dark"] .product-card .card-content,
 html[data-theme="dark"] .productCards .card .card-title,
@@ -137,7 +117,6 @@ html[data-theme="dark"] .product-card .card-title {
   color: var(--dark-text);
 }
 
-/* Advantages section: ensure readable headings and values */
 html[data-theme="dark"] .advantagesText {
     color: var(--dark-text);
 }
@@ -148,7 +127,6 @@ html[data-theme="dark"] .qualityAssurance-text {
   color: black;
 }
 
-/* Gallery container: darken background and make controls readable */
 html[data-theme="dark"] .gallery-container {
   background-color: transparent;
 }
@@ -174,14 +152,34 @@ html[data-theme="dark"] .gallery-controls .gallery-btn {
   z-index: 2;
 }
 
-/* Parallax active: apply subtle dark overlay so foreground text remains readable */
 html[data-theme="dark"] .parallax-active,
 html[data-theme="dark"] .parallax-active .parallax-content {
   background-color: rgba(2,6,23,0.24);
   color: var(--dark-text);
 }
 
-/* Ensure form error messages remain visible */
 html[data-theme="dark"] .errMsg,
 html[data-theme="dark"] .errorNickMessage,
 html[data-theme="dark"] .mailErrorMessage { color: #ffcfdf; }
+
+html[data-theme="dark"] .buyButton {
+  background-color: var(--dark-bg);
+  color: #fff;
+  border-color: transparent;
+}
+
+html[data-theme="dark"] .liked > img {
+    filter: invert(100%);
+}
+
+html[data-theme="dark"] .basket > img {
+    filter: invert(100%);
+}
+
+ .btn-add-to-cart {
+    filter: invert(100%);
+}
+
+html[data-theme="dark"] .btn-remove-fav {
+    filter: invert(100%);
+}

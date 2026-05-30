@@ -1,436 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Акромебель</title>
-    <link type="Image/x-icon" href="images/logo A.png" rel="icon">
-    <link rel="stylesheet" href="styles/language.css">
-    <link rel="stylesheet" href="styles/styles.css">
-    <link rel="stylesheet" href="styles/header.css">
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/footer.css">
-    <link rel="stylesheet" href="styles/animations.css">
-    <link rel="stylesheet" href="styles/preloader.css">
-    <link rel="stylesheet" href="styles/slider.css">
-    <link rel="stylesheet" href="styles/video-modal.css">
-    <link rel="stylesheet" href="styles/gallery.css">
-    <link rel="stylesheet" href="styles/parallax.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CatVogue — каталог кошачьих пород</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="styles/style.css">
 </head>
+<body>
 
-<body class="page-main">
-
-    <div id="preloader" class="preloader">
-        <div class="spinner"></div>
+<header class="app-header">
+  <div class="container">
+    <div class="logo">
+      <h1>🐱 CatVogue</h1>
+      <p>энциклопедия кошачьих пород</p>
     </div>
+  </div>
+</header>
 
-    <header></header>
-
-    <main>
-        <div class="wrapper">
-
-            <div class="slider-container">
-                <div class="slider">
-                    <div class="slides">
-                        <img src="images/Барный стул метталик.webp" alt="Слайд 1">
-                        <img src="images/Детская кровть Сказка.jpg" alt="Слайд 2">
-                        <img src="images/Диван прямой Люкс.jpg" alt="Слайд 3">
-                    </div>
-                    <button class="slider-btn prev">❮</button>
-                    <button class="slider-btn next">❯</button>
-                </div>
-                <div class="slider-dots"></div>
-            </div>
-
-
-
-            <div class="advantages">
-                <div class="advantagesText" data-i18n="main.advantages">
-                    НАШИ ПРЕИМУЩЕСТВА
-                </div>
-                <div class="goodLocation">
-                    <div class="goodLocation-logo">
-                        <img src="images/logoLocation.png" alt="">
-                    </div>
-                    <div class="goodLocation-text" data-i18n="main.good_location">
-                        Удобное расположение магазина
-                    </div>
-                </div>
-                <div class="fastDelivery">
-                    <div class="fastDelivery-logo">
-                        <img src="images/logoDelivery.png" alt="">
-                    </div>
-                    <div class="fastDelivery-text" data-i18n="main.fast_delivery">
-                        Быстрая доставка
-                    </div>
-                </div>
-                <div class="lowPrice">
-                    <div class="lowPrice-logo">
-                        <img src="images/logoPrice.png" alt="">
-                    </div>
-                    <div class="lowPrice-text">
-                        <div data-i18n="main.low_prices">Низкие цены</div>
-                        <div data-i18n="main.low_prices_sub">Если найдете дешевле - <br>сделаем скидку</div>
-                    </div>
-                </div>
-                <div class="qualityAssurance">
-                    <div class="qualityAssurance-logo">
-                        <img src="images/logo qualityAssurance.png" alt="">
-                    </div>
-
-                    <div class="qualityAssurance-text" data-i18n="main.quality">
-                        Гарантия качества
-                    </div>
-                </div>
-            </div>
-
-            <div class="gallery-section">
-                <h2 data-i18n="main.gallery_title">Интерактивная галерея</h2>
-                <div class="gallery-container">
-                    <div class="image-wrapper">
-                        <img id="galleryImage" src="images/Барный стул метталик.webp" alt="Галерея">
-                    </div>
-                    <div id="soundStatus" class="sound-status" data-i18n="main.gallery_sound_paused">⚫ Пауза</div>
-                    <div class="gallery-controls">
-                        <button id="randomBtn1" class="gallery-btn" data-i18n="main.gallery_random">Случайное фото</button>
-                        <!-- <button id="randomBtn2" class="gallery-btn">🎲 Случайное фото 2</button> -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="catalog">
-                <div class="catalogText" data-i18n="main.catalog">
-                    КАТАЛОГ
-                </div>
-                <div class="catalogElements">
-                    <div>
-                        <img src="images/Кухни.png" alt="">
-                        <div>КУХНИ</div>
-                    </div>
-                    <div>
-                        <img src="images/Гостинные.png" alt="">
-                        <div>ГОСТИННЫЕ</div>
-                    </div>
-                    <div>
-                        <img src="images/Спальни.png" alt="">
-                        <div>СПАЛЬНИ</div>
-                    </div>
-                    <div>
-                        <img src="images/Прихожие.png" alt="">
-                        <div>ПРИХОЖИЕ</div>
-                    </div>
-                    <div>
-                        <img src="images/Шкафы-купе.png" alt="">
-                        <div>ШКАФЫ-КУПЕ</div>
-                    </div>
-                    <div>
-                        <img src="images/Детские.png" alt="">
-                        <div>ДЕТСКИЕ</div>
-                    </div>
-                    <div>
-                        <img src="images/Диваны.png" alt="">
-                        <div>ДИВАНЫ</div>
-                    </div>
-                    <div>
-                        <img src="images/Столы и стулья.png" alt="">
-                        <div>СТОЛЫ И СТУЛЬЯ</div>
-                    </div>
-                </div>
-            </div>
-            <div class="popularProducts">
-                <div class="popularProductsText" data-i18n="main.popular">
-                    ПОПУЛЯРНЫЕ ТОВАРЫ
-                </div>
-                <div class="productCards">
-                    <div class="card">
-                        <div class="cardImage">
-                            <img src="images/Кровать 5.png" alt="">
-                        </div>
-                        <div class="cardText">Гостиная модульная Lucido</div>
-                        <div class="cardPrice">
-                            <div class="prePrice">7 159 руб.</div>
-                            <div class="price">5 017 руб.</div>
-                        </div>
-                        <div class="buyButtonAndLike">
-                            <button class="buyButton" data-i18n="main.buy">КУПИТЬ</button>
-                            <div class="like"><img src="images/like.png" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="cardImage">
-                            <img src="images/Lucido.png" alt="">
-                        </div>
-                        <div class="cardText">Гостиная модульная Lucido</div>
-                        <div class="cardPrice">
-                            <div class="prePrice">7 159 руб.</div>
-                            <div class="price">5 017 руб.</div>
-                        </div>
-                        <div class="buyButtonAndLike">
-                            <button class="buyButton">КУПИТЬ</button>
-                            <div class="like"><img src="images/like.png" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="cardImage">
-                            <img src="images/Ронда.png" alt="">
-                        </div>
-                        <div class="cardText">Ронда КРР1600.1</div>
-                        <div class="cardPrice">
-                            <div class="prePrice">7 159 руб.</div>
-                            <div class="price">5 017 руб.</div>
-                        </div>
-                        <div class="buyButtonAndLike">
-                            <button class="buyButton">КУПИТЬ</button>
-                            <div class="like"><img src="images/like.png" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="cardImage">
-                            <img src="images/Ронда.png" alt="">
-                        </div>
-                        <div class="cardText">Гранд шкаф верхний горизонтальный</div>
-                        <div class="cardPrice">
-                            <div class="prePrice">7 159 руб.</div>
-                            <div class="price">5 017 руб.</div>
-                        </div>
-                        <div class="buyButtonAndLike">
-                            <button class="buyButton">КУПИТЬ</button>
-                            <div class="like"><img src="images/like.png" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="cardImage">
-                            <img src="images/Ронда.png" alt="">
-                        </div>
-                        <div class="cardText">Гостиная модульная Lucido</div>
-                        <div class="cardPrice">
-                            <div class="prePrice">7 159 руб.</div>
-                            <div class="price">5 017 руб.</div>
-                        </div>
-                        <div class="buyButtonAndLike">
-                            <button class="buyButton">КУПИТЬ</button>
-                            <div class="like"><img src="images/like.png" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="cardImage">
-                            <img src="images/Ронда.png" alt="">
-                        </div>
-                        <div class="cardText">Гостиная модульная Lucido</div>
-                        <div class="cardPrice">
-                            <div class="prePrice">7 159 руб.</div>
-                            <div class="price">5 017 руб.</div>
-                        </div>
-                        <div class="buyButtonAndLike">
-                            <button class="buyButton">КУПИТЬ</button>
-                            <div class="like"><img src="images/like.png" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="cardImage">
-                            <img src="images/Ронда.png" alt="">
-                        </div>
-                        <div class="cardText">Гостиная модульная Lucido</div>
-                        <div class="cardPrice">
-                            <div class="prePrice">7 159 руб.</div>
-                            <div class="price">5 017 руб.</div>
-                        </div>
-                        <div class="buyButtonAndLike">
-                            <button class="buyButton">КУПИТЬ</button>
-                            <div class="like"><img src="images/like.png" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="cardImage">
-                            <img src="images/Ронда.png" alt="">
-                        </div>
-                        <div class="cardText">Гостиная модульная Lucido</div>
-                        <div class="cardPrice">
-                            <div class="prePrice">7 159 руб.</div>
-                            <div class="price">5 017 руб.</div>
-                        </div>
-                        <div class="buyButtonAndLike">
-                            <button class="buyButton">КУПИТЬ</button>
-                            <div class="like"><img src="images/like.png" alt=""></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="popularCategory">
-                <div class="popularCategoryText" data-i18n="main.popular_categories">
-                    ПОПУЛЯРНЫЕ КАТЕГОРИИ
-                </div>
-                <div class="categoryes">
-                    <button class="box box-1">КУХНИ</button>
-                    <button class="box box-2">КРОВАТИ</button>
-                    <button class="box box-3">ГОСТИННЫЕ</button>
-                    <button class="box box-4">ШКАФ-КУПЕ</button>
-                    <button class="box box-5">СПАЛЬНИ</button>
-                    <button class="box box-6">ПРИХОЖИЕ</button>
-                    <button class="box box-7">ДИВАНЫ</button>
-                    <button class="box box-8">ДЕТСКИЕ</button>
-                    <button class="box box-9">СТУЛЬЯ</button>
-                    <button class="box box-10">СТОЛЫ</button>
-                    <button class="box box-11">ШКАФ-КУПЕ</button>
-                    <button class="box box-12">ШКАФ-КУПЕ</button>
-                    <button class="box box-13">ПРИХОЖИЕ</button>
-                    <button class="box box-14">ДИВАНЫ</button>
-                    <button class="box box-15">ГОСТИННЫЕ</button>
-                    <button class="box box-16">КУХНИ</button>
-                    <button class="box box-17">КРОВАТИ</button>
-                    <button class="box box-18">ГОСТИННЫЕ</button>
-                    <button class="box box-19">ШКАФ-КУПЕ</button>
-                    <button class="box box-20">СПАЛЬНИ</button>
-                    <button class="box box-21">ПРИХОЖИЕ</button>
-                    <button class="box box-22">ДИВАНЫ</button>
-                    <button class="box box-23">ДЕТСКИЕ</button>
-
-                </div>
-            </div>
-
-            <div class="saleProducts">
-                <div class="saleProductsText" data-i18n="main.sale_products">
-                    ТОВАРЫ ПО АКЦИИ
-                </div>
-                <div class="saleProductCards">
-                    <div class="card">
-                        <div class="cardImage">
-                            <img src="images/Кровать 5.png" alt="">
-                        </div>
-                        <div class="cardText">Гостиная модульная Lucido</div>
-                        <div class="cardPrice">
-                            <div class="prePrice">7 159 руб.</div>
-                            <div class="price">5 017 руб.</div>
-                        </div>
-                        <div class="buyButtonAndLike">
-                            <button class="buyButton">КУПИТЬ</button>
-                            <div class="like"><img src="images/like.png" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="cardImage">
-                            <img src="images/Кровать 5.png" alt="">
-                        </div>
-                        <div class="cardText">Гостиная модульная Lucido</div>
-                        <div class="cardPrice">
-                            <div class="prePrice">7 159 руб.</div>
-                            <div class="price">5 017 руб.</div>
-                        </div>
-                        <div class="buyButtonAndLike">
-                            <button class="buyButton">КУПИТЬ</button>
-                            <div class="like"><img src="images/like.png" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="cardImage">
-                            <img src="images/Кровать 5.png" alt="">
-                        </div>
-                        <div class="cardText">Гостиная модульная Lucido</div>
-                        <div class="cardPrice">
-                            <div class="prePrice">7 159 руб.</div>
-                            <div class="price">5 017 руб.</div>
-                        </div>
-                        <div class="buyButtonAndLike">
-                            <button class="buyButton">КУПИТЬ</button>
-                            <div class="like"><img src="images/like.png" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="cardImage">
-                            <img src="images/Кровать 5.png" alt="">
-                        </div>
-                        <div class="cardText">Гостиная модульная Lucido</div>
-                        <div class="cardPrice">
-                            <div class="prePrice">7 159 руб.</div>
-                            <div class="price">5 017 руб.</div>
-                        </div>
-                        <div class="buyButtonAndLike">
-                            <button class="buyButton">КУПИТЬ</button>
-                            <div class="like"><img src="images/like.png" alt=""></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ourWorks">
-                <div class="ourWorksText" data-i18n="main.our_works">
-                    НАШИ РАБОТЫ
-                </div>
-
-                <div class="catalogElements">
-                    <div>
-                        <img id="bottomVideoImage" src="images/Кухня глетчер.png" alt="">
-                        <div>КУХНЯ ГЛЕТЧЕР</div>
-                    </div>
-                    <div>
-                        <img src="images/Кухне денвер.png" alt="">
-                        <div>ГОСТИННАЯ ДЕНВЕР
-
-                        </div>
-                    </div>
-                    <div>
-                        <img src="images/Кухня лондон.png" alt="">
-                        <div>КУХНЯ ЛОНДОН</div>
-                    </div>
-                    <div>
-                        <img src="images/Кухня амели.png" alt="">
-                        <div>КУХНЯ АМЕЛИ</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="allContactsAndMap">
-                <div class="allContacts">
-                    <div class="ourConstactsText" data-i18n="main.our_contacts">
-                        НАШИ КОНТАКТЫ
-                    </div>
-                    <div class="adress" data-i18n="location.address">
-                        Краснодар, Московская 144 корпус-1
-                    </div>
-                    <div class="number">+7 961-525-91-91</div>
-                    <button class="questionButton" data-i18n="main.question">ЗАДАТЬ ВОПРОС</button>
-                </div>
-                <div class="map"></div>
-            </div>
-
-            <div class="instagramPhotos">
-                <p class="instagramPhotosText" data-i18n="main.instagram">МЫ В INSTAGRAM</p>
-                <div class="photos">
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-
-
-    <footer></footer>
-
-    <div id="productDetailModal" class="modal-overlay">
-        <div class="modal-container" style="max-width: 600px;">
-            <button class="modal-close">&times;</button>
-            <div class="modal-title" id="detailTitle"></div>
-            <div id="detailContent"></div>
-        </div>
+<main class="container">
+  <div class="toolbar">
+    <div class="search-group">
+      <label><i class="fas fa-search"></i> Поиск по породе</label>
+      <div class="search-wrapper">
+        <input type="text" id="searchInput" placeholder="Например: Siamese, Maine Coon..." autofocus>
+        <button id="clearSearchBtn" aria-label="Очистить"><i class="fas fa-times-circle"></i></button>
+      </div>
     </div>
+    <div class="filters">
+      <div class="filter-select">
+        <label>⚡ Энергия</label>
+        <select id="energyFilter">
+          <option value="any">Любая</option>
+          <option value="1">1 (низкая)</option><option value="2">2</option>
+          <option value="3">3 (средняя)</option><option value="4">4</option><option value="5">5 (высокая)</option>
+        </select>
+      </div>
+      <div class="filter-select">
+        <label>👶 Дружелюбие к детям</label>
+        <select id="childFilter">
+          <option value="any">Любое</option><option value="1">1</option><option value="2">2</option>
+          <option value="3">3</option><option value="4">4</option><option value="5">5</option>
+        </select>
+      </div>
+      <div class="filter-select">
+        <label>🪶 Линька</label>
+        <select id="sheddingFilter">
+          <option value="any">Любая</option><option value="1">1 (минимальная)</option><option value="2">2</option>
+          <option value="3">3 (средняя)</option><option value="4">4</option><option value="5">5 (интенсивная)</option>
+        </select>
+      </div>
+    </div>
+    <div class="breed-selector">
+      <label>🎲 Порода для случайного фото</label>
+      <select id="randomBreedSelect">
+        <option value="random">🌀 Любая случайная порода</option>
+      </select>
+    </div>
+    <button id="randomPhotoBtn" class="random-btn"><i class="fas fa-camera-retro"></i> Случайное фото</button>
+  </div>
 
-    <script src="js/parallax.js"></script>
-    <script src="js/video-launcher.js"></script>
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=f76d4b5f-8d86-4d83-872c-23c8711ad134&lang=ru_RU"></script>
-    <script src="/js/gallery.js"></script>
-    <script src="/js/map.js"></script>
-    <script src="/js/slider.js"></script>
-    <script src="/js/auth.js"></script>
-    <script src="/js/include.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <div id="cardsContainer" class="cards-grid">
+    <div class="no-results" style="display: none;">Загрузка усатых...</div>
+  </div>
+</main>
+
+<footer>
+  <p>🐾 Проект «CatVogue» — данные от <a href="https://thecatapi.com" target="_blank" rel="noopener">The Cat API</a> · 
+  <a href="https://github.com/your-cat-explorer" target="_blank">GitHub автора</a> · © 2025</p>
+</footer>
+
+<div id="lightbox" class="lightbox">
+  <div class="lightbox-content">
+    <img class="lightbox-img" id="lightboxImg" src="" alt="Увеличенное фото кошки">
+    <button class="close-lightbox" id="closeLightboxBtn">✕</button>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
 </body>
-
 </html>

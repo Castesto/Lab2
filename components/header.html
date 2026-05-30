@@ -5,13 +5,13 @@
 </button>
 <nav class="header1">
     <ul>
-        <li class="city"><a href="#">Ростов</a></li>
-        <li class="promo"><a href="#">Акции</a></li>
-        <li class="assembly"><a href="#">Сборка</a></li>
-        <li class="payment"><a href="#">Оплата</a></li>
-        <li class="delivery"><a href="#">Доставка</a></li>
-        <li class="our-work"><a href="registration.html">Регистрация</a></li>
-        <li class="contacts"><a href="avtorization.html">Авторизация</a></li>
+        <li class="city"><a href="#" data-i18n="nav.city">Ростов</a></li>
+        <li class="promo"><a href="#" data-i18n="nav.promo">Акции</a></li>
+        <li class="assembly"><a href="#" data-i18n="nav.assembly">Сборка</a></li>
+        <li class="payment"><a href="#" data-i18n="nav.payment">Оплата</a></li>
+        <li class="delivery"><a href="#" data-i18n="nav.delivery">Доставка</a></li>
+        <li class="our-work"><a href="registration.html" data-i18n="nav.register">Регистрация</a></li>
+        <li class="contacts"><a href="avtorization.html" data-i18n="nav.login">Авторизация</a></li>
     </ul>
 </nav>
 <div class="header2">
@@ -19,12 +19,12 @@
         <a href="index.html"><img src="images/logo.png" alt=""></a>
     </div>
     <div class="location">
-        ул. Московская, 144 корп. - 1
-        <a>Схема проезда</a>
+        <span data-i18n="location.address">ул. Московская, 144 корп. - 1</span>
+        <a data-i18n="location.scheme">Схема проезда</a>
     </div>
     <div class="search">
         <div class="search-box">
-            <input type="text" class="search-input" placeholder="Поиск">
+            <input type="text" class="search-input" placeholder="Поиск" data-i18n-placeholder="search.placeholder">
         </div>
     </div>
     <div class="phoneNumber">
@@ -32,35 +32,32 @@
             <img src="images/Vector (1).png" alt="">
             <div>8 (961) 525 91 91</div>
         </div>
-        <button class="phoneClick">Заказать звонок</button>
+        <button class="phoneClick" data-i18n="phone.callback">Заказать звонок</button>
     </div>
-    <!-- <div class="autorization">
-        <img src="images/Войти.png" alt="">
-        <div>Войти</div>
-    </div> -->
-
     <a class="favoritesRef" href="favorites.html">
         <div class="liked">
             <img src="images/Нравится.png" alt="">
-            <div>Избранное</div>
+            <div data-i18n="nav.favorites">Избранное</div>
         </div>
     </a>
     <a class="cartRef" href="cart.html">
         <div class="basket">
             <img src="images/Корзина.png" alt="">
-            <div>Корзина[<span id="cartCount">0</span>]</div>
+            <div data-i18n="nav.cart">Корзина[<span id="cartCount">0</span>]</div>
         </div>
     </a>
+    <div class="lang-switcher">
+        <button type="button" class="lang-btn" data-lang="ru" aria-label="Русский">ru</button>
+        <button type="button" class="lang-btn" data-lang="en" aria-label="English">en</button>
+    </div>
 </div>
-
-
 <div class="header3">
-    <div><a href="#">КУХНИ</a></div>
-    <div><a href="#">ГОСТИННЫЕ</a></div>
-    <div><a href="#">СПАЛЬНИ</a></div>
-    <div><a href="#">ПРИХОЖИЕ</a></div>
-    <div><a href="#">ШКАФЫ-КУПЕ</a></div>
-    <div><a href="#">ДЕТСКИЕ</a></div>
-    <div><a href="#">ДИВАНЫ</a></div>
-    <div class="whereWatch"><a href="productCatalog.html">КАТАЛОГ</a></div>
+    <div><a href="#" data-i18n="catalog.kitchens">КУХНИ</a></div>
+    <div><a href="#" data-i18n="catalog.livingrooms">ГОСТИННЫЕ</a></div>
+    <div><a href="#" data-i18n="catalog.bedrooms">СПАЛЬНИ</a></div>
+    <div><a href="#" data-i18n="catalog.hallways">ПРИХОЖИЕ</a></div>
+    <div><a href="#" data-i18n="catalog.wardrobes">ШКАФЫ-КУПЕ</a></div>
+    <div><a href="#" data-i18n="catalog.children">ДЕТСКИЕ</a></div>
+    <div><a href="#" data-i18n="catalog.sofas">ДИВАНЫ</a></div>
+    <div class="whereWatch"><a href="productCatalog.html" data-i18n="catalog.catalog">КАТАЛОГ</a></div>
 </div>

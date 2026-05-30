@@ -29,61 +29,61 @@
     <main>
         <form action="" id="registrationform">
             <fieldset>
-                <legend>Регистрация</legend>
+                <legend data-i18n="auth.register_title">Регистрация</legend>
                 <div class="form-row">
-                    <label>Фамилия</label>
+                    <label data-i18n="auth.lastname">Фамилия</label>
                     <input type="text" id="lastNameInput" name="lastName" required>
                 </div>
                 <div class="lastNameErrorMessage errMsg">это поле не может быть пустым</div>
                 <div class="form-row">
-                    <label>Имя</label>
+                    <label data-i18n="auth.firstname">Имя</label>
                     <input type="text" id="nameInput" name="firstName" required>
                 </div>
                 <div class="firstNameErrorMessage errMsg">это поле не может быть пустым</div>
                 <div class="form-row">
-                    <label>Отчество</label>
+                    <label data-i18n="auth.fathername">Отчество</label>
                     <input type="text" id="fatherNameInput" name="fatherName" required>
                 </div>
                 <div class="fatherNameErrorMessage errMsg">это поле не может быть пустым</div>
                 <div class="form-row">
-                    <label>Дата рождения</label>
+                    <label data-i18n="auth.birthdate">Дата рождения</label>
                     <input type="date" id="birthdate" name="dateBirthday" required>
                     <small id="dateError" style="color: red; display: none;"></small>
                 </div>
                 <div class="dateErrorMessage errMsg">возраст должен быть старше 16</div>
                 <div class="form-row">
-                    <label>Ник</label>
+                    <label data-i18n="auth.nickname">Ник</label>
                     <input type="text" id="nicknameInput" name="nickName" required>
                 </div>
                 <div class="nickNameErrorMessage errMsg">этот никнейм уже занят</div>
 
                 <div class="errorNickMessage"></div>
                 <div class="form-row">
-                    <label>Пароль</label>
+                    <label data-i18n="auth.password">Пароль</label>
                     <input type="password" id="passwordInput" name="password" required pattern=".{8,}"
                         title="Минимум 8 символов" class="passwordInput" required>
                 </div>
-                <div class="passwordErrorMessage errMsg">минимальная длинна 8 символов</div>
+                <div class="passwordErrorMessage errMsg" data-i18n="auth.pass_min">минимальная длинна 8 символов</div>
 
                 <div class="form-row">
-                    <label>Повторите пароль</label>
+                    <label data-i18n="auth.confirm_password">Повторите пароль</label>
                     <input type="password" class="secondPasswordInput"
                         oninput="this.setCustomValidity(this.value !== document.querySelector('.passwordInput').value ? 'Пароли не совпадают' : '')"
                         required>
                 </div>
-                <div class="secondPasswordErrorMessage errMsg">пароли не совпадают</div>
+                <div class="secondPasswordErrorMessage errMsg" data-i18n="auth.pass_mismatch">пароли не совпадают</div>
                 <div class="form-row">
-                    <label>E-mail</label>
+                    <label data-i18n="auth.email">E-mail</label>
                     <input type="email" id="emailInput" name="email" required>
                 </div>
-                <div class="mailErrorMessage errMsg">соблюдайте формат mail@mail.ru</div>
+                <div class="mailErrorMessage errMsg" data-i18n="auth.email_invalid">соблюдайте формат mail@mail.ru</div>
                 <div class="form-row">
-                    <label>Номер</label>
+                    <label data-i18n="auth.phone">Номер</label>
                     <input type="tel"
                         title="Номер должен начинаться с +375 и содержать 9 цифр после кода (всего 13 символов)"
                         pattern="\+375[0-9]{9}" id="numberInput" name="phoneNumber" required>
                 </div>
-                <div class="phoneErrorMessage errMsg">разрешены только белоруские номера</div>
+                <div class="phoneErrorMessage errMsg" data-i18n="auth.phone_invalid">разрешены только белоруские номера</div>
 
             </fieldset>
 

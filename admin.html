@@ -31,26 +31,26 @@
 
     <header id="header-placeholder"></header>
 
-  <main>
-    <div class="buttonsText">Кнопки действия</div>
+    <main>
+        <div class="buttonsText" data-i18n="admin.buttons">Кнопки действия</div>
     <div class="adminButtons">
-        <button class="addProduct box" data-modal="addModal">Добавить товар</button>
-        <button class="editProduct box" data-modal="editModal">Изменить товар</button>
-        <button class="deleteProduct box" data-modal="deleteModal">Удалить товар</button>
-        <button class="wathReviews box" data-modal="reviewsModal">Посмотреть отзывы</button>
+                <button class="addProduct box" data-modal="addModal" data-i18n="admin.add">Добавить товар</button>
+                <button class="editProduct box" data-modal="editModal" data-i18n="admin.edit">Изменить товар</button>
+                <button class="deleteProduct box" data-modal="deleteModal" data-i18n="admin.delete">Удалить товар</button>
+                <button class="wathReviews box" data-modal="reviewsModal" data-i18n="admin.reviews">Посмотреть отзывы</button>
     </div>
 
     <div id="addModal" class="modal-overlay">
         <div class="modal-container">
             <button class="modal-close">&times;</button>
-            <div class="modal-title">Добавление товара</div>
+            <div class="modal-title" data-i18n="admin.add_title">Добавление товара</div>
             <form id="addProductForm">
-                <div class="form-row"><label>Название</label><input type="text" id="nameInput" name="name" required></div>
-                <div class="form-row"><label>Цена</label><input type="text" id="priceInput" name="price" pattern="\d*" required></div>
-                <div class="form-row"><label>Цена со скидкой</label><input type="text" id="salePriceInput" name="sailPrice" pattern="\d*" required></div>
-                <div class="form-row"><label>Рейтинг</label><input type="text" id="rateInput" name="rating" pattern="^(?:[0-4](?:\.\d+)?|5(?:\.0+)?)$" required></div>
-                <div class="form-row"><label>Изображение</label><input type="file" id="imageInput" accept="image/*" required><input type="hidden" id="imagePathInput" name="image" value=""></div>
-                <button class="registered box" type="submit">Добавить</button>
+                <div class="form-row"><label data-i18n="admin.name">Название</label><input type="text" id="nameInput" name="name" required></div>
+                <div class="form-row"><label data-i18n="admin.price">Цена</label><input type="text" id="priceInput" name="price" pattern="\d*" required></div>
+                <div class="form-row"><label data-i18n="admin.sale_price">Цена со скидкой</label><input type="text" id="salePriceInput" name="sailPrice" pattern="\d*" required></div>
+                <div class="form-row"><label data-i18n="admin.rating">Рейтинг</label><input type="text" id="rateInput" name="rating" pattern="^(?:[0-4](?:\.\d+)?|5(?:\.0+)?)$" required></div>
+                <div class="form-row"><label data-i18n="admin.image">Изображение</label><input type="file" id="imageInput" accept="image/*" required><input type="hidden" id="imagePathInput" name="image" value=""></div>
+                <button class="registered box" type="submit" data-i18n="admin.submit_add">Добавить</button>
             </form>
         </div>
     </div>
@@ -58,17 +58,17 @@
     <div id="editModal" class="modal-overlay">
         <div class="modal-container">
             <button class="modal-close">&times;</button>
-            <div class="modal-title">Изменение товара</div>
+            <div class="modal-title" data-i18n="admin.edit_title">Изменение товара</div>
             <label>Поиск товара: <input type="text" class="searchForEdit"></label>
             <div class="searchResultBox"></div>
             <form id="editProductForm" style="display:none;">
-                <legend class="editProductLegend">Внесение изменений: <span></span></legend>
-                <div class="form-row"><label>Название</label><input type="text" id="nameEditInput" name="name" required></div>
-                <div class="form-row"><label>Цена</label><input type="text" id="priceEditInput" name="price" pattern="\d*" required></div>
-                <div class="form-row"><label>Цена со скидкой</label><input type="text" id="salePriceEditInput" name="sailPrice" pattern="\d*" required></div>
-                <div class="form-row"><label>Рейтинг</label><input type="text" id="rateEditInput" name="rating" pattern="^(?:[0-4](?:\.\d+)?|5(?:\.0+)?)$" required></div>
-                <div class="form-row"><label>Изображение</label><input type="file" id="imageEditInput" accept="image/*"><input type="hidden" id="imagePathEditInput" name="image" value=""></div>
-                <button class="registered box" type="submit">Изменить</button>
+                <legend class="editProductLegend" data-i18n="admin.edit">Внесение изменений: <span></span></legend>
+                <div class="form-row"><label data-i18n="admin.name">Название</label><input type="text" id="nameEditInput" name="name" required></div>
+                <div class="form-row"><label data-i18n="admin.price">Цена</label><input type="text" id="priceEditInput" name="price" pattern="\d*" required></div>
+                <div class="form-row"><label data-i18n="admin.sale_price">Цена со скидкой</label><input type="text" id="salePriceEditInput" name="sailPrice" pattern="\d*" required></div>
+                <div class="form-row"><label data-i18n="admin.rating">Рейтинг</label><input type="text" id="rateEditInput" name="rating" pattern="^(?:[0-4](?:\.\d+)?|5(?:\.0+)?)$" required></div>
+                <div class="form-row"><label data-i18n="admin.image">Изображение</label><input type="file" id="imageEditInput" accept="image/*"><input type="hidden" id="imagePathEditInput" name="image" value=""></div>
+                <button class="registered box" type="submit" data-i18n="admin.submit_edit">Изменить</button>
             </form>
         </div>
     </div>
@@ -76,20 +76,20 @@
     <div id="deleteModal" class="modal-overlay">
         <div class="modal-container">
             <button class="modal-close">&times;</button>
-            <div class="modal-title">Удаление товара</div>
+            <div class="modal-title" data-i18n="admin.delete_title">Удаление товара</div>
             <label>Поиск товара: <input type="text" class="searchForDelete"></label>
             <div class="searchDeleteResultBox"></div>
-            <button class="deleteProductButton box registered" style="display:none;">Удалить</button>
+            <button class="deleteProductButton box registered" style="display:none;" data-i18n="admin.submit_delete">Удалить</button>
         </div>
     </div>
 
     <div id="reviewsModal" class="modal-overlay">
         <div class="modal-container">
             <button class="modal-close">&times;</button>
-            <div class="modal-title">Просмотр отзывов</div>
+            <div class="modal-title" data-i18n="admin.reviews_title">Просмотр отзывов</div>
             <div class="searchAndSelect">
-                <label>Параметр поиска: <select id="searchParameterSelect"><option value="name">Название товара</option><option value="nickName" selected>Никнейм</option></select></label>
-                <label>Поиск: <input type="text" class="searchReviewsByName"></label>
+                <label data-i18n="admin.search_param">Параметр поиска: <select id="searchParameterSelect"><option value="name" data-i18n="admin.search_by_name">Название товара</option><option value="nickName" selected data-i18n="admin.search_by_nick">Никнейм</option></select></label>
+                <label data-i18n-placeholder="admin.search_product">Поиск: <input type="text" class="searchReviewsByName"></label>
                 <div class="reviewsContainer"></div>
             </div>
         </div>

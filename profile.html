@@ -32,13 +32,13 @@
     <main>
         <div id="reviewModal" class="modal-overlay">
             <div class="modal-content">
-                <h3>Оставить отзыв</h3>
-                <textarea id="reviewText" placeholder="Напишите ваш отзыв..." maxlength="500"></textarea>
+                <h3 data-i18n="profile.review_title">Оставить отзыв</h3>
+                <textarea id="reviewText" placeholder="Напишите ваш отзыв..." maxlength="500" data-i18n-placeholder="profile.review_placeholder"></textarea>
                 <div class="modal-footer">
                     <span id="charCount">0 / 500</span>
                     <div class="modal-buttons">
-                        <button id="submitReview" class="btn-submit">Отправить</button>
-                        <button id="closeReviewModal" class="btn-cancel">Отмена</button>
+                        <button id="submitReview" class="btn-submit" data-i18n="profile.submit_review">Отправить</button>
+                        <button id="closeReviewModal" class="btn-cancel" data-i18n="profile.cancel">Отмена</button>
                     </div>
                 </div>
             </div>

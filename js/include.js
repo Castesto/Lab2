@@ -8,6 +8,8 @@ async function includeComponents() {
         if (typeof window.updateAuthButtons === 'function') {
             window.updateAuthButtons();
         }
+        // Notify that components were included so other scripts (i18n) can react
+        try { document.dispatchEvent(new Event('componentsIncluded')); } catch (e) { /* ignore */ }
     }
 
     const footerElement = document.querySelector('footer');
@@ -15,6 +17,7 @@ async function includeComponents() {
         const response = await fetch('/components/footer.html');
         const footerContent = await response.text();
         footerElement.innerHTML = footerContent;
+        try { document.dispatchEvent(new Event('componentsIncluded')); } catch (e) { /* ignore */ }
     }
 }
 
@@ -289,7 +292,6 @@ function overlayClickHandler(e) {
     }
 }
 
-// Глобальное уведомление
 window.showNotification = function(message, duration = 3000) {
     const notification = document.createElement('div');
     notification.textContent = message;
@@ -314,6 +316,25 @@ window.showNotification = function(message, duration = 3000) {
         setTimeout(() => notification.remove(), 300);
     }, duration);
 };
+
+function loadI18nAndTranslate() {
+  if (typeof window.t === 'undefined') {
+    const script = document.createElement('script');
+    script.src = '/js/i18n.js';
+    script.onload = () => {
+      if (typeof initI18n === 'function') initI18n();
+    };
+    document.head.appendChild(script);
+  } else {
+    if (typeof initI18n === 'function') initI18n();
+  }
+}
+
+if (typeof window.initI18n === 'function') {
+  initI18n();
+} else {
+  loadI18nAndTranslate();
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     initModalClose();

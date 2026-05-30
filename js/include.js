@@ -1,4 +1,9 @@
 async function includeComponents() {
+    // Apply saved theme ASAP so CSS can pick it up before components/styles load
+    try {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    } catch (e) {}
     const headerElement = document.querySelector('header');
     if (headerElement) {
         const response = await fetch('/components/header.html');
@@ -18,6 +23,14 @@ async function includeComponents() {
         footerElement.innerHTML = footerContent;
         try { document.dispatchEvent(new Event('componentsIncluded')); } catch (e) { /* ignore */ }
     }
+
+        // Load theme script and dark CSS if not present
+        if (!document.querySelector('script[src="/js/theme.js"]')) {
+            const s = document.createElement('script'); s.src = '/js/theme.js'; document.head.appendChild(s);
+        }
+        if (!document.querySelector('link[data-theme-css]')) {
+            const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = '/styles/dark-theme.css'; l.setAttribute('data-theme-css', 'true'); document.head.appendChild(l);
+        }
 }
 
 
